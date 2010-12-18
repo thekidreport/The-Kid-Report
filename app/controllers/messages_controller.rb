@@ -36,9 +36,9 @@ class MessagesController < ApplicationController
         render :action => 'site_send_message'
         return false
       end
-      @message.message_recipients.delete_all
+      @message.recipients.delete_all
       for r_id in params[:recipients]
-        @message.message_recipients << MessageRecipient.new(:user_id => r_id)
+        @message.recipients << Recipient.new(:user_id => r_id)
       end
       if @message.update_attributes(params[:message])
         flash[:confirmation] = 'Message was updated successfully'
@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
       end
     else
       params[:recipients] = Array.new
-      for recipient in @message.message_recipients
+      for recipient in @message.recipients
         params[:recipients] << recipient.user_id.to_s
       end
     end

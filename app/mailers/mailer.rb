@@ -15,6 +15,7 @@ class Mailer < ActionMailer::Base
     end
   end
   
+  # Cron
   def status_update (user_count, site_count)
     @user_count = user_count
     @site_count = site_count
@@ -23,6 +24,7 @@ class Mailer < ActionMailer::Base
     end
   end
 
+  # Cron
   def site_update (user, site)
     @user = user
     @site = site

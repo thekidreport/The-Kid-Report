@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101205232447) do
+ActiveRecord::Schema.define(:version => 20101218220516) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -63,11 +63,6 @@ ActiveRecord::Schema.define(:version => 20101205232447) do
     t.datetime "updated_at"
   end
 
-  create_table "message_recipients", :force => true do |t|
-    t.integer "message_id"
-    t.integer "user_id"
-  end
-
   create_table "messages", :force => true do |t|
     t.integer  "site_id"
     t.integer  "user_id"
@@ -99,6 +94,11 @@ ActiveRecord::Schema.define(:version => 20101205232447) do
     t.integer  "position",               :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "recipients", :force => true do |t|
+    t.integer "message_id"
+    t.integer "user_id"
   end
 
   create_table "roles", :force => true do |t|
