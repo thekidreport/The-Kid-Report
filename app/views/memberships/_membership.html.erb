@@ -1,0 +1,10 @@
+<tr>
+	<td>"<%= membership.user.display_name %>" &lt;<%= membership.user.email %>&gt;</td>
+	<td>
+		<%= membership.role.name %>
+	</td>
+	<td>
+		<%= link_to 'Edit', edit_site_membership_path(membership.site, membership) %>
+		<%= link_to 'Remove', site_membership_path(membership.site, membership), :method => :delete, :confirm => 'Are you sure you want to remove this user?' %>
+	</td>
+</tr>

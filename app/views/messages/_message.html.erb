@@ -1,0 +1,14 @@
+<tr>
+	<td>
+ 		<b><%= message.subject %></b><br>
+	</td>
+	<td>
+		<%= message.user.display_name %>
+	</td>
+	<td>
+		<%= message.users.map(&:display_name).join(', ') %>
+	</td>
+	<td>
+		<%= message.created_at.to_s(:short) %>
+	</td>
+</tr>

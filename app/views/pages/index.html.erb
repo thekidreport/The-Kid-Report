@@ -1,0 +1,16 @@
+<% @page_title = 'Pages' %>
+<% @page_actions = link_to("Create Page", new_site_page_path(@site)) %>
+
+<table id="page_structure" class="nomargin"><tr><td id="main">
+
+<% if @site.pages.any? %>
+	<div id="page_list_table">
+		<%= render 'page_list', :site => @site %>
+	</div>
+	<p>
+		Note - Grab rows to reorder pages.
+	</p>
+<% else %>
+	This site currently has no pages.  <%= link_to 'Create some pages', new_site_page_path(@site) %> for this site.
+<% end %>
+</td></tr></table>

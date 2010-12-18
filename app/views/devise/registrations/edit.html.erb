@@ -1,0 +1,40 @@
+<h1>Edit <%= resource_name.to_s.humanize %></h1>
+<style>
+ul.form label { width: 120px;}
+ul.form li.indent { padding-left: 123px;}
+</style>
+
+<div class="callout">
+<h3>Cancel my account</h3>
+
+<p>Unhappy?<br><%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+</div>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+	<ul class="form">
+	  <li>
+			<%= f.label :email %>
+	  	<%= f.text_field :email %>
+		</li>
+
+		<li>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</li>
+
+
+	  <li><%= f.label :password %> 
+	  <%= f.password_field :password %> <i>(leave blank if you don't want to change it)</i>
+	</li>
+
+	  <li><%= f.label :password_confirmation, 'Confirmation' %>
+	  <%= f.password_field :password_confirmation %>
+	</li>
+
+	  <li><%= f.label :current_password %> 
+	  <%= f.password_field :current_password %> <i>(we need your current password to confirm your changes)</i></li>
+
+	  <li class="indent"><%= f.submit "Update" %></li>
+	</ul>
+<% end %>

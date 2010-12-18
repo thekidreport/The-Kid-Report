@@ -1,0 +1,12 @@
+<% @page_title = 'Memberships' %>
+<% @page_actions = link_to("Add members", new_site_membership_path(@site)) %>
+
+<table class="grid">
+	<thead>
+		<tr><th>User</th><th>Role</th><th>Actions</th></tr>
+	</thead>
+	<tbody>
+		<%= render @memberships  %>
+	</tbody>
+</table>
+<%= will_paginate @memberships %>

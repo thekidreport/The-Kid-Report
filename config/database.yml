@@ -1,0 +1,16 @@
+# PostgreSQL. Versions 7.4 and 8.x are supported.
+#
+
+development:
+  adapter: mysql
+  database: kidr_development
+  username: root
+  password: root
+
+test:
+  adapter: mysql
+  database: kidr_test
+  username: root
+  password: root
+
+

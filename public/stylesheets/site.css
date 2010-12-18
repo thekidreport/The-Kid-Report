@@ -1,0 +1,26 @@
+
+#header { position:relative; padding:5px; margin-bottom:10px; color:white; font-weight:bold; -moz-border-radius:7px; -webkit-border-radius:7px; }
+#header a { text-decoration:none }
+#header a:hover { text-decoration:underline;}
+#header img { vertical-align:top;}
+
+#body_wrapper { padding:10px ; margin-top: 10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+
+#tools { font-size:.8em; margin-top:1em; }
+#tools li { margin: .5em 0; font-weight:bold;}
+
+#gutter { background-color:#DDD; padding: 10px; -moz-border-radius:7px; -webkit-border-radius:7px; }
+#logo.text { font-size:1.2em; margin:5px 5px 20px; text-align:center; }
+#logo.image { text-align:center }
+
+#comments { width:480px; margin-top:20px; clear:both; border-top: solid 1px #EEE;}
+#comments form { margin: 20px; }
+#comments form textarea { height:6em; width:100%; border:solid 1px #AAA; font-family:Verdana,Arial,Helvetica,sans-serif; font-size:10px; }
+
+#comments .comment { background-color: #EEE; padding: .5em; -moz-border-radius:7px; -webkit-border-radius:7px; margin-left: 20px; margin-bottom:1em; font-size:.9em;}
+
+.sortable { cursor: move }
+
+.page_nav li { margin:5px 0 }
+.page_nav a { padding: .2em 10px; -moz-border-radius:10px; -webkit-border-radius:10px; text-decoration:none; display:inline-block; width:120px; }
+.page_nav a:hover { text-decoration:underline;}

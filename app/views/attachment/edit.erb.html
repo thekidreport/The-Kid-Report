@@ -1,0 +1,11 @@
+<% @page_title = 'Edit attachment' %>
+
+<%= flash[:error] %>
+
+<%= start_form_tag({:controller => 'attachment', :action => 'edit'}, :multipart => true) %>
+	<input type="hidden" name="attachment_id" value="<%= @attachment.id %>">
+	Description:<br>
+	<%= text_field "attachment", "description" %> <br><br>
+	File: <%= error_message_on 'attachment', 'file' %><br><%= file_column_field "attachment", "file" %> <br><br>
+	<button type="submit" class="primary">Edit attachment</button>
+<%= end_form_tag %>

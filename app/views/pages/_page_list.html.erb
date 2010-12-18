@@ -1,0 +1,16 @@
+<table class="grid">
+	<thead>
+		<tr><th>Page Name</th><th>Position</th><th>Actions</th></tr>
+	</thead>
+	<tbody id="page_list">
+	<%= render site.pages.order("position") %>
+	</tbody>
+
+</table>
+
+<%= sortable_element "page_list",
+:url => reorder_site_pages_path(site),
+:constraint => :vertical,
+:tag => :tr,
+:complete => visual_effect(:highlight, "page_list")
+%>

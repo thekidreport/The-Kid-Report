@@ -1,0 +1,12 @@
+<script>
+	function select(css_selector, state) {
+		jQuery(css_selector).each(
+			function()
+			{
+				this.checked = state;
+			} 
+		)
+	}
+</script>
+Select: <a href="javascript:select('input:checkbox', true)">All</a> |
+<a href="javascript:select('input:checkbox', false)">None</a>

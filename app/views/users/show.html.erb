@@ -1,0 +1,9 @@
+<%= render :partial => "site/partials/breadcrumbs" %>
+<h1 id="page_title">Account</h1>
+<table id="page_structure" class="nomargin"><tr><td id="main">
+    <p>    
+    <%= link_to 'Profile', :controller => 'user', :action => 'user_show', :user_name => @user.login %><br>
+    <%= link_to 'Update password', :action => 'change_password' %><br>
+    <%= link_to 'Update user profile', :controller => 'user', :action => 'user_edit' %>
+    </p>
+</td></tr></table>

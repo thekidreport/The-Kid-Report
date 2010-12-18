@@ -1,0 +1,13 @@
+<% @page_title = 'Contact us' %>
+<p>
+Your comments are greatly appreciated!   We couldn't build the site without you.
+</p>
+<div style="width:550px">
+<% form_for @feedback do |f| %>
+<%= raw error_messages_for @feedback %>
+<%= f.text_area :body, :style => 'height:100px' %><br><br>
+
+<%= f.submit "Send feedback" %>
+<%= f.submit "Cancel" %>
+<% end %>
+</div>

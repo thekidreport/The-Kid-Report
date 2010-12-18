@@ -1,0 +1,14 @@
+<% if @site.can_be_edited_by?(@user) %>
+    <div id="site_edit">
+    Edit Site:
+    <% if @site.can_be_administrated_by?(@user) %> 
+    	<%= link_to 'Properties', :controller => 'site', :action => 'edit',  :site => @site %> |
+    <% end %>
+    <%= link_to 'Pages', :controller => 'site', :action => 'edit_pages', :site => @site %>
+    | <%= link_to 'Resources', :controller => 'site', :action => 'edit_resources', :site => @site %>
+    <% if @site.can_be_administrated_by?(@user) %> 
+        | <%= link_to 'Users', :controller => 'site', :action => 'edit_users', :site => @site %>
+        | <%= link_to 'Style', :controller => 'site', :action => 'edit_style', :site => @site %>
+    <% end %> 
+    </div>
+<% end %>

@@ -1,0 +1,14 @@
+<% @page_title = 'Upload an attachment' %>
+
+<h4 class="page_subtitle">Useful for resumes, writing samples, or whatever.</h4>
+
+<%= flash[:notice] %>
+
+
+<%= start_form_tag({:controller => 'attachment', :action => 'upload'}, :multipart => true) %>
+	<input type="hidden" name="page_id" value="<%= @page.id %>">
+	Description:<br>
+	<%= text_field "attachment", "description" %> <br><br>
+	File: <%= error_message_on 'attachment', 'file' %><br><%= file_column_field "attachment", "file" %> <br><br>
+	<button type="submit" class="primary">Upload attachment</button>
+<%= end_form_tag %>

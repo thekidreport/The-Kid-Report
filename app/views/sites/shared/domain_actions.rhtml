@@ -1,0 +1,12 @@
+<div id="uplink">
+	<% unless @domain.new_record? %>
+	<%= link_to @domain.display_name, '/' %> |
+	<% end %>
+    <% if @user %>
+        <%= link_to "Sign out", {:controller => 'user', :action => 'signout', :redirect => url_for}, {:rel => 'nofollow'} %> &nbsp; (Signed in as 
+			<%= link_to @user.display_name, :controller => 'user', :action => 'show' %>)
+    <% else %>
+	    <%= link_to_unless_current "Sign in", {:controller => 'user', :action => 'signin', :redirect => url_for}, {:rel => 'nofollow'} %> or
+		<%= link_to_unless_current "Sign up", {:controller => 'user', :action => 'signup', :redirect => url_for}, {:rel => 'nofollow'} %>
+    <% end %>
+</div>

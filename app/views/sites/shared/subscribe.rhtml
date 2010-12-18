@@ -1,0 +1,15 @@
+<div id="welcome">
+	<% if @site %>
+		<% if @user && @site.users.include?(@user) %>
+			<% if @user.role(@site) == Role.pending %>
+				Membership is pending <%= link_to 'Cancel', {:controller => 'site', :action => 'unsubscribe', :site_id => @site}, :post => true %>
+			<% else %>
+				<%= link_to 'Unsubscribe', {:controller => 'site', :action => 'unsubscribe', :site_id => @site}, :confirm => 'Are you sure you want to unsubscribe from this site?', :post => true %>
+			<% end %>
+		<% elsif @site.subscribe == 1 %>
+			<%= link_to 'Subscribe', {:controller => 'site', :action => 'subscribe', :site_id => @site}, :post => true %>
+		<% elsif @site.subscribe == 2 %>
+			<%= link_to 'Request membership', {:controller => 'site', :action => 'subscribe', :site_id => @site}, :post => true %>
+		<% end %>
+	<% end %>
+</div>

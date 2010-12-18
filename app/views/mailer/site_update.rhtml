@@ -1,0 +1,10 @@
+<p>
+	<%= @user.display_name %>, there are recent changes on <b><%= @site.name %></b><br>
+	<% for entry in @site.recent_log_entries %>
+		 <br><b><%= entry.user.display_name %></b> <%= entry.friendly_description %> <b><%= link_to_unless entry.page.is_deleted, entry.page.title, entry.page.uri_absolute %></b>
+	<% end %>
+</p>
+<p style="font-size:.8em;color:gray">
+Visit <a href="<%= @site.uri_absolute %>"><%= @site.name %></a> online.<br>
+Get another groupsite at flatball.com, mudcove.com, mobmentatlity.com, or thekidreport.com	
+</p>

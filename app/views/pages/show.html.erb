@@ -1,0 +1,18 @@
+<% @page_title = @page.name %>
+
+<% if current_user.can_edit?(@site) && !@page.new_record? %>
+<% @page_actions = link_to('Edit this page', edit_site_page_path(@site, @page)) %>
+<% end %>
+
+<% if @page && @page.attachments.any? %>
+	<ul class="callout">
+		<b>Attachments</b><br>
+		<% for attachment in @page.attachments %>
+			<li><%= link_to attachment.document.name, download_site_document_path(@site, attachment.document) %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<div class="user_generated"><%= raw @page.content %></div>
+
+<%= render 'comments/page_comments', :page => @page if @page.comments_allowed? %>
