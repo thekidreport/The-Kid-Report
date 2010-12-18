@@ -1,6 +1,6 @@
 <p>
-<%= @message %>
+<%= @message.body %>
 </p>
 <p style="font-size:.8em;color:gray">
-Visit <%= link_to @site.name, :controller => :pages, :action => :show, :site_permalink => @site.permalink %> online.<br>
+Visit <%= link_to @message.site.name, permalink_url(@message.site.permalink) %> online.<br>
 </p>

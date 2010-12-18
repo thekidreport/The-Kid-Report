@@ -10,7 +10,8 @@ class Mailer < ActionMailer::Base
   end
   
   def site_message (message)    
-    mail( :from => message.user.email, :to => message.recipients.map(&:email), :subject => message.subject ) do |format|
+    @message = message
+    mail( :from => message.user.email, :to => message.users.map(&:email), :subject => message.subject ) do |format|
       format.html { render 'site_message' }
     end
   end
