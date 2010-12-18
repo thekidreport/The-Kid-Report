@@ -1,14 +1,12 @@
 class Mailer < ActionMailer::Base
+  
+  default :from => "support@thekidreport.com"
 
   def signup_thanks( user )
-
-    # Email header info MUST be added here
-    @recipients            = user.email
-    @from                  = 'support@thekidreport.com'
-    @subject               = "Thank you for registering with the Kid Report"
-
-    # Email body substitutions go here
-    @body["name"]          = user.display_name
+    @name = user.display_name
+    mail( :to => user.email, :subject => "Thank you for registering with the Kid Report" ) do |format|
+      format.html { render 'signup_thanks' }
+    end
   end
   
   
