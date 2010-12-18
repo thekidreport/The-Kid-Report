@@ -7,10 +7,14 @@
 	<div id="page_list_table">
 		<%= render 'page_list', :site => @site %>
 	</div>
-	<p>
-		Note - Grab rows to reorder pages.
-	</p>
+	<% if @site.pages.count > 2 %>
+		<p>
+			Note - Grab rows to reorder pages.
+		</p>
+	<% end %>
 <% else %>
+	<p>
 	This site currently has no pages.  <%= link_to 'Create some pages', new_site_page_path(@site) %> for this site.
+	</p>
 <% end %>
 </td></tr></table>
