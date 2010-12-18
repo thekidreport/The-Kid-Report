@@ -1,3 +1,4 @@
+<% @page_title = 'Free Teacher Websites' %>
 <table class="framework"><tr><td class="left" style="vertical-align:middle; width:45%">
 	<p>
 		The Kid Report has simple-to-use tools to create pages, add members, send messages, and attach documents.
@@ -16,7 +17,7 @@
 		<% end %>
 	<% else %>
 		<h2>Parents</h2>
-		<p><%= link_to 'Sign in', new_user_session_path %> if your just getting started.</p>
+		<p><%= link_to 'Sign up', new_user_registration_path %> if your just getting started.</p>
 		<p><%= link_to 'Have your password mailed to you', new_user_password_path %>  if your teacher already added you.</p>
 	<% end %>
 </td><td class="right">

@@ -22,24 +22,6 @@ class User < ActiveRecord::Base
 	validates_uniqueness_of :email, :on => :save, :message => 'This email is already signed up!'
 	validates_format_of :email, :with => EMAIL_REGEX, :message => 'The formatting for this email address is incorrect'
 
-	
-	def self.find_or_new email, name = nil
-	  if email
-	    user = User.find :first, :conditions => ['email = ?', email]
-	    unless user
-  	    unless name
-  	      name = /\w+/.match(email).to_s
-        end
-        begin
-	        user = User.create!(:email => email, :name => name, :password => 'has_not_yet_been_set')
-        rescue
-          return nil
-        end
-      end
-	    return user
-	  end
-  end
-
 	def display_name
 		if self.name.present?
 			return self.name
@@ -56,12 +38,6 @@ class User < ActiveRecord::Base
   
   def can_admin? site
     site.admins.include?(self)
-  end
-  
-  def friendly_gender
-    if self.gender && !self.gender.blank?
-      Profile.genders.rassoc(self.gender)[0]
-    end
   end
 	
 end

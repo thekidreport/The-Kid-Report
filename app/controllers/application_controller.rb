@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :load_site
   before_filter :set_user_time_zone
   
-  
   def select_layout
     if @site && !@site.new_record?
       'site'

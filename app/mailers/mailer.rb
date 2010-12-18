@@ -4,12 +4,13 @@ class Mailer < ActionMailer::Base
 
   def signup_thanks( user )
     @name = user.display_name
-    mail( :to => user.email, :subject => "Thank you for registering with the Kid Report" ) do |format|
+    mail( :from => 'mark@thekidreport.com', :to => user.email, :subject => "Thank you for registering with the Kid Report" ) do |format|
       format.html { render 'signup_thanks' }
     end
   end
   
   
+  # The rest need to be cleaned up and added to cron jobs.
   def site_message (message)    
     content_type "text/html"
     recipients message.users.map(&:email)

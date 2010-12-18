@@ -33,7 +33,7 @@
 				<div id="content">
 					<%= raw notice flash[:notice] %>
 					<%= raw error flash[:alert] %>
-					<h1 id="page_title"><%= @page_title %></h1>
+					<h1 id="page_title"><% unless url_for == root_path %><%= @page_title %><% end %></h1>
 					<%= yield %>
 				</div>
 			</div>
