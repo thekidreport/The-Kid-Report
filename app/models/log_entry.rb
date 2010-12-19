@@ -4,6 +4,8 @@ class LogEntry < ActiveRecord::Base
     belongs_to :page_archive
     belongs_to :user
     
+    scope :recent, where('created_at > ?', 1.hour.ago)
+    
     def friendly_description
       case self.description
       when 'site_create'

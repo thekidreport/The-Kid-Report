@@ -1,7 +1,7 @@
 <p>
-	<%= @user.display_name %>, there are recent changes on <b><%= @site.name %></b><br>
-	<% for entry in @site.recent_log_entries %>
-		 <br><b><%= entry.user.display_name %></b> <%= entry.friendly_description %> <b><%= link_to_unless entry.page.nil?, entry.page_archive.try(:page).try(:title), permalink_url(entry.site.permalink, entry.page_archive.try(:page).try(:permalink)) %></b>
+	There are recent changes on <b><%= @site.name %></b><br>
+	<% for entry in @site.log_entries.recent %>
+		 <br><b><%= entry.user.display_name %></b> <%= entry.friendly_description %> <b><%= link_to_unless entry.page_archive.try(:page).nil?, entry.page_archive.try(:page).try(:name), permalink_url(entry.site.permalink, entry.page_archive.try(:page).try(:permalink)) %></b>
 	<% end %>
 </p>
 <p style="font-size:.8em;color:gray">

@@ -18,6 +18,8 @@ class Site < ActiveRecord::Base
     :path => "/site_logos/:id/:style/:filename",
     :default_style => :original,
     :styles => { :original => "140x" }
+    
+  scope :with_recent_changes, where('updated_at > ?', 1.hour.ago)
 
   validates_presence_of :name
   
@@ -40,38 +42,5 @@ class Site < ActiveRecord::Base
   def home_page
     self.pages.order('position').first
   end
-
-  def visible_pages
-    self.pages.find_all(["visibility = 'visible'"]) 
-  end
-
-  def exposed_pages page
-    exposed_pages = Array.new
-    if !page.nil?
-      exposed_pages.concat page.exposed
-    end
-    exposed_pages.concat self.top_level_pages_visible
-    exposed_pages.uniq!
-    return exposed_pages
-  end
-
-  def top_level_pages
-    tlp = self.pages.find_all(["parent_id is null"]) 
-    if tlp.empty?
-      tlp << self.pages[0]
-    end
-    return tlp
-  end
-
-  def top_level_pages_visible
-    tlpv = self.pages.find_all(["parent_id is null AND visible is TRUE"])
-    if tlpv.empty? && self.pages[0]
-      tlpv << self.pages[0]
-    end
-    return tlpv
-  end
-
   
-
-
 end

@@ -18,8 +18,10 @@ class Page < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :site_id
   
-  named_scope :top_level, where('parent_id is NULL')
-  
+  scope :top_level, where('parent_id is NULL')
+  scope :visible, where('visible = ?', true)
+  scope :with_recent_changes, where('updated_at > ?', 1.hour.ago)
+
   acts_as_list :scope => :site
 
   def set_permalink

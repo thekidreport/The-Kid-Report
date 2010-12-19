@@ -40,7 +40,7 @@
 							<div id="logo" class="text"><%= link_to_unless_current @site.name, permalink_path(@site.permalink, @site.home_page.try(:permalink)) %></div>
 						<% end %>
 						<ul class="page_nav">
-							<% for page in @site.pages.order('position') %>
+							<% for page in @site.pages.visible.order('position') %>
 							<li><%= link_to page.name, permalink_path(@site.permalink, page.permalink) %></li>
 							<% end %>
 						</ul>
