@@ -28,8 +28,10 @@ class Mailer < ActionMailer::Base
   # Cron
   def site_update (site)
     @site = site
-    mail( :to => site.users.map(&:email), :subject => "#{site.name} update" ) do |format|
-      format.html { render 'site_update' }
+    for user in @site.users
+      mail( :to => user.email, :subject => "#{site.name} update" ) do |format|
+        format.html { render 'site_update' }
+      end
     end
   end
   
