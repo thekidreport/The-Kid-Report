@@ -1,10 +1,9 @@
 <p>
 	<%= @user.display_name %>, there are recent changes on <b><%= @site.name %></b><br>
 	<% for entry in @site.recent_log_entries %>
-		 <br><b><%= entry.user.display_name %></b> <%= entry.friendly_description %> <b><%= link_to_unless entry.page.is_deleted, entry.page.title, entry.page.uri_absolute %></b>
+		 <br><b><%= entry.user.display_name %></b> <%= entry.friendly_description %> <b><%= link_to_unless entry.page.nil?, entry.page_archive.try(:page).try(:title), permalink_url(entry.site.permalink, entry.page_archive.try(:page).try(:permalink)) %></b>
 	<% end %>
 </p>
 <p style="font-size:.8em;color:gray">
-Visit <a href="<%= @site.uri_absolute %>"><%= @site.name %></a> online.<br>
-Get another groupsite at flatball.com, mudcove.com, mobmentatlity.com, or thekidreport.com	
+Visit <%= link_to @site.name, permalink_url(@site.permalink) %> online.<br>
 </p>

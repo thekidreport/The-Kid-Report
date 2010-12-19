@@ -1,10 +1,10 @@
 class Mailer < ActionMailer::Base
   
-  default :from => "support@thekidreport.com"
+  default :from => "support@thekidreport.org"
 
   def signup_thanks( user )
     @name = user.display_name
-    mail( :from => 'mark@thekidreport.com', :to => user.email, :subject => "Thank you for registering with the Kid Report" ) do |format|
+    mail( :from => 'mark@thekidreport.org', :to => user.email, :subject => "Thank you for registering with the Kid Report" ) do |format|
       format.html { render 'signup_thanks' }
     end
   end
@@ -20,7 +20,7 @@ class Mailer < ActionMailer::Base
   def status_update (user_count, site_count)
     @user_count = user_count
     @site_count = site_count
-    mail( :to => 'swards@gmail.com', :subject => "Kidreport status update" ) do |format|
+    mail( :to => 'mark@thekidreport.org', :subject => "Kidreport status update" ) do |format|
       format.html { render 'status_update' }
     end
   end
