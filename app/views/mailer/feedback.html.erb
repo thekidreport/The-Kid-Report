@@ -1,5 +1,6 @@
 <p><%= @feedback.body %></p>
 <p>
 Referrer: <%= @feedback.referrer %>
-<br>Browser: <%= @feedback.browser %>
+	<br>Browser: <%= @feedback.browser %>
+	<br>User: <%= @feedback.user.try(:display_name) %>
 </p>
