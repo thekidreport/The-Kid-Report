@@ -36,5 +36,11 @@ class Mailer < ActionMailer::Base
   end
   
   # Send email on comment
+  def site_feedback (feedback)
+    @feedback = feedback
+    mail( :to => 'support@thekidreport.org', :subject => "Feedback" ) do |format|
+      format.html { render 'feedback' }
+    end
+  end
   
 end
