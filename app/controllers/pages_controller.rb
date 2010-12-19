@@ -87,7 +87,7 @@ class PagesController < ApplicationController
     if @page.update_attributes(params[:page])
       @page.site.save
       @page.archive
-      LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => @user, :description => 'page_edit' )
+      LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_edit' )
       flash[:notice] = "Page was updated successfully"
       redirect_to permalink_path(@page.site.permalink, @page.permalink)
       return false
@@ -107,7 +107,7 @@ class PagesController < ApplicationController
   def destroy
     @page = @site.pages.find(params[:id])
     @page.destroy
-    LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => @user, :description => 'page_delete' )
+    LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_delete' )
     flash[:confirm] = "The page was deleted"
     redirect_to site_pages_path(@site)
   end

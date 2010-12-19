@@ -6,13 +6,12 @@ class Page < ActiveRecord::Base
   has_many :documents, :through => :attachments
   accepts_nested_attributes_for :attachments, :allow_destroy => true
   
-  has_many :comments, :order => 'updated_at DESC, created_at DESC'
+  has_many :comments, :order => 'updated_at DESC, created_at DESC', :dependent => :destroy
   belongs_to :user
-  has_many :log_entries, :dependent => :delete_all
+  has_many :log_entries, :through => :page_archives
 
   before_create :set_visitor_count_start_at
   before_create :set_last_edited_at
-  before_destroy :destroy_comments
   
   before_save :set_permalink
 
