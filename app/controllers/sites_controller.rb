@@ -52,7 +52,8 @@ class SitesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    @site = Site.find(params[:id])
     if current_user.can_admin? @site
       @site.destroy
       flash[:notice] = 'Site was successfully deleted.'
