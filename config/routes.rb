@@ -2,7 +2,12 @@ Kidr::Application.routes.draw do
  
   devise_for :users
   
-  resources :sites, :except => :show do
+  namespace :admin do
+    resources :sites, :only => :index
+    resources :users, :only => :index
+  end
+  
+  resources :sites, :except => [:show, :index] do
     resources :pages do
       resources :attachments
       resources :comments

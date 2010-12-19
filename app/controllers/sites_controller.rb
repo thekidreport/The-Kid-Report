@@ -2,11 +2,6 @@ class SitesController < ApplicationController
   
   before_filter :authenticate_user!  
 
-  def index
-    @page_title = "Sites"
-    @sites = Site.all
-  end  
-
   def new
     @page_title = "Create a site"
     @site = Site.new(:time_zone => "Pacific Time (US & Canada)" )

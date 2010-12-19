@@ -1,8 +1,7 @@
-class UsersController < ApplicationController
-
-  before_filter :authenticate_user!
+class Admin::UsersController < Admin::AdminController
   
   def index
+    @page_title = 'Users'
     @users = User.all.paginate
   end
 
