@@ -14,7 +14,7 @@ class MembershipsController < ApplicationController
   def update
     @membership = @site.memberships.find(params[:id])  
     if @membership.update_attributes(params[:membership])
-    flash[:confirmation] = 'The member was successfully updated.'
+    flash[:notice] = 'The member was successfully updated.'
       redirect_to site_memberships_path(@site)
     else
       render :action => :edit
@@ -22,13 +22,10 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-    user = @site.users.find(params[:user_id])
-    if user
-      membership = @site.membership_for user
-      membership.destroy
-      flash[:confirmation] = 'User \'' + user.display_name + '\' was successfully removed.'
-      redirect_to :action => 'edit_users', :site_id => @site
-    end
+    @membership = @site.memberships.find(params[:id]) 
+    @membership.destroy
+    flash[:notice] = 'User \'' + @membership.user.display_name + '\' was successfully removed.'
+    redirect_to site_memberships_path(@site)
   end
   
   def new
