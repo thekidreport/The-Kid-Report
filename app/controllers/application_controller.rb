@@ -44,8 +44,16 @@ class ApplicationController < ActionController::Base
   def load_site
     if params[:site_permalink]
       @site = Site.find_by_permalink(params[:site_permalink]) 
+      unless @site
+        render :text => 'Page not found', :status => :not_found
+        return false
+      end
     elsif params[:site_id]
       @site = Site.find(params[:site_id]) 
+      unless @site
+        render :text => 'Page not found', :status => :not_found
+        return false
+      end
     end
   end
   

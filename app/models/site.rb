@@ -19,7 +19,7 @@ class Site < ActiveRecord::Base
     :default_style => :original,
     :styles => { :original => "140x" }
     
-  scope :with_recent_changes, where('updated_at > ?', 1.hour.ago)
+  scope :with_recent_changes, where('last_edited_at > ?', 1.hour.ago)
 
   validates_presence_of :name
   

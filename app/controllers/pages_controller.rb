@@ -24,10 +24,6 @@ class PagesController < ApplicationController
   uses_tiny_mce :options => TINY_MCE_OPTIONS.merge(:external_image_list_url => '../photos.js'), :only => [:new, :create]
                             
   def show
-    unless @site
-      render :text => 'Page not found', :status => :not_found
-      return false
-    end
     if params[:page_permalink]  
       @page = @site.pages.find_by_permalink(params[:page_permalink])
       @page.increment!(:visitor_count)
@@ -58,8 +54,6 @@ class PagesController < ApplicationController
     @page.user = current_user
 
     if @page.save
-      @page.site.last_edited_at = Time.now
-      @page.site.save
       @page.archive
       LogEntry.create!(:page_archive => @page.page_archives.last, :site => @page.site, :user => current_user, :description => 'page_create')
       redirect_to permalink_path(@site.permalink, @page.permalink)
@@ -87,7 +81,7 @@ class PagesController < ApplicationController
     @page.user = current_user
     @page.set_last_edited_at
     if @page.update_attributes(params[:page])
-      @page.site.save
+      @page.set_last_edited_at
       @page.archive
       LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_edit' )
       flash[:notice] = "Page was updated successfully"

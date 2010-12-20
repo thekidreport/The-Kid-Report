@@ -19,8 +19,6 @@ class LogEntry < ActiveRecord::Base
         'created the page'
       when 'page_delete'
         'deleted the page'
-      when 'comment_edit'
-        'updated comment on the page'
       when 'comment_create'
         'created a comment for the page'
       when 'comment_delete'

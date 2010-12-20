@@ -43,8 +43,8 @@ class Page < ActiveRecord::Base
   end
 
   def set_last_edited_at
-    self.last_edited_at = Time.now
-    self.site.last_edited_at = Time.now
+    self.update_attribute(:last_edited_at, Time.now)
+    self.site.update_attribute(:last_edited_at, Time.now)
   end
 
   def archive
