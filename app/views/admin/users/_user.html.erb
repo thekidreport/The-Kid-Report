@@ -1,1 +1,5 @@
-<div><%= user.display_name %></div>
+<tr><td><%= user.display_name %></td><td><%= user.email %></td><td>
+	<% for site in user.sites %>
+		<%= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink)) %>
+	<% end %></td>
+</tr>
