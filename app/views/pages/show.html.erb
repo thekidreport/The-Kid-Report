@@ -1,4 +1,4 @@
-<% @page_title = @page.name %>
+<% @page_title = "#{@page.name}" %>
 
 <% if current_user.can_edit?(@site) && !@page.new_record? %>
 <% @page_actions = link_to('Edit this page', edit_site_page_path(@site, @page)) %>
