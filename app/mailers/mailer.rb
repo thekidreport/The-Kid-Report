@@ -20,7 +20,7 @@ class Mailer < ActionMailer::Base
   def status_update (user_count, site_count)
     @user_count = user_count
     @site_count = site_count
-    mail( :to => 'mark@thekidreport.org', :subject => "Kidreport status update" ) do |format|
+    mail( :to => 'mark@thekidreport.org', :subject => "Kid Report status update" ) do |format|
       format.html { render 'status_update' }
     end
   end
@@ -28,8 +28,10 @@ class Mailer < ActionMailer::Base
   # Cron
   def site_update (site)
     @site = site
+    @updates = @site.log_entries.recent
+    
     for user in @site.users
-      mail( :to => user.email, :subject => "#{site.name} update" ) do |format|
+      mail( :to => user.email, :subject => "[The Kid Report] #{site.name} update" ) do |format|
         format.html { render 'site_update' }
       end
     end

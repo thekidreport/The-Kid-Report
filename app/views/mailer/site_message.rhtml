@@ -2,5 +2,5 @@
 <%= @message.body %>
 </p>
 <p style="font-size:.8em;color:gray">
-Visit <%= link_to @message.site.name, permalink_url(@message.site.permalink) %> online.<br>
+Visit <%= link_to @message.site.name, permalink_url(@message.site.permalink, @message.site.home_page(:try).permalink) %> online.<br>
 </p>

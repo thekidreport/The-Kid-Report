@@ -1,4 +1,4 @@
-<% @page_title = 'Free Teacher & Parent Websites' %>
+<% @page_title = 'Free Teacher Websites | The Kid Report' %>
 <table class="framework"><tr><td class="left" style="vertical-align:middle; width:45%">
 	<p>
 		The Kid Report has simple-to-use tools to create pages, add members, send messages, and attach documents.
@@ -9,13 +9,19 @@
 	<% if user_signed_in? %>
 		<% if current_user.sites.any? %>
 			<ul>
-				<h3>Your Site<%= 's' if current_user.sites.count > 1 %></h3>
+				<b>Your Site<%= 's' if current_user.sites.count > 1 %></b>
 			<% for site in current_user.sites %>
 				<li><%= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink)) %><br>
 					<%= site.description %>
 				</li>
 			<% end %>
 			</ul>
+		<% end %>
+		<% if current_user.admin? %>
+			<p>
+			<b>Admin tools</b><br>
+			<%= link_to 'Users', admin_users_path %>,				<%= link_to 'Sites', admin_sites_path %>
+			</p>
 		<% end %>
 	<% else %>
 		<h2>Parents</h2>
@@ -26,8 +32,8 @@
 
 <div class="isolate">
 <h2 class="headline">Websites for Teachers and Parents</h2>
-<p>Teachers and parents can share information with the entire classroom quickly.</p>
-<p>Many members can update the site - it's easy to maintain and keep up-to-date.</p>
+<p>Teachers and parents can share information<br>with the entire classroom quickly.</p>
+<p>Many members can update the site.<br>It's easy to maintain and keep up-to-date.</p>
 <p><strong>Private</strong>, <strong>Simple</strong>, <strong>Free</strong> and <strong>No ads</strong></p>
 <p>
 	<%= link_to 'Create a site', new_site_path %>
