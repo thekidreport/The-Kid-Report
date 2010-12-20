@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   
   layout :select_layout
 
+  before_filter :redirect_to_www
   before_filter :load_site
   before_filter :set_user_time_zone
   
@@ -50,6 +51,12 @@ class ApplicationController < ActionController::Base
   
   def set_user_time_zone
     Time.zone = @site.time_zone if @site
+  end
+
+  def redirect_to_www
+    if Rails.env.production?
+      redirect_to(request.protocol + 'www.thekidreport.org' + request.request_uri, :status => 301) and return if !(request.domain(2) =~ /www/)
+    end
   end
   
 end
