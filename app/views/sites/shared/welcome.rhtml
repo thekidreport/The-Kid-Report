@@ -1,9 +1,0 @@
-<div id="welcome">
-    <% if @user %>
-        Welcome, <%= link_to_unless_current @user.display_name, {:controller => 'user', :action => 'show', :user_id => @user.id}, {:rel => 'nofollow'}  %><br>
-        <%= link_to "Sign out", {:controller => 'user', :action => 'signout'}, {:rel => 'nofollow'} %>
-    <% else %>
-	    <%= link_to_unless_current "Sign in", {:controller => 'user', :action => 'signin', :redirect => url_for}, {:rel => 'nofollow'} %> or
-		<%= link_to_unless_current "Sign up", {:controller => 'user', :action => 'signup', :redirect => url_for}, {:rel => 'nofollow'} %>
-    <% end %>
-</div>

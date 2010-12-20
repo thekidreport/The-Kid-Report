@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   
   before_filter :authenticate_user!
+  before_filter :site_editor_required!
   
   def index
     @messages = @site.messages.paginate(:page => params[:page])

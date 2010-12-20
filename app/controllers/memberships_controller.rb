@@ -1,6 +1,7 @@
 class MembershipsController < ApplicationController
   
   before_filter :authenticate_user!
+  before_filter :site_admin_required!
   
   def index
     @memberships = @site.memberships.paginate(:page => params[:page])

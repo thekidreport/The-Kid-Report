@@ -1,3 +1,0 @@
-<div id="byline">
-    Last updated on <%= (@page.last_edited_at + @page.site.timezone.hours).strftime "%m/%d/%Y" %> by <%= link_to_unless !@domain.byline_link_to_bio, @page.editor.display_name, :controller => 'user', :action => 'show', :user_id => @page.editor  %> 
-</div>   

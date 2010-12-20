@@ -12,7 +12,7 @@ class SitesController < ApplicationController
     @site.memberships_attributes = [{ :user => current_user, :role => Role.admin }]
     @site.pages_attributes = [ {:name => 'Welcome!', :content => '<p>Congratulations, your site is created!</p><p>The site is only visible to you (and the other members you add to the site).  This is an example page.  You can modify the content of the page by selecting "Edit this page" above.</p>', 
     :site => @site, :user => current_user, :comments_allowed => false }]
-    if @site.save
+    if current_user.can_edit?(@site) && @site.save
       @site.home_page.archive
       LogEntry.create!(:site => @site, :page_archive => @site.home_page.page_archives.last, :user => current_user, :description => 'site_create' )
       flash[:notice] = 'Site was successfully created.'
@@ -27,7 +27,7 @@ class SitesController < ApplicationController
   def update
     @page_title = "Edit site"
     @site = Site.find(params[:id])
-    if @site.update_attributes(params[:site])
+    if current_user.can_edit?(@site) && @site.update_attributes(params[:site])
       LogEntry.create!(:site => @site, :user => current_user, :description => 'site_update' )
       flash[:notice] = 'Site was successfully updated.'
       redirect_to permalink_path(@site.permalink, @site.home_page.permalink)
@@ -38,13 +38,7 @@ class SitesController < ApplicationController
   def edit
     @page_title = "Edit site"
     @site = Site.find(params[:id])
-    if request.post?
-      if @site.update_attributes(params[:newsite])
-        flash[:notice] = 'Site was successfully updated.'
-        redirect_to @site
-        return false
-      end
-    end
+    site_editor_required!
   end
 
   def destroy

@@ -1,5 +1,8 @@
 class DocumentsController < ApplicationController
   
+  before_filter :authenticate_user!
+  before_filter :site_editor_required!
+  
   def index
     @documents = @site.documents.paginate(:page => params[:page])
   end

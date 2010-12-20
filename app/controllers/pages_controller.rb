@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
   
   before_filter :authenticate_user!
+  before_filter :site_editor_required!, :except => :show
+  before_filter :site_member_required!, :only => :show
+  
   
   TINY_MCE_OPTIONS = { :theme => "advanced",
                               :plugins => [:table],
@@ -21,7 +24,6 @@ class PagesController < ApplicationController
   uses_tiny_mce :options => TINY_MCE_OPTIONS.merge(:external_image_list_url => '../photos.js'), :only => [:new, :create]
                             
   def show
-    @site = Site.find_by_permalink(params[:site_permalink])
     unless @site
       render :text => 'Page not found', :status => :not_found
       return false
@@ -71,7 +73,7 @@ class PagesController < ApplicationController
   def edit
     @page_title = "Edit page"
     @include_rte = true
-    @page = @site.pages.find (params[:id])
+    @page = @site.pages.find(params[:id])
     if params[:archive_id] && @page.page_archives
       @archive = @page.page_archives.find params[:archive_id]
       @page = @archive.page
@@ -81,7 +83,7 @@ class PagesController < ApplicationController
   def update
     @page_title = "Edit page"
     @include_rte = true
-    @page = @site.pages.find (params[:id])
+    @page = @site.pages.find(params[:id])
     @page.user = current_user
     @page.set_last_edited_at
     if @page.update_attributes(params[:page])

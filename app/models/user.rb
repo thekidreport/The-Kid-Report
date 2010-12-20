@@ -32,12 +32,16 @@ class User < ActiveRecord::Base
 		end
 	end
 	
+	def member_of? site
+	  site.users.include?(self) || self.admin?
+  end
+	
 	def can_edit? site
-	  site.editors.include?(self)
+	  site.editors.include?(self) || self.admin?
   end
   
   def can_admin? site
-    site.admins.include?(self)
+    site.admins.include?(self) || self.admin?
   end
 	
 end
