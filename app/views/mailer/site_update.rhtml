@@ -1,6 +1,6 @@
 <p>
 	There are recent changes on <b><%= @site.name %></b><br>
-	<% for entry in @site.log_entries.recent %>
+	<% for entry in @site.log_entries.recent.unique %>
 		 <br><b><%= entry.user.display_name %></b> <%= entry.friendly_description %> <b><%= link_to_unless entry.page_archive.try(:page).nil?, entry.page_archive.try(:page).try(:name), permalink_url(entry.site.permalink, entry.page_archive.try(:page).try(:permalink)) %></b>
 	<% end %>
 </p>

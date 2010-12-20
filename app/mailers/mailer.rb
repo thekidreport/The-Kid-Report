@@ -28,7 +28,6 @@ class Mailer < ActionMailer::Base
   # Cron
   def site_update (site)
     @site = site
-    @updates = @site.log_entries.recent
     
     for user in @site.users
       mail( :to => user.email, :subject => "[The Kid Report] #{site.name} update" ) do |format|

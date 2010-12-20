@@ -5,6 +5,7 @@ class LogEntry < ActiveRecord::Base
     belongs_to :user
     
     scope :recent, where('created_at > ?', 1.hour.ago)
+    scope :unique, group(:user_id, :page_archive_id, :description).select('user_id, page_archive_id, description')
     
     def friendly_description
       case self.description
