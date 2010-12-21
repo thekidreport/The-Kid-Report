@@ -1,5 +1,7 @@
-<tr>
+<tr class="<%= cycle('even', 'odd') %>">
 	<td><%= link_to site.name, permalink_path(site.permalink) %><br><%= site.description %></td>
+	<td><%= raw site.admins.map{|a| link_to(a.display_name, admin_user_path(a)) }.join(', ') %></td>
+	<td><%= site.pages.count %></td>
 	<td><%= site.users.count %></td>
 	<td><%= site.last_edited_at.to_s(:short) if site.last_edited_at %></td>
 </tr>

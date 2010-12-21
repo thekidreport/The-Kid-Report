@@ -1,2 +1,7 @@
-<table class="grid"><%= render @users %></table>
+<table class="grid">
+<thead>
+	<tr><th>User</th><th>Email</th><th>Admin</th><th>Sites</th></tr>
+</thead>
+<%= render @users %></table>
+
 <%= will_paginate @users %>

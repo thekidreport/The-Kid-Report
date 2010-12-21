@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle('even', 'odd') %>">
 	<td><%= link_to user.display_name, admin_user_path(user) %></td>
 	<td><%= user.email %></td>
 	<td><%= 'Admin' if user.admin? %></td>

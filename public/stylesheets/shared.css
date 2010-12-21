@@ -68,7 +68,9 @@ p { margin: 1em 0;}
 
 .gutter { width: 160px }
 
-.grid th { padding: 2px 8px; background-color:black; color:white; }
+.grid { width:100%;}
+.grid th { padding: 4px 8px; background-color:#444; color:white; text-align:left; border: 1px solid #888; }
+.grid tr.even { background-color:#EEE; }
 .grid td { padding: 2px 8px; }
 
 ul.form label  {display:inline-block; width:100px; text-align:right }
