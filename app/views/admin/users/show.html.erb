@@ -1,0 +1,12 @@
+<% @page_title = "User: #{@user.name}" %> 
+<ul>
+	<li>
+	<%= link_to("Edit", edit_admin_user_path(@user)) %> |
+	<%= link_to("Delete", admin_user_path(@user), :confirm => "Are you sure?", :method => :delete) %>
+	</li>
+<li>Email: <%= @user.email %> </li>
+<li>Sign in count: <%= @user.sign_in_count %> </li>
+<li>Current sign in at: <%= @user.current_sign_in_at %> </li>
+<li>Last sign in at: <%= @user.last_sign_in_at %></li>
+<li>Admin: <%= @user.admin? %></li>
+</ul>

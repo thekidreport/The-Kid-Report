@@ -4,7 +4,7 @@ Kidr::Application.routes.draw do
   
   namespace :admin do
     resources :sites, :only => :index
-    resources :users, :only => :index
+    resources :users, :only => [:index, :edit, :update, :show, :destroy]
   end
   
   resources :sites, :except => [:show, :index] do

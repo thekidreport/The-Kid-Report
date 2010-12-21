@@ -1,0 +1,24 @@
+<% @page_title = "Edit User: #{@user.name}" %> 
+
+<% form_for [:admin, @user] do |f| %>
+	
+	<ul class="form">
+	  <li>
+			<%= f.label :email %>
+	  	<%= f.text_field :email %>
+		</li>
+
+		<li>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</li>
+
+		<li>
+			<%= f.label :admin %>
+			<%= f.check_box :admin %>
+		</li>
+		
+	  <li class="indent"><%= f.submit "Save changes" %></li>
+	</ul>
+
+<% end %>
