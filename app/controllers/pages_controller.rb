@@ -79,9 +79,7 @@ class PagesController < ApplicationController
     @include_rte = true
     @page = @site.pages.find(params[:id])
     @page.user = current_user
-    @page.set_last_edited_at
     if @page.update_attributes(params[:page])
-      @page.set_last_edited_at
       @page.archive
       LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_edit' )
       flash[:notice] = "Page was updated successfully"

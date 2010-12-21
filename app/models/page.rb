@@ -11,7 +11,6 @@ class Page < ActiveRecord::Base
   has_many :log_entries, :through => :page_archives
 
   before_create :set_visitor_count_start_at
-  before_create :set_last_edited_at
   
   before_save :set_permalink
 
@@ -40,11 +39,6 @@ class Page < ActiveRecord::Base
 
   def set_visitor_count_start_at
     self.visitor_count_start_at = Time.now
-  end
-
-  def set_last_edited_at
-    self.update_attribute(:last_edited_at, Time.now)
-    self.site.update_attribute(:last_edited_at, Time.now)
   end
 
   def archive
