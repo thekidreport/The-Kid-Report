@@ -1,1 +1,5 @@
-<%= link_to site.name, permalink_path(site.permalink) %>
+<tr>
+	<td><%= link_to site.name, permalink_path(site.permalink) %><br><%= site.description %></td>
+	<td><%= site.users.count %></td>
+	<td><%= site.last_edited_at.to_s(:short) if site.last_edited_at %></td>
+</tr>
