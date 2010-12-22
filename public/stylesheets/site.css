@@ -8,10 +8,10 @@
 
 #tools { font-size:.8em; margin-top:1em; }
 #tools h3 { border-bottom: 1px solid black;}
-#tools li { margin: .3em 0; font-weight:bold; position:relative;}
+#tools li { margin: .3em 0; font-weight:bold; position:relative; border-bottom: 1px dashed #BBB;}
 #tools li a { text-decoration:none;}
 #tools li a:hover { text-decoration:underline;}
-#tools li .new { vertical-align:top; margin-left:6px; }
+#tools li .new { vertical-align:top; margin-left:6px; position: absolute; right:5px; }
 
 #gutter { background-color:#DDD; padding: 10px; -moz-border-radius:7px; -webkit-border-radius:7px; }
 #logo.text { font-size:1.2em; margin:5px 5px 20px; text-align:center; }

@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
 	validates_presence_of :email, :message => 'Email is required'
 	validates_uniqueness_of :email, :on => :save, :message => 'This email is already signed up!'
 	validates_format_of :email, :with => EMAIL_REGEX, :message => 'The formatting for this email address is incorrect'
+	
+	after_create :send_new_user_alert
 
 	def display_name
 		if self.name.present?
@@ -45,6 +47,10 @@ class User < ActiveRecord::Base
   
   def can_admin? site
     site.admins.include?(self) || self.admin?
+  end
+  
+  def send_new_user_alert
+    Mailer::new_user_alert(self).deliver
   end
 	
 end

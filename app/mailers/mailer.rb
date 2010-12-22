@@ -5,7 +5,7 @@ class Mailer < ActionMailer::Base
   def signup_thanks( user )
     @name = user.display_name
     mail( :from => 'mark@thekidreport.org', :to => user.email, :subject => "Thank you for registering with the Kid Report" ) do |format|
-      format.html { render 'signup_thanks' }
+      format.html { render 'signup_thanks', :layout => 'application_mailer' }
     end
   end
   
@@ -20,7 +20,7 @@ class Mailer < ActionMailer::Base
     @site = membership.site
     @user = membership.user
     mail( :to => membership.user.email, :subject => "#{membership.site.name} Invitation" ) do |format|
-      format.html { render 'site_invite' }
+      format.html { render 'site_invite', :layout => 'application_mailer' }
     end
   end
   
@@ -39,7 +39,7 @@ class Mailer < ActionMailer::Base
     
     for user in @site.users
       mail( :to => user.email, :subject => "[The Kid Report] #{site.name} update" ) do |format|
-        format.html { render 'site_update' }
+        format.html { render 'site_update', :layout => 'application_mailer' }
       end
     end
   end
@@ -48,8 +48,14 @@ class Mailer < ActionMailer::Base
   def site_feedback (feedback)
     @feedback = feedback
     mail( :to => 'mark@thekidreport.org', :subject => "Feedback" ) do |format|
-      format.html { render 'feedback' }
+      format.html { render 'feedback', :layout => 'application_mailer' }
     end
   end
   
+  def new_user_alert(user)
+    @user = user
+    mail( :to => 'mark@thekidreport.org', :subject => "New User Signed up" ) do |format|
+      format.html { render 'new_user_alert', :layout => 'application_mailer' }
+    end
+  end
 end
