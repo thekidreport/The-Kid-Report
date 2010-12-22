@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
   
   has_many :memberships, :dependent => :destroy
+  has_many :messages, :dependent => :nullify
+  has_many :recipients, :dependent => :destroy
+  has_many :messages_receive, :through => :recipients
   has_many :log_entries, :dependent => :nullify
   has_many :sites, :through => :memberships
 

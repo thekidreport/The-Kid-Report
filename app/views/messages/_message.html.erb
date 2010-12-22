@@ -3,7 +3,7 @@
  		<b><%= message.subject %></b><br>
 	</td>
 	<td>
-		<%= message.user.display_name %>
+		<%= message.user.try(:display_name) %>
 	</td>
 	<td>
 		<%= message.users.map(&:display_name).join(', ') %>
