@@ -26,7 +26,11 @@ Kidr::Application.routes.draw do
     end
     resources :photos, :only => :index
     resources :messages
-    resources :memberships
+    resources :memberships do
+      member do 
+        put :invite
+      end
+    end
     resources :log_entries, :only => :index
   end
   resources :feedbacks

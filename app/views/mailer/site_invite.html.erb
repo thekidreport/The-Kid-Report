@@ -1,0 +1,8 @@
+<p>Hi, <%= @user.display_name %></p>
+<p>Welcome to <%= @site.name %> on The Kid Report.</p>
+<p>The kid report is a site where Teachers and Parents can share classroom information.</p>
+<p>If you are new to The Kid Report, you will want to <%= link_to 'have your password sent to you', new_user_password_url %>. </p>
+
+<p style="font-size:.8em;color:gray">
+Visit <%= link_to @site.name, permalink_url(@site.permalink, @site.home_page.try(:permalink)) %> online.<br>
+</p>

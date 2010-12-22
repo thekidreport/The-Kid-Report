@@ -21,6 +21,14 @@ class MembershipsController < ApplicationController
       render :action => :edit
     end
   end
+  
+  def invite
+    @membership = @site.memberships.find(params[:id])  
+    Mailer::invite(@membership).deliver
+    render :update do |page|
+      page.replace "invite_#{dom_id(@membership)}", :text => "<span style='color:red'>Invite sent!</span>"
+    end
+  end
 
   def destroy
     @membership = @site.memberships.find(params[:id]) 

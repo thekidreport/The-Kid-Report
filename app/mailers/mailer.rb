@@ -16,6 +16,14 @@ class Mailer < ActionMailer::Base
     end
   end
   
+  def invite(membership)
+    @site = membership.site
+    @user = membership.user
+    mail( :to => membership.user.email, :subject => "#{membership.site.name} Invitation" ) do |format|
+      format.html { render 'site_invite' }
+    end
+  end
+  
   # Cron
   def status_update (user_count, site_count)
     @user_count = user_count
@@ -36,7 +44,7 @@ class Mailer < ActionMailer::Base
     end
   end
   
-  # Send email on comment
+  # Send feedback
   def site_feedback (feedback)
     @feedback = feedback
     mail( :to => 'mark@thekidreport.org', :subject => "Feedback" ) do |format|
