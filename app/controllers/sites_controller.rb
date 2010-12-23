@@ -13,11 +13,11 @@ class SitesController < ApplicationController
     @site.pages_attributes = [ {:name => 'Welcome!', :content => '<p>Congratulations, your site is created!</p><p>The site is only visible to you (and the other members you add to the site).  This is an example page.  You can modify the content of the page by selecting "Edit this page" above.</p>', 
     :site => @site, :user => current_user, :comments_allowed => false, :last_edited_at => Time.now }]
     if @site.save
-      @site.home_page.archive
-      LogEntry.create!(:site => @site, :page_archive => @site.home_page.page_archives.last, :user => current_user, :description => 'site_create' )
+      @home_page = @site.pages.first
+      LogEntry.create!(:site => @site, :page_archive => @home_page.archive, :user => current_user, :description => 'site_create' )
       flash[:notice] = 'Site was successfully created.'
       Mailer::signup_thanks(current_user).deliver
-      redirect_to permalink_path(@site.permalink, @site.home_page.permalink)
+      redirect_to permalink_path(@site.permalink, @home_page.permalink)
       return false
     else
       render :action => :new

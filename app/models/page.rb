@@ -45,6 +45,7 @@ class Page < ActiveRecord::Base
   def archive
     archive = PageArchive.load self
     archive.save
+    return archive
   end
   
   def not_deleted
