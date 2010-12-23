@@ -24,7 +24,7 @@
     <% 
     options = [["-- Load previous version --",""]]
     for archive in @page.page_archives 
-    	display = "By #{archive.user.display_name} on #{archive.created_at.strftime '%m/%d/%Y at %I:%M%p'}"
+    	display = "By #{archive.user.try(:display_name)} on #{archive.created_at.strftime '%m/%d/%Y at %I:%M%p'}"
       display = "Current version" if archive == @page.page_archives.first 
     	options << ["#{display} (created #{time_ago_in_words archive.created_at} ago)", archive.id.to_s]
     end 

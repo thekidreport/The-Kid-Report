@@ -11,7 +11,7 @@ class Mailer < ActionMailer::Base
   
   def site_message (message)    
     @message = message
-    mail( :from => message.user.email, :to => message.users.map(&:email), :subject => message.subject ) do |format|
+    mail( :from => message.user.email, :to => message.users.not_deleted.map(&:email), :subject => message.subject ) do |format|
       format.html { render 'site_message' }
     end
   end
@@ -37,7 +37,7 @@ class Mailer < ActionMailer::Base
   def site_update (site)
     @site = site
     
-    for user in @site.users
+    for user in @site.users.not_deleted
       mail( :to => user.email, :subject => "[The Kid Report] #{site.name} update" ) do |format|
         format.html { render 'site_update', :layout => 'application_mailer' }
       end

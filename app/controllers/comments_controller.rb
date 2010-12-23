@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   
   def create
-    @page = @site.pages.find(params[:page_id])
+    @page = @site.pages.not_deleted.find(params[:page_id])
     @comment = @page.comments.build(params[:comment].merge(:user => current_user)) if current_user.member_of?(@site)
     @comment.save
     LogEntry.create!(:page_archive => @page.page_archives.last, :site => @site, :user => current_user, :description => 'comment_create')
@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   end
   
   def destroy
-    @page = @site.pages.find(params[:page_id])
+    @page = @site.pages.not_deleted.find(params[:page_id])
     @comment = @page.comments.find(params[:id])
     @comment.destroy if (current_user.can_edit?(@site) || @comment.user.eql?(current_user))
     LogEntry.create!(:page_archive => @page.page_archives.last, :site => @site, :user => current_user, :description => 'comment_delete')

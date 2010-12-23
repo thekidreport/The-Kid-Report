@@ -7,12 +7,6 @@ ul.form li.indent { padding-left: 123px;}
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= raw error_messages_for(resource) %>
 
-	<div class="callout">
-	<h3>Cancel my account</h3>
-
-	<p>Unhappy?<br><%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-	</div>
-
 	<ul class="form">
 	  <li>
 			<%= f.label :email %>
@@ -25,7 +19,7 @@ ul.form li.indent { padding-left: 123px;}
 		</li>
 
 
-	  <li><%= f.label :password %> 
+	  <li><%= f.label :password, 'New Password' %> 
 	  <%= f.password_field :password %> <i>(leave blank if you don't want to change it)</i>
 	</li>
 

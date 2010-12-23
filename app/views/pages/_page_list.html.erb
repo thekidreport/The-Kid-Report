@@ -1,9 +1,9 @@
 <table class="grid">
 	<thead>
-		<tr><th>Page Name</th><th>Position</th><th>Visible</th><th>Actions</th></tr>
+		<tr><th>Page Name</th><th>Visitors</th><th>Visible</th><th>Last Update</th><th>Actions</th></tr>
 	</thead>
 	<tbody id="page_list">
-	<%= render site.pages.order("position") %>
+	<%= render site.pages.not_deleted.order("position") %>
 	</tbody>
 
 </table>

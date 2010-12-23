@@ -6,7 +6,7 @@
 		<%= message.user.try(:display_name) %>
 	</td>
 	<td>
-		<%= message.users.map(&:display_name).join(', ') %>
+		<%= message.users.not_deleted.map(&:display_name).join(', ') %>
 	</td>
 	<td>
 		<%= message.created_at.to_s(:short) %>

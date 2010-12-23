@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101218220516) do
+ActiveRecord::Schema.define(:version => 20101223150950) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20101218220516) do
     t.integer  "position",               :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "recipients", :force => true do |t|
@@ -122,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20101218220516) do
     t.string   "link_color",        :default => "4488BB"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "users", :force => true do |t|
@@ -140,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20101218220516) do
     t.datetime "updated_at"
     t.string   "name"
     t.boolean  "admin"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

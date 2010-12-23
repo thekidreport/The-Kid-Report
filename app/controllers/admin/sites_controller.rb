@@ -4,7 +4,7 @@ class Admin::SitesController < Admin::AdminController
 
   def index
     @page_title = "Sites"
-    @sites = Site.all.paginate
+    @sites = Site.not_deleted.paginate
   end  
 
 end

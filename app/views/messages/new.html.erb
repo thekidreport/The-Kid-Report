@@ -6,10 +6,10 @@ Send a message to the members of this site...
 
 <% form_for [@site, @message] do |f| %>
 	<table>
-	<% for members_in_row in @site.users.in_groups_of(3) %>
+	<% for members_in_row in @site.users.not_deleted.in_groups_of(3) %>
 		<tr>
 		<% for member in members_in_row %>
-			<td><% if member %> <%= check_box_tag 'message[user_ids][]', member.id, @message.users.include?(member.id.to_s) %> "<%= member.display_name %>" &lt;<%= member.email %>&gt; <% end %></td>
+			<td><% if member %> <%= check_box_tag 'message[user_ids][]', member.id, @message.users.not_deleted.include?(member.id.to_s) %> "<%= member.display_name %>" &lt;<%= member.email %>&gt; <% end %></td>
 		<% end %>
 		</tr>
 	<% end %>

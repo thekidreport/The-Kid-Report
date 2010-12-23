@@ -26,7 +26,7 @@ class SitesController < ApplicationController
 
   def update
     @page_title = "Edit site"
-    @site = Site.find(params[:id])
+    @site = Site.not_deleted.find(params[:id])
     if current_user.can_edit?(@site) && @site.update_attributes(params[:site])
       LogEntry.create!(:site => @site, :user => current_user, :description => 'site_update' )
       flash[:notice] = 'Site was successfully updated.'
@@ -37,14 +37,14 @@ class SitesController < ApplicationController
   
   def edit
     @page_title = "Edit site"
-    @site = Site.find(params[:id])
+    @site = Site.not_deleted.find(params[:id])
     site_editor_required!
   end
 
   def destroy
-    @site = Site.find(params[:id])
+    @site = Site.not_deleted.find(params[:id])
     if current_user.can_admin? @site
-      @site.destroy
+      @site.mark_deleted!
       flash[:notice] = 'Site was successfully deleted.'
     end
     redirect_to :root

@@ -11,11 +11,4 @@ class PageArchive < ActiveRecord::Base
     return archive
   end
 
-  def page
-    page = Page.find(self.page_id)
-    page.name = self.name
-    page.content = self.content
-    page.user_id = self.user_id
-    return page
-  end
 end

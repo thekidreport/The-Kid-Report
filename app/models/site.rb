@@ -19,7 +19,8 @@ class Site < ActiveRecord::Base
     :default_style => :original,
     :styles => { :original => "140x" }
     
-  scope :with_recent_changes, where('last_edited_at > ?', 1.hour.ago)
+  scope :not_deleted, where('sites.deleted_at is null')
+  scope :with_recent_changes, where('sites.last_edited_at > ?', 1.hour.ago)
 
   validates_presence_of :name
   
@@ -32,7 +33,7 @@ class Site < ActiveRecord::Base
   def unique_permalink
     unique_name = self.name.parameterize
     index = 0
-    while Site.where(['permalink = ? AND id != ?', unique_name, self.id.to_i]).any?
+    while Site.not_deleted.where(['permalink = ? AND id != ?', unique_name, self.id.to_i]).any?
       index += 1
       unique_name = "#{self.name.parameterize}-#{index}"
     end
@@ -40,7 +41,14 @@ class Site < ActiveRecord::Base
   end
 
   def home_page
-    self.pages.order('position').first
+    self.pages.not_deleted.order('position').first
   end
   
+  def mark_deleted
+    self.deleted_at = Time.now
+  end
+  def mark_deleted!
+    mark_deleted
+    self.save
+  end
 end

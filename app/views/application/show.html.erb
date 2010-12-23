@@ -7,10 +7,10 @@
 		<%= image_tag 'screen_shot.png' %>
 	</div>
 	<% if user_signed_in? %>
-		<% if current_user.sites.any? %>
+		<% if current_user.sites.not_deleted.any? %>
 			<ul>
-				<b>Your Site<%= 's' if current_user.sites.count > 1 %></b>
-			<% for site in current_user.sites %>
+				<b>Your Site<%= 's' if current_user.sites.not_deleted.count > 1 %></b>
+			<% for site in current_user.sites.not_deleted %>
 				<li><%= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink)) %><br>
 					<%= site.description %>
 				</li>

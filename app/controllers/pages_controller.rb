@@ -25,8 +25,8 @@ class PagesController < ApplicationController
                             
   def show
     if params[:page_permalink]  
-      @page = @site.pages.find_by_permalink(params[:page_permalink])
-      @page.increment!(:visitor_count)
+      @page = @site.pages.not_deleted.find_by_permalink(params[:page_permalink])
+      @page.increment!(:visitor_count) if @page
     elsif @site.home_page
       redirect_to permalink_path(@site.permalink, @site.home_page.permalink)
     else
@@ -35,7 +35,7 @@ class PagesController < ApplicationController
   end
   
   def reorder
-    @site.pages.each do | p |
+    @site.pages.not_deleted.each do | p |
       p.position = params["page_list"].index(p.id.to_s) + 1
       p.save
     end
@@ -67,7 +67,7 @@ class PagesController < ApplicationController
   def edit
     @page_title = "Edit page"
     @include_rte = true
-    @page = @site.pages.find(params[:id])
+    @page = @site.pages.not_deleted.find(params[:id])
     if params[:archive_id] && @page.page_archives
       @archive = @page.page_archives.find params[:archive_id]
       @page = @archive.page
@@ -77,7 +77,7 @@ class PagesController < ApplicationController
   def update
     @page_title = "Edit page"
     @include_rte = true
-    @page = @site.pages.find(params[:id])
+    @page = @site.pages.not_deleted.find(params[:id])
     @page.user = current_user
     if @page.update_attributes(params[:page])
       @page.archive
@@ -91,7 +91,7 @@ class PagesController < ApplicationController
   end
   
   def reset
-    @page = Page.find params[:id]
+    @page = Page.not_deleted.find(params[:id])
     @page.visitor_count = 0
     @page.visitor_count_start_at = Time.now 
     @page.save!
@@ -99,8 +99,8 @@ class PagesController < ApplicationController
   end
   
   def destroy
-    @page = @site.pages.find(params[:id])
-    @page.destroy
+    @page = @site.pages.not_deleted.find(params[:id])
+    @page.mark_deleted!
     LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_delete' )
     flash[:confirm] = "The page was deleted"
     redirect_to site_pages_path(@site)

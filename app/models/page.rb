@@ -15,11 +15,12 @@ class Page < ActiveRecord::Base
   before_save :set_permalink
 
   validates_presence_of :name
-  validates_uniqueness_of :name, :scope => :site_id
+  validates_uniqueness_of :name, :scope => [:site_id, :deleted_at]
   
   scope :top_level, where('parent_id is NULL')
-  scope :visible, where('visible = ?', true)
-  scope :with_recent_changes, where('updated_at > ?', 1.hour.ago)
+  scope :visible, where('pages.visible = ?', true)
+  scope :with_recent_changes, where('pages.updated_at > ?', 1.hour.ago)
+  scope :not_deleted, where('pages.deleted_at is null')
 
   acts_as_list :scope => :site
 
@@ -30,7 +31,7 @@ class Page < ActiveRecord::Base
   def unique_permalink
     unique_name = self.name.parameterize
     index = 0
-    while self.site.pages.where(['permalink = ? AND id != ?', unique_name, self.id.to_i]).any?
+    while self.site.pages.not_deleted.where(['permalink = ? AND id != ?', unique_name, self.id.to_i]).any?
       index += 1
       unique_name = "#{self.name.parameterize}-#{index}"
     end
@@ -45,5 +46,16 @@ class Page < ActiveRecord::Base
     archive = PageArchive.load self
     archive.save
   end
-
+  
+  def not_deleted
+    deleted_at == nil
+  end
+  
+  def mark_deleted
+    self.deleted_at = Time.now
+  end
+  def mark_deleted!
+    mark_deleted
+    self.save
+  end
 end

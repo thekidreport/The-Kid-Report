@@ -1,11 +1,11 @@
 <% @page_title = 'Pages' %>
 <% @page_actions = link_to("Create Page", new_site_page_path(@site)) %>
 
-<% if @site.pages.any? %>
+<% if @site.pages.not_deleted.any? %>
 	<div id="page_list_table">
 		<%= render 'page_list', :site => @site %>
 	</div>
-	<% if @site.pages.count > 2 %>
+	<% if @site.pages.not_deleted.count > 2 %>
 		<p>
 			Note - Grab rows to reorder pages.
 		</p>
