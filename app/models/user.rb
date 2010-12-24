@@ -17,15 +17,9 @@ class User < ActiveRecord::Base
   has_many :sites, :through => :memberships
 
 	EMAIL_REGEX = /([_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|museum|name)))/
-	EMAIL_NAME_REGEX = /([\w | \s]+)/
 
   scope :not_deleted, where('users.deleted_at is null')
-
-	validates_presence_of :email, :message => 'Email is required'
-	validates_uniqueness_of :email, :on => :save, :message => 'This email is already signed up!'
-	validates_format_of :email, :with => EMAIL_REGEX, :message => 'The formatting for this email address is incorrect'
 	
-	after_create :send_new_user_alert
 	before_save :reset_deleted_at
 
 	def display_name
@@ -50,13 +44,10 @@ class User < ActiveRecord::Base
     site.admins.not_deleted.include?(self) || self.admin?
   end
   
-  def send_new_user_alert
-    Mailer::new_user_alert(self).deliver
-  end
-  
   def destroy
     self.deleted_at = Time.now
   end
+  
   def destroy!
     destroy
     self.save
