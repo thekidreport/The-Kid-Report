@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   before_filter :site_editor_required!
   
   def index
-    @documents = @site.documents.paginate(:page => params[:page])
+    @documents = @site.documents.all.paginate(:page => params[:page])
   end
   
   def show

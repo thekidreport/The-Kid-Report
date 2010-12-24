@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   before_filter :site_editor_required!
   
   def index
-    @messages = @site.messages.paginate(:page => params[:page])
+    @messages = @site.messages.all.paginate(:page => params[:page])
   end
   
   def new

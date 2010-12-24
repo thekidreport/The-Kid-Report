@@ -30,6 +30,10 @@ Kidr::Application.routes.draw do
       member do 
         put :invite
       end
+      collection do 
+        get :build_many
+        post :create_many
+      end
     end
     resources :log_entries, :only => :index
   end

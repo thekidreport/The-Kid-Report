@@ -4,7 +4,7 @@ class MembershipsController < ApplicationController
   before_filter :site_admin_required!
   
   def index
-    @memberships = @site.memberships.paginate(:page => params[:page])
+    @memberships = @site.memberships.all.paginate(:page => params[:page], :per_page => 20)
   end
 
   def edit
@@ -50,5 +50,19 @@ class MembershipsController < ApplicationController
     end
   end
   
+  
+  def build_many
+    # nothing to do here.
+  end
+  
+  def create_many
+    potential_emails = params[:membership_emails].split(/[<>\s,'"]+/)
+    potential_emails = potential_emails.select{|e| e =~ /@/ }
+    for potential_email in potential_emails
+      @site.memberships.create(:email => potential_email, :role => Role.member) 
+    end
+    flash[:notice] = "#{potential_emails.length} memberships were created"
+    redirect_to site_memberships_path(@site)
+  end
   
 end

@@ -54,8 +54,8 @@ h3 { font-size: 1.1em; }
 #footer { margin-top: 30px; padding-top:10px }
 
 #content { position:relative }
-#page_title   { position:relative }
-#page_title a { position:absolute; right: 10px; top: 10px; font-size:12px;}
+#page_title   { }
+#page_actions { float:right; font-size:12px;}
 
 ul.form { width:auto;}
 ul.form li { margin:10px 0;}
