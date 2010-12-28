@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminController
   
   def index
     @page_title = 'Users'
-    @users = User.all.paginate(:page => params[:page], :per_page => params[:per_page])
+    @users = User.not_deleted.paginate(:page => params[:page], :per_page => params[:per_page])
   end
 
   def show
@@ -23,7 +23,7 @@ class Admin::UsersController < Admin::AdminController
   
   def destroy
     @user = User.find(params[:id])
-    @user.mark_deleted!
+    @user.destroy!
     flash[:notice] = 'User was deleted'
     redirect_to admin_users_path
   end
