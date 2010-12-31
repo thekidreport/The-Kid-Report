@@ -2,8 +2,8 @@
 <html class="<%= browser %>">
     <head>
         <title><%= @page_title %></title>
-				<meta name="keywords" content="Free, Classroom, Teacher, Parent, WebSites" />
-				<meta name="description" content="Teachers can share information with the entire classroom easily. Parents can get the information they need when they need it. Private. Free. Simple. ">
+				<meta name="keywords" content="Free, Classroom, Teacher, Parent, WebSite, Collaboration, Tool, Email, Membership, Wiki" />
+				<meta name="description" content="Teachers can share information with parents easily. Parents can get the information they need when they need it. Private. Free. Simple. ">
 
 				<%= javascript_include_tag :defaults %>
 				<%= javascript_include_tag 'picky_color' %>
@@ -34,13 +34,16 @@
 					<% if user_signed_in? %>
 						Welcome, <%= link_to current_user.display_name, edit_user_registration_path %> | <%= link_to 'Sign out', destroy_user_session_path %>
 					<% else %>
-						<%= link_to 'Sign in', new_user_session_path %> | <%= link_to 'Create account', new_user_registration_path %>
+						<%= link_to 'Sign in', new_user_session_path, :rel => 'nofollow' %> | <%= link_to 'Create account', new_user_registration_path, :rel => 'nofollow' %>
 					<% end %>
 				</div>
 			</div>
 			<ul id="nav">
-				<li><%= link_to 'Home', root_path %></li><li><%= link_to 'Walkthrough', walkthrough_path %></li>
-				<li><%= link_to 'About Us', about_us_path %></li><li><%= link_to 'Contact us', new_feedback_path %></li>
+				<li><%= link_to 'Home', root_path, :rel => 'nofollow' %></li>
+				<li><%= link_to 'Walkthrough', walkthrough_path, :rel => 'nofollow' %></li>
+				<li><%= link_to 'About', about_us_path, :rel => 'nofollow' %></li>
+				<li><%= link_to 'Feedback', new_feedback_path, :rel => 'nofollow' %></li>
+				<li><%= link_to 'Our blog', 'http://blog.thekidreport.org' %></li>
 			</ul>
 			<div id="body">
 				<div id="content">
