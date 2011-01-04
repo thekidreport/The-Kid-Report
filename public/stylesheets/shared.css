@@ -17,7 +17,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	line-height: 1;
-	font:13px/1.231 arial,helvetica,clean,sans-serif;
+	font:13px/1.231 'Lucida Grande',arial,helvetica,clean,sans-serif;
 }
 ol, ul {
 	list-style: none;
