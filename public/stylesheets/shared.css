@@ -46,7 +46,6 @@ h1 { font-size: 1.5em; margin:1em 0;}
 h2 { font-size: 1.3em; }
 h3 { font-size: 1.1em; }
 
-#body_wrapper { width:1000px; margin:auto; }
 #user_nav { right:10px; position:absolute; top:5px;}
 #nav { background-color:#190900; padding:5px; color:white; }
 #nav a { color:white; text-decoration:none }
