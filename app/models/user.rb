@@ -58,5 +58,19 @@ class User < ActiveRecord::Base
       self.deleted_at = nil
     end
   end
+
+  def update_with_password(params={}) 
+    if params[:password].blank? 
+      params.delete(:password) 
+      params.delete(:password_confirmation) if params[:password_confirmation].blank? 
+    end 
+    update_attributes(params) 
+  end 
+
+  protected
+  def password_required?
+    !persisted? || password.present? || password_confirmation.present?
+  end
+
 	
 end
