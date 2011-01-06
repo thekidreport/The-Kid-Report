@@ -16,6 +16,10 @@
 				</li>
 			<% end %>
 			</ul>
+		<% else %>
+			<p>
+				<b>Parents</b><br>
+				If you are already a member of a site, <%= link_to 'sign in', new_user_session_path, :rel => 'nofollow' %>.  If you are not yet a member, have the teacher send you an invitation.</p>
 		<% end %>
 		<% if current_user.admin? %>
 			<p>
@@ -24,9 +28,8 @@
 			</p>
 		<% end %>
 	<% else %>
-		<h2>Parents</h2>
-		<p><%= link_to 'Sign up', new_user_registration_path %> if your just getting started.</p>
-		<p><%= link_to 'Have your password mailed to you', new_user_password_path %>  if your teacher already added you.</p>
+		<p><b>Parents</b><br>
+		If you are already a member of a site, <%= link_to 'sign in', new_user_session_path, :rel => 'nofollow' %>.  If you are not yet a member, have the teacher send you an invitation.</p>
 	<% end %>
 </td><td class="right">
 
