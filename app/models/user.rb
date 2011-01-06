@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   scope :not_deleted, where('users.deleted_at is null')
 	
-	before_save :reset_deleted_at
+	before_save :reset_deleted_at, :ensure_authentication_token
 
 	def display_name
 		if self.name.present?

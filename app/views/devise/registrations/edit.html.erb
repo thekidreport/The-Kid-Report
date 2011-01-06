@@ -20,7 +20,8 @@ ul.form li.indent { padding-left: 123px;}
 
 
 	  <li><%= f.label :password, 'New Password' %> 
-	  <%= f.password_field :password %> <i>(leave blank if you don't want to change it)</i>
+	  	<%= f.password_field :password %> 
+			<% if resource.last_sign_in_at %><i>(leave blank if you don't want to change it)</i><% end %>
 	</li>
 
 	  <li><%= f.label :password_confirmation, 'Confirmation' %>
