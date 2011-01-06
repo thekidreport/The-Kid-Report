@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   scope :not_deleted, where('users.deleted_at is null')
 	
-	before_save :reset_deleted_at, :ensure_authentication_token
+	before_save :reset_deleted_at
 
 	def display_name
 		if self.name.present?
