@@ -83,10 +83,11 @@ p { margin: 1em 0;}
 ul.form label  {display:inline-block; width:100px; text-align:right }
 ul.form li.indent  { padding-left:103px; }
 
-
+#error_explanation      { border:solid 1px #C00; background-color:#EEF1EE; color:#C00; margin:10px auto; padding:7px; -moz-border-radius:7px; -webkit-border-radius:7px; position:relative }
 .alert                  { border:solid 1px #8D8; background-color:#EEF1EE; color:green; margin:10px auto; padding:7px; -moz-border-radius:7px; -webkit-border-radius:7px; position:relative }
 .error                  { border:solid 1px #C00; color:#C00 }
 
+#error_explanation h2,
 .error  h2              { margin:0; font-size:1.1em }
 .alert .clickable       { border:solid 1px #AAAFAA; background-color:white; padding:2px 8px; font-size:.7em; text-align:center; -moz-border-radius:7px; -webkit-border-radius:7px; border-bottom-color:#666; border-right-color:#666; position:absolute; right:7px; top:7px; cursor:pointer; }
 
