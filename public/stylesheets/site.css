@@ -4,7 +4,7 @@
 #header a:hover { text-decoration:underline;}
 #header img { vertical-align:top;}
 
-#body_wrapper { padding:10px ; margin-top: 10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+#body_wrapper { padding:10px; margin-top:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
 
 #tools { font-size:.8em; margin-top:1em; }
 #tools h3 { border-bottom: 1px solid black;}

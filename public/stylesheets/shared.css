@@ -17,6 +17,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	line-height: 1;
+	padding:15px;
 	font:13px/1.231 'Lucida Grande',arial,helvetica,clean,sans-serif;
 }
 ol, ul {
@@ -46,6 +47,13 @@ h1 { font-size: 1.5em; margin:1em 0;}
 h2 { font-size: 1.3em; }
 h3 { font-size: 1.1em; }
 
+#body_wrapper { 
+  margin: auto;
+  min-width: 700px;
+  max-width: 1000px;
+  width:expression(document.body.clientWidth < 700? "700px" : document.body.clientWidth > 1000? "1000px" : "auto");
+  }
+  
 #user_nav { right:10px; position:absolute; top:5px;}
 #nav { background-color:#190900; padding:5px; color:white; }
 #nav a { color:white; text-decoration:none }
