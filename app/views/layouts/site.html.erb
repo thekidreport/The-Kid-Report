@@ -90,7 +90,7 @@
 						<%= link_to 'Reset', reset_site_page_path(@site.id, @page.id), :method => :put %>
 					<% end %>
 				<% end %>
-				<br><%= @site.name %><%= " - #{@site.footer}" %>
+				<br><%= @site.name %><%= " - #{@site.footer}" if @site.footer.present? %>
 			</div>
 		</div>
 
