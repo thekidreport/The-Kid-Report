@@ -4,6 +4,7 @@ class Page < ActiveRecord::Base
   has_many :page_archives, :order => 'created_at DESC', :dependent => :destroy
   has_many :attachments, :dependent => :destroy
   has_many :documents, :through => :attachments
+  has_many :events
   accepts_nested_attributes_for :attachments, :allow_destroy => true
   
   has_many :comments, :order => 'updated_at DESC, created_at DESC', :dependent => :destroy

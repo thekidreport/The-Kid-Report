@@ -66,6 +66,7 @@ h3 { font-size: 1.1em; }
 
 ul.form { width:auto;}
 ul.form li { margin:10px 0;}
+ul.form label { display:inline-block; vertical-align:top;}
 
 p { margin: 1em 0;}                                                                                                                                                      
 

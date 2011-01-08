@@ -1,5 +1,7 @@
 Kidr::Application.routes.draw do
  
+  match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+
   devise_for :users
   
   namespace :admin do
@@ -18,7 +20,9 @@ Kidr::Application.routes.draw do
       collection do
         post :reorder
       end
-    end  
+    end
+    resources :events
+      
     resources :documents do
       member do
         get :download

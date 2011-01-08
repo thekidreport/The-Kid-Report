@@ -66,7 +66,6 @@ class PagesController < ApplicationController
 
   def edit
     @page_title = "Edit page"
-    @include_rte = true
     @page = @site.pages.not_deleted.find(params[:id])
     if params[:archive_id] && @page.page_archives
       @archive = @page.page_archives.find params[:archive_id]
@@ -76,7 +75,6 @@ class PagesController < ApplicationController
 
   def update
     @page_title = "Edit page"
-    @include_rte = true
     @page = @site.pages.not_deleted.find(params[:id])
     @page.user = current_user
     if @page.update_attributes(params[:page])

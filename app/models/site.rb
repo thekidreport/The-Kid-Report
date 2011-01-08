@@ -6,6 +6,7 @@ class Site < ActiveRecord::Base
   has_many :editors, :through => :memberships, :source => 'user', :conditions => ["memberships.role_id in (?)", [2, 3]]
   has_many :admins, :through => :memberships, :source => 'user', :conditions => ["memberships.role_id = ?", 3]
   has_many :pages, :dependent => :destroy
+  has_many :events
   accepts_nested_attributes_for :pages, :allow_destroy => true
   
   has_many :log_entries, :dependent => :destroy

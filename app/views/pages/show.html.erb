@@ -13,6 +13,15 @@
 	</ul>
 <% end %>
 
+<% if @page && @page.events.any? %>
+	<ul class="callout">
+		<b>Events</b><br>
+		<% for event in @page.events %>
+			<li><%= link_to event.name, site_event_path(@site, event) %> <%= event.start_at.to_s(:short) %></li>
+		<% end %>
+	</ul>
+<% end %>
+
 <div class="user_generated"><%= raw @page.content %></div>
 
 <%= render 'comments/page_comments', :page => @page if @page.comments_allowed? %>

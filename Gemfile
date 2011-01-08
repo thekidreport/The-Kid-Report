@@ -5,12 +5,14 @@ gem 'rails', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'event-calendar', '2.3.2', :require => 'event_calendar'
 gem 'paperclip'
 gem 'will_paginate', '2.3.15'
 gem 'devise', '1.2.rc'
 gem 'aws-s3'
 gem 'mysql', '2.7'
 gem 'tiny_mce'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

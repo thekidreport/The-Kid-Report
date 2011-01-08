@@ -1,0 +1,32 @@
+<%= raw error_messages_for @event %>
+
+<% form_for [@site, @event] do |f| %>
+
+<ul class="form">
+<% if  @event && !@event.new_record? %>
+	<li style="float:right"><%= link_to "Delete event", site_page_path(@site,  @event), :confirm => "Are you sure you want to delete this page?", :method => :delete %></li>
+<% end %>
+<li>
+	<%= f.label :name %>
+	<%= f.text_field :name, :style => 'width:150px'  %>
+	<%= f.label :page_id %>
+	<%= f.select :page_id, @site.pages.not_deleted.map{|p| [p.name, p.id]}, :include_blank => true %>
+</li>	
+<li>
+	<%= f.label :start_at %>
+	<%= f.date_select :start_at, :style => 'width:150px'  %>
+</li>
+<li>
+	<%= f.label :end_at %>
+	<%= f.date_select :end_at, :style => 'width:150px'  %>
+</li>
+<li>
+	<%= f.label :description %>
+	<%= f.text_area :description, :style => 'width:400px; height:70px' %>
+</li>
+
+<li class="indent">
+<%= f.submit button_value %>
+</li>
+</ul>
+<% end %>
