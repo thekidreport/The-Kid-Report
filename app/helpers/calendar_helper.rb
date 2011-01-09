@@ -20,7 +20,7 @@ module CalendarHelper
     # args is an argument hash containing :event, :day, and :options
     calendar event_calendar_opts do |args|
       event = args[:event]
-      %(<a href="/sites/#{event.site.id}/events/#{event.id}" title="#{event.name}#{": #{event.description}" if event.description.present? }">#{event.name}</a>)
+      %(#{image_tag('icons/reminder.png', :title => event.remind_on.to_s(:date)) if event.remind_on}<a href="/sites/#{event.site.id}/events/#{event.id}" title="#{event.name}#{": #{event.description}" if event.description.present? }">#{event.name}</a>)
     end
   end
 end

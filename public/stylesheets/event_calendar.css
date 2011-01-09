@@ -36,8 +36,11 @@
 }
 
 .ec-month-nav {
-
+  height:1.5em;
 }
+
+.ec-next-month { text-align:right; vertical-align:top;}
+.ec-previous-month { text-align:left; vertical-align:top; }
 
 /* Containers */
 .ec-body {
@@ -157,13 +160,14 @@ a.ec-day-link {
 .ec-event {
   color: white;
   padding-right: 1px;
-  padding-left: 11px;
+  padding-left: 5px;
   -webkit-border-radius: 3px;
   -khtml-border-radius: 3px;
   -moz-border-radius: 3px;
   overflow: hidden;
   white-space: nowrap;
 }
+.ec-event img { float:left; margin-right:5px; margin-top:1px; }
 
 .ec-event :hover {
   /* doesn't look as good as js highlighting */

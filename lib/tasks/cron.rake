@@ -8,4 +8,10 @@ task :cron => :environment do
    Mailer::site_update(site).deliver
  end
  
+ if Time.now.hour == 10 # run at 10am
+   for site in Site.with_reminders
+     Mailer::event_reminder(site).deliver
+   end
+ end
+ 
 end

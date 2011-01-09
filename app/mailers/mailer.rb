@@ -44,6 +44,15 @@ class Mailer < ActionMailer::Base
     end
   end
   
+  def event_reminder (site)
+    @site = site
+    for user in @site.users.not_deleted
+      mail( :to => user.email, :subject => "[The Kid Report] #{site.name} event notice" ) do |format|
+        format.html { render 'event_reminder' }
+      end
+    end
+  end
+  
   # Send feedback
   def site_feedback (feedback)
     @feedback = feedback

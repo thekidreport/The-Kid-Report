@@ -21,7 +21,8 @@ class Site < ActiveRecord::Base
     :styles => { :original => "140x" }
     
   scope :not_deleted, where('sites.deleted_at is null')
-  scope :with_recent_changes, where('sites.last_edited_at > ?', 1.hour.ago)
+  scope :with_recent_changes, lambda { where('sites.last_edited_at > ?', 1.hour.ago) }
+  scope :with_reminders, lambda { where('events.remind_on = ?', Date.today).joins(:events) }
 
   validates_presence_of :name
   

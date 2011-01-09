@@ -37,6 +37,8 @@ class EventsController < ApplicationController
 
   def edit
     @event = @site.events.find(params[:id])
+    @event.reminder = @event.remind_on.present?
+    @event.multi_day = @event.end_at && @event.end_at > @event.start_at
   end
 
   def update

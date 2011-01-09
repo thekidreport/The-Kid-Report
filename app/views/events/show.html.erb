@@ -11,11 +11,14 @@
 <% end %>
 
 <p>
-<%= @event.start_at.to_s(:pretty) %>
-<% if @event.start_at < @event.end_at %>
-	to <%= @event.end_at.to_s(:pretty) %>
-<% end %>
+<%= @event.start_at.to_s(:date) %>
+<% if @event.start_at < @event.end_at %> to <%= @event.end_at.to_s(:date) %><% end %>
 </p>
 
+<% if @event.remind_on %>
+<p>
+<%= @event.remind_on.to_s(:date) %>
+</p>
+<% end %>
 
 <%= @event.description %>
