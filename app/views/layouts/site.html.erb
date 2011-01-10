@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div id="body">
-				<table class="framework"><tr><td class="left" style="width:160px">
+				<table class="framework"><tr><td class="left left_gutter">
 					<div id="gutter">
 						<% if @site.logo.exists? %>
 							<div id="logo" class="image"><%= link_to_unless_current image_tag(@site.logo(:original)), permalink_path(@site.permalink, @site.home_page.try(:permalink)) %></div>

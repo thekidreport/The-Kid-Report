@@ -25,8 +25,9 @@
 
 .sortable { cursor: move }
 
-.page_nav li { margin:5px 0 }
-.page_nav a { padding: .2em 10px; -moz-border-radius:10px; -webkit-border-radius:10px; text-decoration:none; display:inline-block; width:120px; }
+.page_nav { }
+.page_nav li { margin:5px 0; width:100%; }
+.page_nav a { padding: .2em 10px; -moz-border-radius:10px; -webkit-border-radius:10px; text-decoration:none; display:block; width:auto }
 .page_nav a:hover { text-decoration:underline;}
 
 .user_generated ul, .user_generated ol { margin-left: 2em; list-style:inherit;}

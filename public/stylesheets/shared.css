@@ -74,7 +74,9 @@ p { margin: 1em 0;}
 .left { padding-right:10px; vertical-align:top }
 .right { padding-left:10px; vertical-align:top }
 
-.gutter { width: 160px }
+.safari .left_gutter { width:180px; }
+.left_gutter { width:160px; }
+.gutter { width: 100% }
 
 .grid { width:100%;}
 .grid th { padding: 4px 8px; background-color:#444; color:white; text-align:left; border: 1px solid #888; }
