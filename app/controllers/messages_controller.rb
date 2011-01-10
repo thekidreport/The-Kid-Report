@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
     if @message.save
       Mailer::site_message(@message).deliver
-      flash[:confirmation] = 'Message was created and sent successfully'
+      flash[:notice] = 'Message was created and sent successfully'
       redirect_to site_messages_path(@site)
     else
       render :action => :new
