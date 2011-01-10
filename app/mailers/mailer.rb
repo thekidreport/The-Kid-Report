@@ -29,7 +29,7 @@ class Mailer < ActionMailer::Base
     @user_count = user_count
     @site_count = site_count
     mail( :to => 'mark@thekidreport.org', :subject => "Kid Report status update" ) do |format|
-      format.html { render 'status_update' }
+      format.html { render 'status_update', :layout => 'application_mailer' }
     end
   end
 
