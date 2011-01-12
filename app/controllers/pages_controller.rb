@@ -25,8 +25,11 @@ class PagesController < ApplicationController
                             
   def show
     if params[:page_permalink]  
-      @page = @site.pages.not_deleted.find_by_permalink(params[:page_permalink])
-      @page.increment!(:visitor_count) if @page
+      if @page = @site.pages.not_deleted.find_by_permalink(params[:page_permalink])
+        @page.increment!(:visitor_count)
+      else
+        render :text => 'Page not found', :status => :not_found
+      end
     elsif @site.home_page
       redirect_to permalink_path(@site.permalink, @site.home_page.permalink)
     else
