@@ -60,6 +60,7 @@ class MembershipsController < ApplicationController
   def create_many
     potential_emails = params[:membership_emails].split(/[<>\s,'"]+/)
     potential_emails = potential_emails.select{|e| e =~ User::EMAIL_REGEX }
+    
     memberships_added_count = 0
     for potential_email in potential_emails
       membership = @site.memberships.build(:email => potential_email, :role => Role.member) 
