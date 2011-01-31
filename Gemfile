@@ -12,7 +12,7 @@ gem 'devise', '1.2.rc'
 gem 'aws-s3'
 gem 'mysql', '2.7'
 gem 'tiny_mce'
-gem 'haml'
+gem 'haml', '3.0.25'
 
 
 # Use unicorn as the web server
