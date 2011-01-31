@@ -1,18 +1,15 @@
 body 
-  background: url("/images/bg_tile.png") repeat-x scroll 0 0 #B5D3E3
+  background: url("/images/bg.png") repeat-x scroll 0 0 #97b59e
   
-#sun
-  background: url("/images/sun.png") no-repeat scroll 0 0 transparent
+#top_smudge
+  background: url("/images/top_smudge.png") no-repeat scroll center 0 transparent
   
-#top_cloud
-  background: url("/images/top_cloud.png") no-repeat scroll center 0 transparent
-  
-#middle_cloud
-  background: url("/images/other_cloud.png") no-repeat scroll 95% 60% transparent
+#middle_smudge
+  background: url("/images/other_smudge.png") no-repeat scroll 95% 60% transparent
   height: 100%
   
-#bottom_cloud
-  background: url("/images/other_cloud.png") no-repeat scroll 5% 99% transparent
+#bottom_smudge
+  background: url("/images/other_smudge.png") no-repeat scroll 5% 99% transparent
   height: 100%
   
 #header 
@@ -45,9 +42,23 @@ body
             &:hover 
               text-decoration: none
               color: #FF8
+              
+#user_nav
+  border: solid 1px #5f7e66
+  border-top: 0
+  top: 0
+  padding: 8px 20px
+  background-color: #97b59f
+  border-bottom-right-radius: 5px
+  border-bottom-left-radius: 5px
+  -moz-border-radius-bottomright: 5px
+  -moz-border-radius-bottomleft: 5px
+  -webkit-border-bottom-right-radius: 5px
+  -webkit-border-bottom-left-radius: 5px
+  border-radius: 5px
 
 #body_wrapper 
-  padding: 10px 25px
+  padding: 0px 25px 20px
 
 #footer 
   border-top: 2px solid #EEE
@@ -56,7 +67,7 @@ body
   text-align: center
 
 a 
-  color: #214278
+  color: #113258
   
 
 .framework
@@ -67,8 +78,8 @@ a
   -moz-border-radius: 9px
   -webkit-border-radius: 9px
   border-radius: 9px
-  -webkit-box-shadow: 0 5px 16px #77a2b9
-  -moz-box-shadow: 0 5px 16px #77a2b9
+  -webkit-box-shadow: 0 5px 16px #5f7e66
+  -moz-box-shadow: 0 5px 16px #5f7e66
   padding: 20px
   background-color: #f8f5f0
   margin-bottom: 2em
