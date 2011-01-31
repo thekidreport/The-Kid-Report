@@ -44,9 +44,8 @@ Kidr::Application.routes.draw do
   resources :feedbacks
   
   root :to => 'application#show'
-  match "/about-us", :to => 'application#about_us', :as => :about_us
-  match "/walkthrough", :to => 'application#walkthrough', :as => :walkthrough
-  match "/advisors", :to => 'application#advisors', :as => :advisors
+  match "/about", :to => 'application#about', :as => :about
+  match "/tour", :to => 'application#tour', :as => :tour
   
   # Finally - show a page...
   

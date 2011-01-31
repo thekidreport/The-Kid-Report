@@ -24,39 +24,53 @@
 
 				</script>
     </head>
-    <body>
-		<div id="body_wrapper">			
-			<div id="header">
-				<div id="logo">
-					<%= link_to image_tag('logo.png'), root_path %>
-				</div>
-				<div id="user_nav">
-					<% if user_signed_in? %>
-						Welcome, <%= link_to current_user.display_name, edit_user_registration_path %> | <%= link_to 'Sign out', destroy_user_session_path %>
-					<% else %>
-						<%= link_to 'Sign in', new_user_session_path, :rel => 'nofollow' %> | <%= link_to 'Create account', new_user_registration_path, :rel => 'nofollow' %>
-					<% end %>
-				</div>
-			</div>
-			<ul id="nav">
-				<li><%= link_to 'Home', root_path, :rel => 'nofollow' %></li>
-				<li><%= link_to 'Walkthrough', walkthrough_path, :rel => 'nofollow' %></li>
-				<li><%= link_to 'About', about_us_path, :rel => 'nofollow' %></li>
-				<li><%= link_to 'Feedback', new_feedback_path, :rel => 'nofollow' %></li>
-				<li><%= link_to 'Our Blog', 'http://blog.thekidreport.org' %></li>
-			</ul>
-			<div id="body">
-				<div id="content">
-					<%= raw notice flash[:notice] %>
-					<%= raw error flash[:alert] %>
-					<h1 id="page_title"><% unless url_for == root_path %><%= @page_title %><% end %></h1>
-					<%= yield %>
-				</div>
-			</div>
-			<div id="footer">
-				The Kid Report - Teacher and Parent Websites
-			</div>
-		</div>
-
+    <body>		
+		  <div id="sun">
+		    <div id="top_cloud">
+		      <div id="middle_cloud">
+		        <div id="bottom_cloud">
+		          <div id="body_wrapper">	
+		          	<div id="header">
+          				<div id="logo">
+          					<%= link_to image_tag('logo.png'), root_path %>
+          				</div>
+          				<div id="user_nav">
+          					<% if user_signed_in? %>
+          						Welcome, <%= link_to current_user.display_name, edit_user_registration_path %> | <%= link_to 'Sign out', destroy_user_session_path %>
+          					<% else %>
+          						<%= link_to 'Sign in', new_user_session_path, :rel => 'nofollow' %> | <%= link_to 'Create account', new_user_registration_path, :rel => 'nofollow' %>
+          					<% end %>
+          				</div>
+          			</div>
+          			<div id="nav">
+                  <div id="nav_left">
+                    <div id="nav_right">
+                			<ul id="nav">
+                				<li><%= link_to 'Home', root_path, :rel => 'nofollow' %></li>
+                				<li><%= link_to 'Tour', tour_path, :rel => 'nofollow' %></li>
+                				<li><%= link_to 'About', about_path, :rel => 'nofollow' %></li>
+                				<li><%= link_to 'Feedback', new_feedback_path, :rel => 'nofollow' %></li>
+                				<li><%= link_to 'Our Blog', 'http://blog.thekidreport.org' %></li>
+                			</ul>
+                			<%= image_tag 'gold_star.png', :id => 'gold_star' %>
+                		</div>
+                	</div>
+          			</div>
+          			<div id="body">
+          				<div id="content">
+          					<%= raw notice flash[:notice] %>
+          					<%= raw error flash[:alert] %>
+          					<h1 id="page_title"><% unless url_for == root_path %><%= @page_title %><% end %></h1>
+          					<%= yield %>
+          				</div>
+          			</div>
+          			<div id="footer">
+          				The Kid Report - Teacher and Parent Websites
+          			</div>
+          		</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </body>
 </html>
