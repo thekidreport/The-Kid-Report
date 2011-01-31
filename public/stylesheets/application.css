@@ -45,10 +45,6 @@ body {
             #nav #nav_left #nav_right ul li a:hover {
               text-decoration: none;
               color: #ffff88; }
-  #nav #gold_star {
-    position: absolute;
-    top: -20px;
-    right: 20px; }
 
 #body_wrapper {
   padding: 10px 25px; }
