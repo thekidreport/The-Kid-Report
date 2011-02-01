@@ -98,7 +98,8 @@ a {
   text-align: center;
   font-family: palatino;
   color: #0d374b;
-  margin-top: 0; }
+  margin-top: 0;
+  text-shadow: 1px 1px 5px white; }
 
 #page_title {
   font-size: 2em;
@@ -128,10 +129,9 @@ h3.headline {
     text-shadow: 1px 1px 2px black; }
 
 ul.bullets {
-  list-style: disc outside none;
   margin-left: 2em; }
   ul.bullets li {
-    margin-bottom: 5px; }
+    margin-bottom: 10px; }
 
 .poetry {
   font-size: 0.9em;
