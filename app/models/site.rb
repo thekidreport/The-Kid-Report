@@ -46,6 +46,10 @@ class Site < ActiveRecord::Base
     self.pages.not_deleted.order('position').first
   end
   
+  def events_count
+    self.events.event_strips_for_month(Date.civil(Time.zone.now.year, Time.zone.now.month)).flatten.compact.count
+  end
+  
   def mark_deleted
     self.deleted_at = Time.now
   end

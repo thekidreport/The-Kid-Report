@@ -9,7 +9,6 @@ class Event < ActiveRecord::Base
   attr_accessor :multi_day, :reminder
   
   scope :remind_today, lambda { where('Date(remind_on) = ?', Date.today)}
-  scope :this_month, lambda { where('Month(start_at) = ?', Date.today.month)}
 
   def set_end_at 
     self.end_at = self.start_at if self.end_at < self.start_at
