@@ -6,7 +6,9 @@
   <%= f.text_field :email %></li>
 
   <li><%= f.label :password %>
-  <%= f.password_field :password %></li>
+  <%= f.password_field :password %>
+  <%= link_to 'Forgot your password?', new_password_path(resource) %>
+  </li>
 
   <% if devise_mapping.rememberable? -%>
     <li class="indent"><%= f.check_box :remember_me %> <%= f.label :remember_me %></li>
@@ -15,5 +17,3 @@
   <li class="indent"><%= f.submit "Sign in" %></li>
 	</ul>
 <% end %>
-
-<%= render :partial => "devise/shared/links" %>

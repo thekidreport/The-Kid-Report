@@ -34,10 +34,10 @@ body {
           #nav #nav_left #nav_right ul li a {
             display: inline-block;
             text-decoration: none;
-            padding: 8px 5px;
+            padding: 5px 5px;
             margin: 3px 10px;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.38em;
             text-shadow: black -1px -1px; }
             #nav #nav_left #nav_right ul li a:hover {
               text-decoration: none;
@@ -71,7 +71,7 @@ body {
   text-align: center; }
 
 a {
-  color: #113258; }
+  color: #113268; }
 
 .framework {
   margin: 0 auto;
@@ -89,14 +89,21 @@ a {
 
 .site {
   border: solid 1px #aaaaaa;
-  padding: 5px;
+  padding: 7px;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
-  margin: 5px 5px 5px 0;
+  -webkit-box-shadow: 0 5px 16px #5f7e66;
+  -moz-box-shadow: 0 5px 16px #5f7e66;
+  margin: 5px 5px 15px 0;
   background: #eaeaea;
-  width: 42%;
-  display: inline-block;
-  vertical-align: top; }
+  width: auto;
+  line-height: 1.4em; }
+  .site a {
+    font-size: 1.3em; }
+  .site .info {
+    color: #666666;
+    float: right;
+    font-size: 0.9em; }
 
 .headline {
   text-align: center;

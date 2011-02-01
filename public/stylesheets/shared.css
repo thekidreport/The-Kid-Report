@@ -121,9 +121,12 @@ p {
 ul.form label {
   display: inline-block;
   width: 100px;
-  text-align: right; }
+  text-align: right;
+  line-height: 1.6em; }
 ul.form li.indent {
   padding-left: 103px; }
+  ul.form li.indent label {
+    width: auto; }
 
 #error_explanation {
   border: solid 1px #cc0000;

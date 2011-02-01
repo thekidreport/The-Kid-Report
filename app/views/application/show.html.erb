@@ -17,7 +17,12 @@
 				</div>
   			<ul>
   			<% for site in current_user.sites.not_deleted %>
-  				<li class="site" style="background:#<%= site.highlight_color %>"><%= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink)) %><br>
+  				<li class="site" style="background:#<%= site.highlight_color %>">
+  				  <div class="info">
+  				    <%= pluralize site.pages.count, 'page' %>, <%= pluralize site.memberships.count, 'member' %><br>
+  				    Updated: <%= site.last_edited_at.to_s(:short) %>
+  				  </div>
+  				  <%= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink)) %><br>
   					<%= site.description %>
   				</li>
   			<% end %>
