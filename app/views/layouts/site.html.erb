@@ -65,13 +65,14 @@
 						<ul id="tools">
 							<h3>Tools</h3>
 							<li><%= link_to 'Preferences', edit_site_path(@site) %></li>
-							<li><%= link_to 'Pages', site_pages_path(@site) %><%= link_to image_tag('icons/plus.png'), new_site_page_path(@site), :title => 'New page', :class => 'new' %></li>
-							<li><%= link_to 'Documents', site_documents_path(@site) %><%= link_to image_tag('icons/plus.png'), new_site_document_path(@site), :title => 'New document', :class => 'new' %></li>
-							<li><%= link_to 'Events', site_events_path(@site) %><%= link_to image_tag('icons/plus.png'), new_site_event_path(@site), :title => 'New event', :class => 'new' %></li>
-							<li><%= link_to 'Messages', site_messages_path(@site) %><%= link_to image_tag('icons/plus.png'), new_site_message_path(@site), :title => 'New message', :class => 'new' %></li>
-							
+							<li><%= link_to 'Pages', site_pages_path(@site) %> <span class="count"><%= @site.pages.count %></span> <%= link_to image_tag('icons/plus.png'), new_site_page_path(@site), :title => 'New page', :class => 'new' %></li>
+							<li><%= link_to 'Documents', site_documents_path(@site) %> <span class="count"><%= @site.documents.count %></span> <%= link_to image_tag('icons/plus.png'), new_site_document_path(@site), :title => 'New document', :class => 'new' %></li>
+							<li><%= link_to 'Events', site_events_path(@site) %> <span class="count"><%= @site.events.this_month.count %></span> <%= link_to image_tag('icons/plus.png'), new_site_event_path(@site), :title => 'New event', :class => 'new' %></li>
 							<% if current_user.can_admin?(@site) %>
-								<li><%= link_to 'Memberships', site_memberships_path(@site) %><%= link_to image_tag('icons/plus.png'), new_site_membership_path(@site), :title => 'New membership', :class => 'new' %></li>
+								<li><%= link_to 'Members', site_memberships_path(@site) %> <span class="count"><%= @site.memberships.count %></span> <%= link_to image_tag('icons/plus.png'), new_site_membership_path(@site), :title => 'New membership', :class => 'new' %></li>
+							<% end %>
+							<li><%= link_to 'Email', site_messages_path(@site) %> <%= link_to image_tag('icons/plus.png'), new_site_message_path(@site), :title => 'New message', :class => 'new' %></li>
+							<% if current_user.can_admin?(@site) %>
 								<li><%= link_to 'Activity Log', site_log_entries_path(@site) %></li>
 							<% end %>
 						</ul>
