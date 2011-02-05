@@ -153,17 +153,21 @@ ul.bullets {
 
 a.primary_action {
   display: block;
-  background: url("/images/primary_button_bg.png") repeat-x scroll 0 0 #822018;
+  background-color: #822018;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99261c', endColorstr='#5f1812');
+  background: -webkit-gradient(linear, left top, left bottom, from(#99261c), to(#5f1812));
+  background: -moz-linear-gradient(top, #99261c, #5f1812);
   padding: 10px 20px;
   color: white;
   text-shadow: 1px 1px #220000;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.3em;
+  line-height: 2em;
   -moz-border-radius: 14px;
   border-radius: 14px;
-  -webkit-box-shadow: 3px 3px 5px #888888;
-  -moz-box-shadow: 3px 3px 5px #888888;
-  margin: auto;
-  width: 100px;
+  -webkit-box-shadow: 3px 3px 5px #5f7e66;
+  -moz-box-shadow: 3px 3px 5px #5f7e66;
+  margin: 50px auto;
+  width: 140px;
   text-align: center; }
