@@ -7,43 +7,33 @@
     </p>
   	<p style="text-align:center; font-size: 1.2em; margin-bottom:20px">Share information with the parents. They’ll love it.
   	  <br>
-      Upload photos, create a schedule.  Keep everything in one place.
+      Create pages, post a schedule.  Parents are emailed automatically.
       <br>
-      It’s just what you need.
+      It’s not too complicated, it's just what you need.
     </p>
 
-  	<% if user_signed_in? %>
-  		<% if current_user.sites.not_deleted.any? %>
+  	<% if user_signed_in? && current_user.sites.not_deleted.any? %>
   		
-  		  <div class="chevron">
-				  <h4>Your Site<%= 's' if current_user.sites.not_deleted.count > 1 %></h4>
-				</div>
-  			<ul>
-  			<% for site in current_user.sites.not_deleted %>
-  				<li class="site" style="background:#<%= site.highlight_color %>">
-  				  <div class="info">
-  				    <%= pluralize site.pages.count, 'page' %>, <%= pluralize site.memberships.count, 'member' %><br>
-  				    Updated: <%= site.last_edited_at.to_s(:short) %>
-  				  </div>
-  				  <%= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink)) %><br>
-  					<%= site.description %>
-  				</li>
-  			<% end %>
-  			</ul>
-  		<% else %>
-  		  <%= link_to 'Create a Site', new_site_path, :class => :primary_action %>
-  		<% end %>
-  		<% if current_user.admin? %>
-  			<p>
-  			<b>Admin tools</b><br>
-  			<%= link_to 'Users', admin_users_path %>,	<%= link_to 'Sites', admin_sites_path %>
-  			</p>
-  		<% end %>
+		  <div class="chevron">
+			  <h4>Your Site<%= 's' if current_user.sites.not_deleted.count > 1 %></h4>
+			</div>
+			<ul>
+			<% for site in current_user.sites.not_deleted %>
+				<li class="site" style="background:#<%= site.highlight_color %>">
+				  <div class="info">
+				    <%= pluralize site.pages.count, 'page' %>, <%= pluralize site.memberships.count, 'member' %><br>
+				    Updated: <%= site.last_edited_at.to_s(:short) %>
+				  </div>
+				  <%= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink)) %><br>
+					<%= site.description %>
+				</li>
+			<% end %>
+			</ul>
   	<% else %>
 			<div class="chevron">
 			  <h4>Easy to Use</h4>
 			</div>
-    	<ul style="display: inline-block; vertical-align: middle; font-size: 1.2em; width: 29%" class="bullets">
+    	<ul style="display: inline-block; vertical-align: middle; font-size: 1.2em; width: 27%" class="bullets">
     		  <li>Create pages</li>
     		  <li>Schedule Events</li>
     		  <li>Send E-Mail</li>
@@ -53,9 +43,15 @@
      	<div style="display: inline-block; vertical-align: middle; text-align:center">
     		<%= image_tag 'screen_shot.png' %>
     		<p style="margin:0">It's easy to create and edit pages</p>
-    	</div>
-    	
+    	</div>    	
   	<% end %>
+
+		<% if current_user.admin? %>
+			<p>
+			<b>Admin tools</b><br>
+			<%= link_to 'Users', admin_users_path %>,	<%= link_to 'Sites', admin_sites_path %>
+			</p>
+		<% end %>
 	</div>
 </td><td class="right">
   <div class="shadow_box">
