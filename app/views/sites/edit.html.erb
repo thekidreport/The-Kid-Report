@@ -1,5 +1,0 @@
-<% @page_title = 'Edit Site' %>
-<% if @site && current_user.can_admin?(@site) %>
-<% @page_actions = link_to( 'Delete site', site_path(@site), :confirm => "Are you sure you want to delete this site?", :method => :delete) %>
-<% end %>
-<%= render 'form', :button_value => 'Save changes' %>

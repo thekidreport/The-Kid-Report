@@ -1,0 +1,8 @@
+.comment
+  %strong= comment.user.try(:display_name)
+  %em
+    = time_ago_in_words(comment.created_at)
+    ago
+  = link_to('x', site_page_comment_path(comment.page.site, comment.page, comment), :method => :delete, :confirm => 'Are you sure?', :remote => true, :style => 'float:right') if (current_user.can_edit?(comment.page.site) || comment.user.eql?(current_user))
+  %p
+    = comment.body

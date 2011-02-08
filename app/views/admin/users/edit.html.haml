@@ -1,0 +1,13 @@
+- @page_title = "Edit User: #{@user.name}"
+- form_for [:admin, @user] do |f|
+  %ul.form
+    %li
+      = f.label :email
+      = f.text_field :email
+    %li
+      = f.label :name
+      = f.text_field :name
+    %li
+      = f.label :admin
+      = f.check_box :admin
+    %li.indent= f.submit "Save changes"

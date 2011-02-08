@@ -1,0 +1,7 @@
+%p= @feedback.body
+%p
+  Referrer: #{@feedback.referrer}
+  %br
+    Browser: #{@feedback.browser}
+    %br
+      User: #{@feedback.user.try(:display_name)}

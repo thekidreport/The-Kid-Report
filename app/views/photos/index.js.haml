@@ -1,0 +1,7 @@
+var tinyMCEImageList = new Array(
+- comma = ''
+- for photo in @photos
+  = comma
+  ["#{truncate(photo.name, :length => 30)} (M)", "#{photo.file.url :medium}"],["#{truncate(photo.name, :length => 30)} (L)", "#{photo.file.url :large}"]
+  - comma = ','
+);

@@ -1,0 +1,12 @@
+- @page_title = 'Feedback'
+.shadow_box
+  %p
+    Your comments are greatly appreciated!   We couldn't build the site without you.
+  %div{:style => "width:550px"}
+    - form_for @feedback do |f|
+      = raw error_messages_for @feedback
+      = f.text_area :body, :style => 'height:100px'
+      %br
+        %br
+          = f.submit "Send feedback"
+          = f.submit "Cancel"
