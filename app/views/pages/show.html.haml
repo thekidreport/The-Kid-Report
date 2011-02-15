@@ -7,13 +7,13 @@
     %br
       - for attachment in @page.attachments
         %li= link_to attachment.document.name, download_site_document_path(@site, attachment.document)
-- if @page && @page.events.any?
+- if @page && @page.events.think_about.any?
   %ul.callout
     %b Events
     %br
-      - for event in @page.events
+      - for event in @page.events.think_about
         %li
+          = event.start_at.to_s(:tiny_date)
           = link_to event.name, site_event_path(@site, event)
-          = event.start_at.to_s(:short)
 .user_generated= raw @page.content
 = render 'comments/page_comments', :page => @page if @page.comments_allowed?

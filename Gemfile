@@ -14,6 +14,13 @@ gem 'mysql', '2.7'
 gem 'tiny_mce'
 gem 'haml', '3.0.25'
 
+group :test do
+  gem 'rspec'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'capybara'
+end
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

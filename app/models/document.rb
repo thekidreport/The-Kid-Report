@@ -14,8 +14,10 @@ class Document < ActiveRecord::Base
        :medium => "210x",
        :small => "80x80#"
     }
+    
+  validates_attachment_presence :file, :message => "Please select a file"
 
-  scope :photo, where("file_content_type like '%image%'")
+  scope :photo, where("file_content_type like 'image%'")
   
   before_post_process :is_image?
   def is_image?
