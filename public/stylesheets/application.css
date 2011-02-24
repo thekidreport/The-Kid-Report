@@ -88,18 +88,19 @@ a {
   margin-bottom: 2em; }
 
 .site {
-  border: solid 1px #aaaaaa;
   padding: 7px;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
-  -webkit-box-shadow: 0 5px 16px #5f7e66;
-  -moz-box-shadow: 0 5px 16px #5f7e66;
   margin: 5px 5px 15px 0;
   background: #eaeaea;
   width: auto;
   line-height: 1.4em; }
-  .site a {
-    font-size: 1.3em; }
+  .site h3 {
+    font-size: 1.3em;
+    margin: 0; }
+  .site p {
+    margin: 0;
+    margin-bottom: 0.5em; }
   .site .info {
     color: #666666;
     float: right;

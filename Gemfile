@@ -14,6 +14,11 @@ gem 'mysql', '2.7'
 gem 'tiny_mce'
 gem 'haml', '3.0.25'
 
+group :development do
+  gem 'heroku'
+  gem 'heroku_san'
+end
+
 group :test do
   gem 'rspec'
   gem 'cucumber'

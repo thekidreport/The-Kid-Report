@@ -17,16 +17,29 @@
             %h4
               Your Site#{'s' if current_user.sites.not_deleted.count > 1}
           %ul
-            - for site in current_user.sites.not_deleted
+            - for site in current_user.sites.not_deleted.order(:last_edited_at)
               %li.site{:style => "background:##{site.highlight_color}"}
                 .info
                   = pluralize site.pages.count, 'page'
                   , #{pluralize site.memberships.count, 'member'}
-                  %br
-                    Updated: #{site.last_edited_at.to_s(:short)}
-                = link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink))
-                %br
+                %h3= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink))
+                %p
                   = site.description
+                %p  
+                  %strong #{site.last_edited_at.to_s(:date)}
+                  %br
+                  - log_entry = site.log_entries.last
+                  = log_entry.user.display_name
+                  = log_entry.friendly_description
+                  = link_to_if (log_entry.page_archive.try(:page) && log_entry.page_archive.try(:page).not_deleted), log_entry.page_archive.try(:name), permalink_path(site.permalink, log_entry.page_archive.try(:page).try(:permalink))
+                - if site.events.coming_up.any?  
+                  %p
+                    %strong Upcoming Events
+                    - for event in site.events.coming_up
+                      %br
+                      #{event.start_at.to_s(:date)} #{link_to event.name, site_event_path(site, event)}
+                  
+                
         - else
           .chevron
             %h4 Easy to Use
