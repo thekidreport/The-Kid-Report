@@ -1,5 +1,3 @@
-- unless request.xhr?
-  #comments
 - if current_user
   - form_for [@site, page, page.comments.build(:user_id => current_user.id)], :remote => true do |f|
     %ul.form
@@ -17,4 +15,3 @@
     to leave a comment
   %br/
 = render :partial => 'comments/comment', :collection => page.comments.all
-- unless request.xhr?

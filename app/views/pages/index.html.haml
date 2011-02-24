@@ -5,7 +5,7 @@
     = render 'page_list', :site => @site
   - if @site.pages.not_deleted.count > 2
     %p
-      Note - Grab rows to reorder pages.
+      Drag and Drop to reorder pages.
 - else
   %p
     This site currently has no pages.  #{link_to 'Create some pages', new_site_page_path(@site)} for this site.
