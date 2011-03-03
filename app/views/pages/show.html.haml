@@ -14,7 +14,7 @@
       - for event in @page.events.think_about
         %li
           = event.start_at.to_s(:tiny_date)
-          = link_to event.name, site_event_path(@site, event)
+          = event.name
 .user_generated= raw @page.content
 
 - if @page.comments_allowed?
