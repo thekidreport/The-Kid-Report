@@ -96,6 +96,9 @@ body {
   .page_nav a:hover {
     text-decoration: underline; }
 
+.ec-event-cell .ec-event a {
+  display: inline; }
+
 .user_generated ul, .user_generated ol {
   margin-left: 2em;
   list-style: inherit; }
