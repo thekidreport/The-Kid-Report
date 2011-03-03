@@ -81,8 +81,8 @@ class PagesController < ApplicationController
     @page = @site.pages.not_deleted.find(params[:id])
     @page.user = current_user
     if @page.update_attributes(params[:page])
-      @page.archive
-      LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_edit' )
+      archive = @page.archive
+      LogEntry.create!(:site => @page.site, :page_archive => archive, :user => current_user, :description => 'page_edit' )
       flash[:notice] = "Page was updated successfully"
       redirect_to permalink_path(@page.site.permalink, @page.permalink)
       return false

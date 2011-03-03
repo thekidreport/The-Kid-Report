@@ -6,7 +6,11 @@
     %br/
     %b= entry.user.display_name
     = entry.friendly_description
-    %b= link_to_unless entry.page_archive.try(:page).nil?, entry.page_archive.try(:page).try(:name), permalink_url(entry.site.permalink, entry.page_archive.try(:page).try(:permalink))
+    %b
+      - if entry.page_archive && entry.page_archive.page
+        = link_to entry.page_archive.page.name, permalink_url(entry.site.permalink, entry.page_archive.page.permalink)
+      - elsif entry.page_archive
+        = entry.page_archive.name
 %p{:style => "font-size:.8em;color:gray"}
   Visit #{link_to @site.name, permalink_url(@site.permalink, @site.home_page.try(:permalink))} online.
   %br/
