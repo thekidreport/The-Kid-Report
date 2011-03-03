@@ -3,7 +3,7 @@
   %tr
     %td.left{:style => "width:61%"}
       .shadow_box
-        %h1.headline Websites for Teachers Coaches and Parents
+        %h1.headline Websites for Teachers, Coaches and Parents
         %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:10px; color: #666"}
           Free, Non-profit, No ads, Grant funded
         %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:20px"}
@@ -17,7 +17,7 @@
             %h4
               Your Site#{'s' if current_user.sites.not_deleted.count > 1}
           %ul
-            - for site in current_user.sites.not_deleted.order(:last_edited_at)
+            - for site in current_user.sites.not_deleted.order('last_edited_at desc')
               %li.site{:style => "background:##{site.highlight_color}"}
                 .info
                   = pluralize site.pages.count, 'page'

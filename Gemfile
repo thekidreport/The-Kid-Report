@@ -17,6 +17,7 @@ gem 'haml', '3.0.25'
 group :development do
   gem 'heroku'
   gem 'heroku_san'
+  gem 'taps'
 end
 
 group :test do

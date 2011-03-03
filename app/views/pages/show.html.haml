@@ -17,5 +17,6 @@
           = link_to event.name, site_event_path(@site, event)
 .user_generated= raw @page.content
 
-#comments
-  = render 'comments/page_comments', :page => @page if @page.comments_allowed?
+- if @page.comments_allowed?
+  #comments
+    = render 'comments/page_comments', :page => @page 

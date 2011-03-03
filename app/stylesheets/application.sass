@@ -1,3 +1,9 @@
+@mixin hover_underline
+  a
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
 body 
   background: url("/images/bg.png") repeat-x scroll 0 0 #97b59e
   
@@ -89,7 +95,7 @@ a
   margin-bottom: 2em
 
 .site 
-  padding: 7px
+  padding: 15px
   -moz-border-radius: 7px
   -webkit-border-radius: 7px
   margin: 5px 5px 15px 0

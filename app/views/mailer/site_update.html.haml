@@ -1,0 +1,12 @@
+%p
+  There are recent changes on
+  %b= @site.name
+  %br/
+  - for entry in @site.log_entries.recent.unique
+    %br/
+    %b= entry.user.display_name
+    = entry.friendly_description
+    %b= link_to_unless entry.page_archive.try(:page).nil?, entry.page_archive.try(:page).try(:name), permalink_url(entry.site.permalink, entry.page_archive.try(:page).try(:permalink))
+%p{:style => "font-size:.8em;color:gray"}
+  Visit #{link_to @site.name, permalink_url(@site.permalink, @site.home_page.try(:permalink))} online.
+  %br/
