@@ -2,15 +2,12 @@
 #
 
 development:
-  adapter: mysql
+  adapter: postgresql
   database: kidr_development
-  username: root
-  password: root
+  timeout: 5000
 
 test:
-  adapter: mysql
+  adapter: postgresql
   database: kidr_test
-  username: root
-  password: root
-
+  timeout: 5000
 

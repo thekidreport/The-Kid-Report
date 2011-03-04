@@ -10,7 +10,7 @@ gem 'paperclip'
 gem 'will_paginate', '2.3.15'
 gem 'devise', '1.2.rc'
 gem 'aws-s3'
-gem 'mysql', '2.7'
+gem 'pg'
 gem 'tiny_mce'
 
 

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20110108190705) do
   create_table "comments", :force => true do |t|
     t.integer  "page_id"
     t.integer  "user_id"
-    t.text     "body",       :null => false
+    t.text     "body",       :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(:version => 20110108190705) do
   end
 
   create_table "page_archives", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
+    t.string   "name",       :null => false
     t.text     "content"
     t.integer  "page_id"
     t.integer  "user_id"
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20110108190705) do
   create_table "pages", :force => true do |t|
     t.integer  "site_id"
     t.integer  "user_id"
-    t.string   "name",                   :default => "",    :null => false
-    t.string   "permalink",              :default => "",    :null => false
+    t.string   "name",                                      :null => false
+    t.string   "permalink",                                 :null => false
     t.text     "content"
     t.boolean  "comments_allowed",       :default => false, :null => false
     t.datetime "last_edited_at"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(:version => 20110108190705) do
   create_table "sites", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "permalink",         :default => "",       :null => false
+    t.string   "permalink",                               :null => false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -139,7 +139,6 @@ ActiveRecord::Schema.define(:version => 20110108190705) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
