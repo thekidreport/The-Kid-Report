@@ -6,16 +6,10 @@ development:
   database: kidr_development
   timeout: 5000
 
-<<<<<<< HEAD
-test:
-  adapter: postgresql
-=======
 test: &test
-  adapter: mysql
->>>>>>> c06565924317166a7bbb7c0c6afc6b50351e6b56
+  adapter: postgresql
   database: kidr_test
   timeout: 5000
-
 
 cucumber:
   <<: *test

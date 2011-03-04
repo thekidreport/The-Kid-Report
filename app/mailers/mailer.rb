@@ -34,22 +34,17 @@ class Mailer < ActionMailer::Base
   end
 
   # Cron
-  def site_update (site)
+  def site_update (site, user)
     @site = site
-    
-    for user in @site.users.not_deleted
-      mail( :to => user.email, :subject => "[The Kid Report] #{site.name} update" ) do |format|
-        format.html { render 'site_update', :layout => 'application_mailer' }
-      end
+    mail( :to => user.email, :subject => "[The Kid Report] #{site.name} update" ) do |format|
+      format.html { render 'site_update', :layout => 'application_mailer' }
     end
   end
   
-  def event_reminder (site)
+  def event_reminder (site, user)
     @site = site
-    for user in @site.users.not_deleted
-      mail( :to => user.email, :subject => "[The Kid Report] #{site.name} event notice" ) do |format|
-        format.html { render 'event_reminder' }
-      end
+    mail( :to => user.email, :subject => "[The Kid Report] #{site.name} event notice" ) do |format|
+      format.html { render 'event_reminder' }
     end
   end
   

@@ -53,8 +53,26 @@ class Site < ActiveRecord::Base
   def mark_deleted
     self.deleted_at = Time.now
   end
+  
   def mark_deleted!
     mark_deleted
     self.save
   end
+  
+  def self.send_updates
+    for site in Site.with_recent_changes
+      for user in site.users.not_deleted
+        Mailer::site_update(site, user).deliver
+      end
+    end
+  end
+  
+  def self.send_reminders
+    for site in Site.with_reminders
+      for user in site.users.not_deleted
+        Mailer::event_reminder(site, user).deliver
+      end
+    end
+  end
+  
 end
