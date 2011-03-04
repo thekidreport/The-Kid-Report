@@ -45,13 +45,13 @@ class ApplicationController < ActionController::Base
     if params[:site_permalink]
       @site = Site.not_deleted.find_by_permalink(params[:site_permalink]) 
       unless @site
-        render :text => 'Page not found', :status => :not_found
+        render :text => 'Site not found', :status => :not_found
         return false
       end
     elsif params[:site_id]
       @site = Site.not_deleted.find(params[:site_id]) 
       unless @site
-        render :text => 'Page not found', :status => :not_found
+        render :text => 'Site not found', :status => :not_found
         return false
       end
     end

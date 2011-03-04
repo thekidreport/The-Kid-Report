@@ -1,0 +1,11 @@
+- @page_title = 'Pages'
+- @page_actions = link_to("Create Page", new_site_page_path(@site))
+- if @site.pages.not_deleted.any?
+  #page_list_table
+    = render 'page_list', :site => @site
+  - if @site.pages.not_deleted.count > 2
+    %p
+      Drag and Drop to reorder pages.
+- else
+  %p
+    This site currently has no pages.  #{link_to 'Create some pages', new_site_page_path(@site)} for this site.

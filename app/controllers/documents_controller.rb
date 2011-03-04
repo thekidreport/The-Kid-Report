@@ -13,12 +13,10 @@ class DocumentsController < ApplicationController
   end
 
   def new
-    @page_title = "Upload Document"
     @document = @site.documents.build
   end
 
   def create
-    @page_title = "Upload Document"
     @document = @site.documents.build(params[:document])
     @document.user = current_user
     if @document.save

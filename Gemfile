@@ -12,6 +12,20 @@ gem 'devise', '1.2.rc'
 gem 'aws-s3'
 gem 'pg'
 gem 'tiny_mce'
+gem 'haml', '3.0.25'
+
+group :development do
+  gem 'heroku'
+  gem 'heroku_san'
+  gem 'taps'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'capybara'
+end
 
 
 # Use unicorn as the web server

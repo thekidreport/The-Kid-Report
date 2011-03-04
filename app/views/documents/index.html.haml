@@ -1,0 +1,12 @@
+- @page_title = "Documents"
+- @page_actions = link_to("Upload Document", new_site_document_path(@site))
+%table.grid
+  %thead
+    %tr
+      %th Document
+      %th Create Date
+      %th Attached
+      %th Actions
+  %tbody
+    = render @documents
+= will_paginate @documents

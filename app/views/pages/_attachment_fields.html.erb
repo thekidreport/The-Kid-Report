@@ -1,5 +1,0 @@
-<li class="nested_fields">
-	<%= f.select :document_id, @site.documents.all.map{|d| [d.name, d.id]} %>
-	<%= f.hidden_field :_destroy %>
-	<%= link_to_function "Remove", "remove_fields(this) " %>
-</li>

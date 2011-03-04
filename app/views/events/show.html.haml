@@ -1,0 +1,16 @@
+- @page_title = "#{@event.name}"
+- if current_user.can_edit?(@site) && !@event.new_record?
+  - @page_actions = raw [link_to('Edit', edit_site_event_path(@site, @event)), link_to('Delete', site_event_path(@site, @event), :method => :delete, :confirm => 'Are you sure?') ].join(' | ')
+- if @event.page
+  %ul.callout
+    %li
+      %b> Page
+      \: #{link_to @event.page.name, permalink_path(@site.permalink, @event.page.permalink)}
+%p
+  = @event.start_at.to_s(:date)
+  - if @event.start_at < @event.end_at
+    to #{@event.end_at.to_s(:date)}
+- if @event.remind_on
+  %p
+    = @event.remind_on.to_s(:date)
+= @event.description

@@ -14,19 +14,21 @@ class LogEntry < ActiveRecord::Base
       when 'site_create'
         'created this site and the page'
       when 'site_update'
-        'Updated the site preferences'
+        'updated the site preferences'
       when 'page_edit'
         'edited the page'
       when 'page_create'
         'created the page'
       when 'page_delete'
         'deleted the page'
+      when 'event_create'
+        'created the event'
       when 'comment_create'
         'created a comment for the page'
       when 'comment_delete'
         'deleted a comment on the page'
       else
-        "Took the '#{self.description.humanize}' action"
+        "took the '#{self.description.humanize}' action"
       end
     end
     

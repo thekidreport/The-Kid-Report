@@ -1,0 +1,9 @@
+%tr.sortable{:id => dom_id(page)}
+  %td= page.name
+  %td= page.visitor_count
+  %td= page.visible.to_s.humanize
+  %td
+    = page.last_edited_at.to_s(:pretty)
+    %td
+      = link_to 'View', permalink_path(page.site.permalink, page.permalink)
+      | #{link_to 'Edit', edit_site_page_path(page.site, page)}

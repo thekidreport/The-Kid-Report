@@ -2,7 +2,10 @@ class Admin::UsersController < Admin::AdminController
   
   def index
     @page_title = 'Users'
-    @users = User.not_deleted.paginate(:page => params[:page], :per_page => params[:per_page])
+    users = User.not_deleted
+    users = users.where("name iLike '%?%'", params[:name]) if params[:name].present?
+    users = users.order('created_at desc')
+    @users = users.paginate(:page => params[:page], :per_page => params[:per_page])
   end
 
   def show

@@ -1,0 +1,71 @@
+- @page_title = 'Free Teacher Websites | The Kid Report'
+%table.framework
+  %tr
+    %td.left{:style => "width:61%"}
+      .shadow_box
+        %h1.headline Websites for Teachers, Coaches and Parents
+        %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:10px; color: #666"}
+          Free, Non-profit, No ads, Grant funded
+        %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:20px"}
+          Share information with the parents. They’ll love it.
+          %br
+            Create pages, post a schedule.  Parents are emailed automatically.
+            %br
+              It’s not too complicated, it's just what you need.
+        - if user_signed_in? && current_user.sites.not_deleted.any?
+          .chevron
+            %h4
+              Your Site#{'s' if current_user.sites.not_deleted.count > 1}
+          %ul
+            - for site in current_user.sites.not_deleted.order('last_edited_at desc')
+              %li.site{:style => "background:##{site.highlight_color}"}
+                .info
+                  = pluralize site.pages.count, 'page'
+                  , #{pluralize site.memberships.count, 'member'}
+                %h3= link_to site.name, permalink_path(site.permalink, site.home_page.try(:permalink))
+                %p
+                  = site.description
+                %p  
+                  %strong #{site.last_edited_at.to_s(:date)}
+                  %br
+                  - log_entry = site.log_entries.last
+                  = log_entry.user.display_name
+                  = log_entry.friendly_description
+                  = link_to_if (log_entry.page_archive.try(:page) && log_entry.page_archive.try(:page).not_deleted), log_entry.page_archive.try(:name), permalink_path(site.permalink, log_entry.page_archive.try(:page).try(:permalink))
+                - if site.events.coming_up.any?  
+                  %p
+                    %strong Upcoming Events
+                    - for event in site.events.coming_up
+                      %br
+                      #{event.start_at.to_s(:date)} #{link_to event.name, site_event_path(site, event)}
+                  
+                
+        - else
+          .chevron
+            %h4 Easy to Use
+          %ul.bullets{:style => "display: inline-block; vertical-align: middle; font-size: 1.2em; width: 27%"}
+            %li Create pages
+            %li Schedule Events
+            %li Send E-Mail
+            %li Attach Documents
+            %li= link_to 'Take our tour', :action => :tour
+          %div{:style => "display: inline-block; vertical-align: middle; text-align:center"}
+            = image_tag 'screen_shot.png'
+            %p{:style => "margin:0"} It's easy to create and edit pages
+        - if user_signed_in? && current_user.admin?
+          %p
+            %b Admin tools
+            %br
+              = link_to 'Users', admin_users_path
+              ,	#{link_to 'Sites', admin_sites_path}
+    %td.right
+      .shadow_box
+        .chevron
+          %h4 Inform Parents
+        %div{:style => "text-align: center"}
+          = image_tag 'kids.png'
+        %p.poetry
+          Use the Kid Report to share information
+          with parents in your classroom, troop, team, or group.
+      %p
+        = link_to 'Create a Site', new_site_path, :class => :primary_action

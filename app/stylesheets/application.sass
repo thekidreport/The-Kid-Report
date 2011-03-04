@@ -1,0 +1,182 @@
+@mixin hover_underline
+  a
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
+body 
+  background: url("/images/bg.png") repeat-x scroll 0 0 #97b59e
+  
+#top_smudge
+  background: url("/images/top_smudge.png") no-repeat scroll center 0 transparent
+  
+#middle_smudge
+  background: url("/images/other_smudge.png") no-repeat scroll 95% 60% transparent
+  height: 100%
+  
+#bottom_smudge
+  background: url("/images/other_smudge.png") no-repeat scroll 5% 99% transparent
+  height: 100%
+  
+#header 
+  position: relative
+  width: 96%
+  margin: auto
+  
+#nav
+  margin-bottom: 30px
+  position: relative
+  #nav_left
+    background: url("/images/nav/left.png") no-repeat scroll 0 0 transparent
+    padding-left: 20px
+    #nav_right
+      background: url("/images/nav/right.png") no-repeat scroll 100% 0 transparent
+      padding-right: 20px
+      ul
+        background: url("/images/nav/bg.png") repeat-x 50% 0 #822018
+        height: 40px
+        li 
+          display: inline
+          a 
+            display: inline-block
+            text-decoration: none
+            padding: 5px 5px
+            margin: 3px 10px
+            font-weight: bold
+            font-size: 1.38em 
+            text-shadow: black -1px -1px
+            &:hover 
+              text-decoration: none
+              color: #FF8
+              
+#user_nav
+  border: 1px solid #4b6350
+  border-top: 0
+  top: 0
+  padding: 8px 20px
+  background-color: #fff
+  border-bottom-right-radius: 5px
+  border-bottom-left-radius: 5px
+  -moz-border-radius-bottomright: 7px
+  -moz-border-radius-bottomleft: 7px
+  -webkit-border-bottom-right-radius: 7px
+  -webkit-border-bottom-left-radius: 7px
+  -webkit-box-shadow: 0 5px 16px #4b6350
+  -moz-box-shadow: 0 5px 16px #4b6350
+  border-radius: 5px
+  opacity: 0.6
+  filter: alpha(opacity=60)
+
+#body_wrapper 
+  padding: 0px 25px 20px
+
+#footer 
+  border-top: 2px solid #EEE
+  padding-top: 10px
+  font-size: .9em
+  text-align: center
+
+a 
+  color: #113268
+  
+
+.framework
+  margin: 0 auto
+  width: 96%
+  
+.shadow_box
+  -moz-border-radius: 9px
+  -webkit-border-radius: 9px
+  border-radius: 9px
+  -webkit-box-shadow: 0 5px 16px #5f7e66
+  -moz-box-shadow: 0 5px 16px #5f7e66
+  padding: 20px
+  background-color: #f8f5f0
+  margin-bottom: 2em
+
+.site 
+  padding: 15px
+  -moz-border-radius: 7px
+  -webkit-border-radius: 7px
+  margin: 5px 5px 15px 0
+  background: #EAEAEA
+  width: auto
+  line-height: 1.4em
+  h3
+    font-size: 1.3em
+    margin: 0
+  p
+    margin: 0
+    margin-bottom: .5em
+  .info
+    color: #666
+    float: right
+    font-size: .9em
+
+.headline 
+  text-align: center
+  font-family: palatino
+  color: #0d374b
+  margin-top: 0
+  text-shadow: 1px 1px 5px white
+  
+#page_title
+  font-size: 2em
+  font-family: palatino
+  color: #18201a
+  margin-top: .25em
+  text-shadow: 1px 1px 5px #b7c6ba
+  
+h1.headline
+  font-size: 3em
+
+h2.headline
+  font-size: 2.0em
+  
+h3.headline
+  font-size: 1.5em
+  
+.chevron
+  margin: 10px 0 15px -26px
+  padding-left: 10px
+  background: url("/images/chevron.png") no-repeat scroll 0 0 transparent
+  height: 50px
+  h4
+    padding: 5px
+    color: white
+    font-size: 1.3em
+    line-height: 1.8em
+    text-shadow: 1px 1px 2px black
+
+  
+ul.bullets
+  margin-left: 2em
+  li
+    margin-bottom: 10px
+    
+.poetry
+  font-size: .9em
+  text-align: center
+  color: #4b4b4b
+  margin-bottom: 25px
+
+a.primary_action
+  display: block
+  background-color: #822018
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99261c', endColorstr='#5f1812')
+  background: -webkit-gradient(linear, left top, left bottom, from(#99261c), to(#5f1812))
+  background: -moz-linear-gradient(top, #99261c, #5f1812)
+  padding: 10px 20px
+  color: white
+  text-shadow: 1px 1px #200
+  text-decoration: none
+  font-weight: bold
+  font-size: 1.3em
+  line-height: 2em
+  -moz-border-radius: 14px
+  border-radius: 14px
+  -webkit-box-shadow: 0 0 15px #FFFFFF
+  -moz-box-shadow: 0 0 15px #FFFFFF
+  margin: 50px auto
+  width: 140px
+  text-align: center

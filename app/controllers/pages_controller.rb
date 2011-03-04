@@ -25,8 +25,11 @@ class PagesController < ApplicationController
                             
   def show
     if params[:page_permalink]  
-      @page = @site.pages.not_deleted.find_by_permalink(params[:page_permalink])
-      @page.increment!(:visitor_count) if @page
+      if @page = @site.pages.not_deleted.find_by_permalink(params[:page_permalink])
+        @page.increment!(:visitor_count)
+      else
+        render :text => 'Page not found', :status => :not_found
+      end
     elsif @site.home_page
       redirect_to permalink_path(@site.permalink, @site.home_page.permalink)
     else
@@ -78,8 +81,8 @@ class PagesController < ApplicationController
     @page = @site.pages.not_deleted.find(params[:id])
     @page.user = current_user
     if @page.update_attributes(params[:page])
-      @page.archive
-      LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_edit' )
+      archive = @page.archive
+      LogEntry.create!(:site => @page.site, :page_archive => archive, :user => current_user, :description => 'page_edit' )
       flash[:notice] = "Page was updated successfully"
       redirect_to permalink_path(@page.site.permalink, @page.permalink)
       return false

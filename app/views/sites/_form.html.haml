@@ -1,0 +1,36 @@
+- form_for @site, :html => {:multipart => true} do |f|
+  = error_messages_for @site
+  %ul.form
+    %li
+      = f.label :name, 'Site name'
+      = f.text_field :name, :size => 20
+    %li
+      = f.label :description
+      = f.text_field :description, :size => 40
+    %li
+      = f.label :time_zone
+      = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
+    %li
+      = f.label :footer, 'Footer'
+      = f.text_field :footer, :size => 40
+    - unless @site.new_record?
+      %li
+        = f.label :logo
+        = f.file_field :logo
+      %li
+        = f.label :background_color, 'Background'
+        = raw f.picky_color :background_color
+      %li
+        = f.label :highlight_color, 'Highlight'
+        = raw f.picky_color :highlight_color
+      %li
+        = f.label :body_color, 'Body'
+        = raw f.picky_color :body_color
+      %li
+        = f.label :font_color, 'Font'
+        = raw f.picky_color :font_color
+      %li
+        = f.label :link_color, 'Link'
+        = raw f.picky_color :link_color
+    %li.indent
+      = f.submit button_value

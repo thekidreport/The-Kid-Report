@@ -18,7 +18,7 @@ class Site < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
     :path => "/site_logos/:id/:style/:filename",
     :default_style => :original,
-    :styles => { :original => "140x" }
+    :styles => { :original => "180x" }
     
   scope :not_deleted, where('sites.deleted_at is null')
   scope :with_recent_changes, lambda { where('sites.last_edited_at > ?', 1.hour.ago) }
@@ -44,6 +44,10 @@ class Site < ActiveRecord::Base
 
   def home_page
     self.pages.not_deleted.order('position').first
+  end
+  
+  def events_count
+    self.events.event_strips_for_month(Date.civil(Time.zone.now.year, Time.zone.now.month)).flatten.compact.count
   end
   
   def mark_deleted

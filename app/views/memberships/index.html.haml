@@ -1,0 +1,11 @@
+- @page_title = 'Memberships'
+- @page_actions = raw [link_to("Add one", new_site_membership_path(@site)), link_to("Add many", build_many_site_memberships_path(@site))].join(' | ')
+%table.grid
+  %thead
+    %tr
+      %th User
+      %th Role
+      %th Actions
+  %tbody
+    = render @memberships
+= will_paginate @memberships

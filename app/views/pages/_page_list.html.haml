@@ -1,0 +1,15 @@
+%table.grid
+  %thead
+    %tr
+      %th Page Name
+      %th Visitors
+      %th Visible
+      %th Last Update
+      %th Actions
+  %tbody#page_list
+    = render site.pages.not_deleted.order("position")
+= sortable_element "page_list",                       |
+  :url => reorder_site_pages_path(site),              |
+  :constraint => :vertical,                           |
+  :tag => :tr,                                        |
+  :complete => visual_effect(:highlight, "page_list") |

@@ -1,0 +1,9 @@
+- @page_title = 'Activity Log'
+%table.grid
+  %thead
+    %th Date
+    %th Event
+    %thead
+      %tbody
+        = render @log_entries
+= will_paginate @log_entries

@@ -1,0 +1,12 @@
+- @page_title = 'Messages'
+- @page_actions = link_to("Create Message", new_site_message_path(@site))
+%table.grid
+  %thead
+    %tr
+      %th Message
+      %th From
+      %th To
+      %th Date
+  %tbody
+    = render @messages
+= will_paginate(@messages)

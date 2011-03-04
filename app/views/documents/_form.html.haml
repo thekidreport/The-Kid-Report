@@ -1,0 +1,8 @@
+- form_for([@site, @document], :html => {:multipart => true}) do |f|
+  = raw error_messages_for @document
+  %ul.form
+    %li
+      = f.label :file
+      = f.file_field :file
+    %li.indent
+      = f.submit button_value

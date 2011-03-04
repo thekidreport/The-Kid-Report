@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">
+%html{:class => browser}
+  %head
+    %title= @page_title
+    %meta{:content => "Free, Classroom, Teacher, Parent, WebSite, Collaboration, Tool, Email, Membership, Wiki", :name => "keywords"}/
+    %meta{:content => "Teachers can share information with parents easily. Parents can get the information they need when they need it. Private. Free. Simple. ", :name => "description"}
+      = javascript_include_tag :defaults
+      = javascript_include_tag 'picky_color'
+      = stylesheet_link_tag 'picky_color'
+      = stylesheet_link_tag ['shared', 'application']
+      = csrf_meta_tag
+      :javascript
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20337737-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+  %body
+    #top_smudge
+      #middle_smudge
+        #bottom_smudge
+          #body_wrapper
+            #header
+              #logo
+                = link_to image_tag('logo.png'), root_path
+              #user_nav
+                - if user_signed_in?
+                  Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
+                - else
+                  = link_to 'Sign in', new_user_session_path, :rel => 'nofollow'
+                  | #{link_to 'Create account', new_user_registration_path, :rel => 'nofollow'}
+            #nav
+              #nav_left
+                #nav_right
+                  %ul#nav
+                    %li= link_to 'Home', root_path, :rel => 'nofollow'
+                    %li= link_to 'Tour', tour_path, :rel => 'nofollow'
+                    %li= link_to 'About', about_path, :rel => 'nofollow'
+                    %li{:style => "float:right"}= link_to 'Our Blog', 'http://blog.thekidreport.org'
+                    %li{:style => "float:right"}= link_to 'Feedback', new_feedback_path, :rel => 'nofollow'
+            #body
+              #content
+                = raw notice flash[:notice]
+                = raw error flash[:alert]
+                %h1#page_title
+                  - unless url_for == root_path
+                    = @page_title
+                = yield
+            #footer
+              The Kid Report - Teacher and Parent Websites

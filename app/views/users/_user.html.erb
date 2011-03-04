@@ -1,8 +1,0 @@
-<% @list_item_index = (@list_item_index == 'odd') ? 'even' : 'odd' %>
-<div class="list_item <%= @list_item_index %>">
-	<div class="list_item_title">
-		<%= user_list_item.created_at.strftime('%m/%d/%Y') %>
-		<%= h(user_list_item.name) %>.
-		<%= mail_to h(user_list_item.email), h(user_list_item.email) %>
-	</div>
-</div>

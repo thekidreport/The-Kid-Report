@@ -1,0 +1,9 @@
+%tr
+  %td
+    "#{membership.user.display_name}" &lt;#{membership.user.email}&gt;
+  %td
+    = membership.role.name
+  %td
+    = link_to 'Edit', edit_site_membership_path(membership.site, membership)
+    = link_to 'Remove', site_membership_path(membership.site, membership), :method => :delete, :confirm => 'Are you sure you want to remove this user?'
+    %span{:id => "invite_#{dom_id(membership)}"}= link_to 'Send invite', invite_site_membership_path(membership.site, membership), :remote => true, :method => :put

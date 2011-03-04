@@ -1,0 +1,12 @@
+.shadow_box
+  %table.grid
+    %thead
+      %tr
+        %th User
+        %th Email
+        %th{:style => "text-align:center; width:120px"} Since
+        %th{:style => "text-align:center; width:60px"} Sign Ins
+        %th{:style => "text-align:center; width:60px"} Admin
+        %th Sites
+    = render @users
+  = will_paginate @users

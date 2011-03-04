@@ -1,0 +1,22 @@
+- @page_title = "#{@page.name}"
+- if current_user.can_edit?(@site) && !@page.new_record?
+  - @page_actions = link_to('Edit this page', edit_site_page_path(@site, @page))
+- if @page && @page.attachments.any?
+  %ul.callout
+    %b Attachments
+    %br
+      - for attachment in @page.attachments
+        %li= link_to attachment.document.name, download_site_document_path(@site, attachment.document)
+- if @page && @page.events.think_about.any?
+  %ul.callout
+    %b Events
+    %br
+      - for event in @page.events.think_about
+        %li
+          = event.start_at.to_s(:tiny_date)
+          = event.name
+.user_generated= raw @page.content
+
+- if @page.comments_allowed?
+  #comments
+    = render 'comments/page_comments', :page => @page 

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">
+%html{:class => browser}
+  %head
+    %title
+      = @page_title
+      = " | #{@site.name}" if @site
+    = javascript_include_tag :defaults
+    = include_tiny_mce_if_needed
+    = javascript_include_tag 'picky_color', 'event_calendar'
+    = stylesheet_link_tag 'picky_color', 'event_calendar'
+    = stylesheet_link_tag ['shared', 'site']
+    = csrf_meta_tag
+    %style
+      body {  
+      ="background-color: ##{@site.background_color};" if @site.background_color.present? 
+      }
+      \#body_wrapper {  
+      = "background-color: ##{@site.body_color};" if @site.body_color.present? 
+      }
+      \#gutter, .highlight_colored {  
+      = "background-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
+      }
+      \#footer {  
+      = "border-top:1px solid ##{@site.highlight_color};" if @site.highlight_color.present?   
+      }
+      \#content, #header, #footer {  
+      = "color: ##{@site.font_color};" if @site.font_color.present? 
+      }
+      a {  
+      = "color: ##{@site.link_color};" if @site.link_color.present? 
+      }
+      \.page_nav li a {  
+      = "background-color: ##{@site.link_color};" if @site.link_color.present? 
+      }
+      \.page_nav li a {  
+      = "color: ##{@site.highlight_color};" if @site.highlight_color.present?  
+      }
+      \#tools h3 { 
+      = "border-bottom: 1px solid  ##{@site.link_color};" if @site.link_color.present?
+      }
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20337737-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+  %body
+    #body_wrapper
+      #header.highlight_colored
+        = link_to image_tag('mini_logo.png'), root_path
+        \: #{link_to @site.name, permalink_path(@site.permalink, @site.home_page.try(:permalink))}
+        #user_nav
+          - if user_signed_in?
+            Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
+          - else
+            = link_to 'Sign in', new_user_session_path
+            | #{link_to 'Create account', new_user_registration_path}
+      #body
+        %table.framework
+          %tr
+            %td.left.left_gutter
+              #gutter
+                - if @site.logo.exists?
+                  #logo.image= link_to_unless_current image_tag(@site.logo(:original)), permalink_path(@site.permalink, @site.home_page.try(:permalink))
+                - else
+                  #logo.text= link_to_unless_current @site.name, permalink_path(@site.permalink, @site.home_page.try(:permalink))
+                %ul.page_nav
+                  - for page in @site.pages.not_deleted.visible.order('position')
+                    %li= link_to page.name, permalink_path(@site.permalink, page.permalink)
+                  - if @site.events.any?
+                    %li= link_to 'Events', site_events_path(@site)
+                - if current_user.can_edit?(@site)
+                  %ul#tools
+                    %h3 Tools
+                    %li= link_to 'Preferences', edit_site_path(@site)
+                    %li
+                      = link_to 'Pages', site_pages_path(@site)
+                      %span.count= @site.pages.count
+                      = link_to image_tag('icons/plus.png'), new_site_page_path(@site), :title => 'New page', :class => 'new'
+                    %li
+                      = link_to 'Documents', site_documents_path(@site)
+                      %span.count= @site.documents.count
+                      = link_to image_tag('icons/plus.png'), new_site_document_path(@site), :title => 'New document', :class => 'new'
+                    %li
+                      = link_to 'Events', site_events_path(@site)
+                      %span.count= @site.events_count
+                      = link_to image_tag('icons/plus.png'), new_site_event_path(@site), :title => 'New event', :class => 'new'
+                    - if current_user.can_admin?(@site)
+                      %li
+                        = link_to 'Members', site_memberships_path(@site)
+                        %span.count= @site.memberships.count
+                        = link_to image_tag('icons/plus.png'), new_site_membership_path(@site), :title => 'New membership', :class => 'new'
+                    %li
+                      = link_to 'Email', site_messages_path(@site)
+                      = link_to image_tag('icons/plus.png'), new_site_message_path(@site), :title => 'New message', :class => 'new'
+                    - if current_user.can_admin?(@site)
+                      %li= link_to 'Activity Log', site_log_entries_path(@site)
+            %td.right
+              #content
+                = raw notice flash[:notice]
+                %h1#page_title
+                  - if @page_actions
+                    %span#page_actions= @page_actions
+                  = @page_title
+                = yield
+      #footer
+        - if @page && !@page.new_record?
+          = pluralize @page.visitor_count, 'Visitor'
+          = (@page.visitor_count_start_at).strftime "since %m/%d/%Y"
+          - if current_user.can_edit?(@site)
+            = link_to 'Reset', reset_site_page_path(@site.id, @page.id), :method => :put
+        %br
+          = @site.name
+          = " - #{@site.footer}" if @site.footer.present?

@@ -1,0 +1,7 @@
+%tr
+  %td
+    = log_entry.created_at.to_s(:short)
+  %td
+    %b= log_entry.user.display_name
+    = log_entry.friendly_description
+    %b= link_to_if (log_entry.page_archive.try(:page) && log_entry.page_archive.try(:page).not_deleted), log_entry.page_archive.try(:name), permalink_path(@site.permalink, log_entry.page_archive.try(:page).try(:permalink))
