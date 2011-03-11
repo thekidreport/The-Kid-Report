@@ -76,7 +76,8 @@ h3 {
   font-size: 12px; }
 
 ul.form {
-  width: auto; }
+  width: auto;
+  margin-bottom: 2em; }
   ul.form li {
     margin: 10px 0; }
   ul.form label {

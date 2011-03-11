@@ -1,5 +1,9 @@
 - @page_title = 'Memberships'
-- @page_actions = raw [link_to("Add one", new_site_membership_path(@site)), link_to("Add many", build_many_site_memberships_path(@site))].join(' | ')
+- @page_actions = link_to("Add member", new_site_membership_path(@site))
+%p
+  = link_to_unless_current('Members', site_memberships_path(@site))
+  |
+  = link_to_unless_current('Invitations', site_invitations_path(@site))
 %table.grid
   %thead
     %tr

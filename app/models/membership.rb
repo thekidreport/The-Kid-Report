@@ -3,15 +3,16 @@ class Membership < ActiveRecord::Base
     belongs_to :user
     belongs_to :role
     
-    attr_accessor :email
+    attr_accessor :email, :passcode
     
-    before_validation_on_create :set_user
+    before_validation :set_user, :on => :create
     
     validates_presence_of :user
-    validates_presence_of :role
     validates_format_of :email, :with => /^[a-zA-Z0-9.\+_%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, :if => :email
     
     validates_uniqueness_of :user_id, :scope => :site_id, :message => 'is already a member'
+    
+    validate :confirm_passcode
     
     def set_user
       if self.email.present? && self.user.nil?
@@ -26,6 +27,10 @@ class Membership < ActiveRecord::Base
     
     def can_administrate?
       return self.role.name == 'admin' 
+    end
+    
+    def confirm_passcode
+      self.errors.add_to_base 'Wrong passcode' unless self.passcode == self.site.passcode
     end
 
 end

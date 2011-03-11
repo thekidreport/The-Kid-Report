@@ -1,0 +1,10 @@
+- @page_title = "Create invitations"
+- form_tag create_many_site_invitations_path do
+  = raw error_messages_for @site
+  %ul.form
+    %li
+      = label_tag :invitation_emails, nil, :style => 'width:auto'
+      %br
+        = text_area_tag :invitation_emails, nil, :style => 'width:50%; height:150px'
+    %li
+      = submit_tag 'Create Invitations'

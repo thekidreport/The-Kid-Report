@@ -13,6 +13,7 @@ gem 'aws-s3'
 gem 'pg'
 gem 'tiny_mce'
 gem 'haml', '3.0.25'
+gem 'simple_form'
 
 group :development do
   gem 'heroku'

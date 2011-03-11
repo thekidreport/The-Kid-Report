@@ -1,0 +1,9 @@
+- form_for [@site, @invitation] do |f|
+  = raw error_messages_for @invitation
+  = hidden_field_tag 'site_id', @site.id
+  %ul.form
+    %li
+      = f.label :email
+      = f.text_field :email
+    %li.indent
+      = f.submit button_value

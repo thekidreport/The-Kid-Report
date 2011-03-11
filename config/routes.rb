@@ -30,12 +30,13 @@ Kidr::Application.routes.draw do
     end
     resources :photos, :only => :index
     resources :messages, :only => [:index, :new, :create]
-    resources :memberships do
+    resources :memberships
+    resources :invitations do
       member do 
-        put :invite
+        put :relay
       end
       collection do 
-        get :build_many
+        get :new_many
         post :create_many
       end
     end

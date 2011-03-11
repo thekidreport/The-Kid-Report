@@ -2,6 +2,8 @@ class Site < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   accepts_nested_attributes_for :memberships, :allow_destroy => true
   
+  has_many :invitations
+  
   has_many :users, :through => :memberships
   has_many :editors, :through => :memberships, :source => 'user', :conditions => ["memberships.role_id in (?)", [2, 3]]
   has_many :admins, :through => :memberships, :source => 'user', :conditions => ["memberships.role_id = ?", 3]
