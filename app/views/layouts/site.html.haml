@@ -63,43 +63,45 @@
       #body
         %table.framework
           %tr
-            %td.left.left_gutter
-              #gutter
-                - if @site.logo.exists?
-                  #logo.image= link_to_unless_current image_tag(@site.logo(:original)), permalink_path(@site.permalink, @site.home_page.try(:permalink))
-                - else
-                  #logo.text= link_to_unless_current @site.name, permalink_path(@site.permalink, @site.home_page.try(:permalink))
-                %ul.page_nav
-                  - for page in @site.pages.not_deleted.visible.order('position')
-                    %li= link_to page.name, permalink_path(@site.permalink, page.permalink)
-                  - if @site.events.any?
-                    %li= link_to 'Events', site_events_path(@site)
-                - if current_user.can_edit?(@site)
-                  %ul#tools
-                    %h3 Tools
-                    %li= link_to 'Preferences', edit_site_path(@site)
-                    %li
-                      = link_to 'Pages', site_pages_path(@site)
-                      %span.count= @site.pages.count
-                      = link_to image_tag('icons/plus.png'), new_site_page_path(@site), :title => 'New page', :class => 'new'
-                    %li
-                      = link_to 'Documents', site_documents_path(@site)
-                      %span.count= @site.documents.count
-                      = link_to image_tag('icons/plus.png'), new_site_document_path(@site), :title => 'New document', :class => 'new'
-                    %li
-                      = link_to 'Events', site_events_path(@site)
-                      %span.count= @site.events_count
-                      = link_to image_tag('icons/plus.png'), new_site_event_path(@site), :title => 'New event', :class => 'new'
-                    - if current_user.can_admin?(@site)
+            - if current_user.member_of?(@site)
+              %td.left.left_gutter
+            
+                #gutter
+                  - if @site.logo.exists?
+                    #logo.image= link_to_unless_current image_tag(@site.logo(:original)), permalink_path(@site.permalink, @site.home_page.try(:permalink))
+                  - else
+                    #logo.text= link_to_unless_current @site.name, permalink_path(@site.permalink, @site.home_page.try(:permalink))
+                  %ul.page_nav
+                    - for page in @site.pages.not_deleted.visible.order('position')
+                      %li= link_to page.name, permalink_path(@site.permalink, page.permalink)
+                    - if @site.events.any?
+                      %li= link_to 'Events', site_events_path(@site)
+                  - if current_user.can_edit?(@site)
+                    %ul#tools
+                      %h3 Tools
+                      %li= link_to 'Preferences', edit_site_path(@site)
                       %li
-                        = link_to 'Members', site_memberships_path(@site)
-                        %span.count= @site.memberships.count
-                        = link_to image_tag('icons/plus.png'), new_site_membership_path(@site), :title => 'New membership', :class => 'new'
-                    %li
-                      = link_to 'Email', site_messages_path(@site)
-                      = link_to image_tag('icons/plus.png'), new_site_message_path(@site), :title => 'New message', :class => 'new'
-                    - if current_user.can_admin?(@site)
-                      %li= link_to 'Activity Log', site_log_entries_path(@site)
+                        = link_to 'Pages', site_pages_path(@site)
+                        %span.count= @site.pages.count
+                        = link_to image_tag('icons/plus.png'), new_site_page_path(@site), :title => 'New page', :class => 'new'
+                      %li
+                        = link_to 'Documents', site_documents_path(@site)
+                        %span.count= @site.documents.count
+                        = link_to image_tag('icons/plus.png'), new_site_document_path(@site), :title => 'New document', :class => 'new'
+                      %li
+                        = link_to 'Events', site_events_path(@site)
+                        %span.count= @site.events_count
+                        = link_to image_tag('icons/plus.png'), new_site_event_path(@site), :title => 'New event', :class => 'new'
+                      - if current_user.can_admin?(@site)
+                        %li
+                          = link_to 'Members', site_memberships_path(@site)
+                          %span.count= @site.memberships.count
+                          = link_to image_tag('icons/plus.png'), new_site_membership_path(@site), :title => 'New membership', :class => 'new'
+                      %li
+                        = link_to 'Email', site_messages_path(@site)
+                        = link_to image_tag('icons/plus.png'), new_site_message_path(@site), :title => 'New message', :class => 'new'
+                      - if current_user.can_admin?(@site)
+                        %li= link_to 'Activity Log', site_log_entries_path(@site)
             %td.right
               #content
                 = raw notice flash[:notice]

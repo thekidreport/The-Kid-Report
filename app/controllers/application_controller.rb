@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :redirect_to_www
   before_filter :load_site
-  before_filter :set_user_time_zone
+  before_filter :ensure_membership
+  before_filter :set_time_zone
   
   
   def select_layout
@@ -57,7 +58,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def set_user_time_zone
+  def ensure_membership
+    if current_user && @site && @site.members_only? && !current_user.member_of?(@site)
+      redirect_to new_site_membership_path(@site)
+    end
+  end
+  
+  def set_time_zone
     Time.zone = @site.time_zone if @site
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108190705) do
+ActiveRecord::Schema.define(:version => 20110307004313) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(:version => 20110108190705) do
     t.string   "referrer"
     t.string   "browser"
     t.text     "body",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.string   "email"
+    t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -134,11 +141,15 @@ ActiveRecord::Schema.define(:version => 20110108190705) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.boolean  "members_only",      :default => true,     :null => false
+    t.string   "passcode",          :default => "abc123", :null => false
+    t.boolean  "auto_message",      :default => true,     :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

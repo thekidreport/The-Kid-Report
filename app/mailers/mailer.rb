@@ -16,10 +16,10 @@ class Mailer < ActionMailer::Base
     end
   end
   
-  def invite(membership)
-    @site = membership.site
-    @user = membership.user
-    mail( :to => membership.user.email, :subject => "#{membership.site.name} Invitation" ) do |format|
+  def invite(invite)
+    @site = invite.site
+    @email = invite.email
+    mail( :to => @email, :subject => "#{invite.site.name} Invitation" ) do |format|
       format.html { render 'site_invite', :layout => 'application_mailer' }
     end
   end

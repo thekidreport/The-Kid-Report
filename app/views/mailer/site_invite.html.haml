@@ -1,15 +1,11 @@
 %p
-  Hi, #{@user.display_name}
-- if @user.last_sign_in_at
+  Hi, You have been invited to join '#{@site.name}' on The Kid Report.
+%p 
+  The Kid Report is a site where Teachers and Parents can share classroom information.
+%p
+  Here's the link to your site: #{ permalink_url(@site.permalink, @site.home_page.try(:permalink)) }.
+- if @site.members_only?
   %p
-    You have been added to #{link_to @site.name, permalink_url(@site.permalink, @site.home_page.try(:permalink))} on The Kid Report.
-  %p
-    You can now sign in and access this site.  If you have don't have a password (or can't remember it), you can #{link_to 'set your password now', edit_password_url(@user, :reset_password_token => @user.reset_password_token)} (please note - this link is only good once).
-- else
-  %p
-    You have been added to '#{@site.name}' on The Kid Report.
-  %p The Kid Report is a site where Teachers and Parents can share classroom information.
-  %p
-    If you are new to The Kid Report, you should #{link_to 'set your password now', edit_password_url(@user, :reset_password_token => @user.reset_password_token)} (please note - this link is only good once).
+    You will need to create an account on The Kid Report website before you can join the #{@site.name}.  Once that's done, the following  passcode is needed to join the site and view content: #{@site.passcode}
 %p
   Thanks for using The Kid Report!

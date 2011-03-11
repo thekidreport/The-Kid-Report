@@ -1,0 +1,8 @@
+%tr
+  %td
+    = invitation.email
+  %td
+    = link_to 'Remove', site_invitation_path(invitation.site, invitation), :method => :delete, :confirm => 'Are you sure you want to delete this invitation?'
+    %span{:id => "relay_#{dom_id(invitation)}"}= link_to 'Send again', relay_site_invitation_path(invitation.site, invitation), :remote => true, :method => :put
+  %td
+    = invitation.created_at.to_s(:date)

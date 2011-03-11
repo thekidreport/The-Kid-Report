@@ -1,2 +1,16 @@
 - @page_title = 'Edit Membership'
-= render 'form', :button_value => 'Save changes'
+- form_for [@site, @membership] do |f|
+  = raw error_messages_for @membership
+  = hidden_field_tag 'site_id', @site.id
+  %ul.form
+    %li
+      = f.label :name
+      = @membership.user.name
+    %li
+      = f.label :email
+      = @membership.user.email
+    %li
+      = f.label :role_id
+      = f.select :role_id, Role.all.map{|role| [role.name, role.id]}
+    %li.indent
+      = f.submit 'Save Changes'

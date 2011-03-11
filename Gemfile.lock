@@ -131,6 +131,7 @@ GEM
       json_pure
       rubyzip
     sequel (3.17.0)
+    simple_form (1.3.1)
     sinatra (1.0)
       rack (>= 1.0)
     sqlite3 (1.3.3)
@@ -173,6 +174,7 @@ DEPENDENCIES
   pg
   rails (= 3.0.3)
   rspec
+  simple_form
   taps
   tiny_mce
   will_paginate (= 2.3.15)

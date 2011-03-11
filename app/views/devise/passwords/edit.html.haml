@@ -1,13 +1,17 @@
 - @page_title = 'Change your password'
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-  = raw error_messages_for(resource)
-  %ul.form
-    = f.hidden_field :reset_password_token
-    %li
-      = f.label :password
-      = f.password_field :password
-    %li
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation
-    %li.indent= f.submit "Change my password"
-= render :partial => "devise/shared/links"
+:css
+  ul.form label { width: 150px;}
+  ul.form li.indent { padding-left: 153px;}
+  
+.shadow_box
+  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+    = raw error_messages_for(resource)
+    %ul.form
+      = f.hidden_field :reset_password_token
+      %li
+        = f.label :password
+        = f.password_field :password
+      %li
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+      %li.indent= f.submit "Change my password"
