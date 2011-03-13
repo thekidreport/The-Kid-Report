@@ -31,7 +31,8 @@ class SitesController < ApplicationController
       LogEntry.create!(:site => @site, :user => current_user, :description => 'site_update' )
       flash[:notice] = 'Site was successfully updated.'
       redirect_to permalink_path(@site.permalink, @site.home_page.permalink)
-      return false
+    else
+      render :action => :edit
     end
   end
   

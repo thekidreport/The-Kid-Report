@@ -63,7 +63,7 @@
       #body
         %table.framework
           %tr
-            - if current_user.member_of?(@site)
+            - if current_user && current_user.member_of?(@site) || @site.public?
               %td.left.left_gutter
             
                 #gutter
@@ -74,9 +74,9 @@
                   %ul.page_nav
                     - for page in @site.pages.not_deleted.visible.order('position')
                       %li= link_to page.name, permalink_path(@site.permalink, page.permalink)
-                    - if @site.events.any?
+                    - if current_user && @site.events.any? 
                       %li= link_to 'Events', site_events_path(@site)
-                  - if current_user.can_edit?(@site)
+                  - if current_user && current_user.member_of?(@site) && current_user.can_edit?(@site)
                     %ul#tools
                       %h3 Tools
                       %li= link_to 'Preferences', edit_site_path(@site)
@@ -114,7 +114,7 @@
         - if @page && !@page.new_record?
           = pluralize @page.visitor_count, 'Visitor'
           = (@page.visitor_count_start_at).strftime "since %m/%d/%Y"
-          - if current_user.can_edit?(@site)
+          - if current_user && current_user.can_edit?(@site)
             = link_to 'Reset', reset_site_page_path(@site.id, @page.id), :method => :put
         %br
           = @site.name

@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   before_filter :ensure_membership
   before_filter :set_time_zone
   
+  def show
+    @example = Site.example
+  end
   
   def select_layout
     if @site && !@site.new_record?
@@ -56,6 +59,10 @@ class ApplicationController < ActionController::Base
         return false
       end
     end
+  end
+  
+  def site_members_only
+    @site.members_only?
   end
   
   def ensure_membership

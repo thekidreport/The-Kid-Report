@@ -61,6 +61,14 @@ class Site < ActiveRecord::Base
     self.save
   end
   
+  def public?
+    !self.members_only?
+  end
+  
+  def self.example
+    Site.find_by_permalink('example')
+  end
+  
   def self.send_updates
     for site in Site.with_recent_changes
       for user in site.users.not_deleted

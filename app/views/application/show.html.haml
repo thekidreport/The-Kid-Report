@@ -59,6 +59,16 @@
               = link_to 'Users', admin_users_path
               ,	#{link_to 'Sites', admin_sites_path}
     %td.right
+      - if @example
+        .shadow_box
+          .chevron
+            %h4 Example Site
+          - if @example.logo.exists?
+            #logo.image= link_to_unless_current image_tag(@example.logo(:original)), permalink_path(@example.permalink, @example.home_page.try(:permalink))
+          - else
+            #logo.text= link_to_unless_current @example.name, permalink_path(@example.permalink, @example.home_page.try(:permalink))            
+          %p{:style => 'text-align:center'}
+            Take a look at our example site
       .shadow_box
         .chevron
           %h4 Inform Parents

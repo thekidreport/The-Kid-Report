@@ -73,7 +73,7 @@ GEM
     heroku (1.17.17)
       json (~> 1.4.6)
       launchy (~> 0.3.2)
-      rest-client (>= 1.4.0, < 1.7.0)
+      rest-client (< 1.7.0, >= 1.4.0)
     heroku_san (1.0.8)
       heroku
     i18n (0.5.0)
@@ -140,7 +140,7 @@ GEM
     taps (0.3.15)
       json (~> 1.4.6)
       rack (>= 1.0.1)
-      rest-client (>= 1.4.0, < 1.7.0)
+      rest-client (< 1.7.0, >= 1.4.0)
       sequel (~> 3.17.0)
       sinatra (~> 1.0.0)
       sqlite3-ruby (~> 1.2)

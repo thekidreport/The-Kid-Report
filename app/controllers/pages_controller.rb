@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :if => :site_members_only
   before_filter :site_editor_required!, :except => :show
-  before_filter :site_member_required!, :only => :show
+  before_filter :site_member_required!, :only => :show, :if => :site_members_only
   
   
   TINY_MCE_OPTIONS = { :theme => "advanced",
