@@ -44,13 +44,13 @@ class User < ActiveRecord::Base
     site.admins.not_deleted.include?(self) || self.admin?
   end
   
-  def destroy
-    self.deleted_at = Time.now
-  end
-  
-  def destroy!
-    destroy
-    self.save
+  def delete!
+    if self.last_sign_in_at
+      self.deleted_at = Time.now
+      self.save
+    else
+      self.destroy
+    end
   end
   
   def reset_deleted_at
