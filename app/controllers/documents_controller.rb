@@ -1,7 +1,10 @@
 class DocumentsController < ApplicationController
   
-  before_filter :authenticate_user!
-  before_filter :site_editor_required!
+  before_filter :authenticate_user!, :except => :download
+  before_filter :authenticate_user!, :only => :download, :if => :site_members_only
+  before_filter :site_editor_required!, :except => :download
+  before_filter :site_member_required!, :only => :download, :if => :site_members_only
+  
   
   def index
     @documents = @site.documents.all.paginate(:page => params[:page])
