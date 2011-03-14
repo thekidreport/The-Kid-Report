@@ -28,6 +28,7 @@
             #header
               #logo
                 = link_to image_tag('logo.png'), root_path
+                .tagline Increase Parent Involvement
               #user_nav
                 - if user_signed_in?
                   Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}

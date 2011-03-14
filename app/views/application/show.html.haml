@@ -1,4 +1,4 @@
-- @page_title = 'Free Teacher Websites | The Kid Report'
+- @page_title = 'Increase Parent Involvement | The Kid Report'
 %table.framework
   %tr
     %td.left{:style => "width:61%"}
@@ -6,12 +6,10 @@
         %h1.headline Websites for Teachers, Coaches and Parents
         %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:10px; color: #666"}
           Free, Non-profit, No ads, Grant funded
-        %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:20px"}
-          Share information with the parents. They’ll love it.
+        %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:30px"}
+          Share information with other parents to engage them
           %br
-            Create pages, post a schedule.  Parents are emailed automatically.
-            %br
-              It’s not too complicated, it's just what you need.
+          and increase Parent Involvement
         - if user_signed_in? && current_user.sites.not_deleted.any?
           .chevron
             %h4
@@ -58,6 +56,17 @@
             %br
               = link_to 'Users', admin_users_path
               ,	#{link_to 'Sites', admin_sites_path}
+      .shadow_box
+        .chevron
+          %h4 Parent Involvement
+        %p
+          Endless studies have shown that Parent Involvement is one of the most important elements to a child's success in school and extracurricular activities.  
+        %p
+          As parents, we all want to be involved, but it's tough to find the time.  We don't know how to help at home necessarily, and we don't know what other opportunities exist to help support the class. 
+        %p
+          The Kid Report offers free websites and tools for teachers to engage parents, start a conversation and show them how they can contribute.
+          
+          
     %td.right
       - if @example
         .shadow_box

@@ -16,6 +16,13 @@ body {
   position: relative;
   width: 96%;
   margin: auto; }
+  #header #logo {
+    position: relative; }
+    #header #logo .tagline {
+      color: white;
+      position: absolute;
+      left: 200px;
+      bottom: 10px; }
 
 #nav {
   margin-bottom: 30px;
