@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   end
   
   def site_members_only
-    @site.members_only?
+    @site && @site.members_only?
   end
   
   def ensure_membership

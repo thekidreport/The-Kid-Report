@@ -2,7 +2,7 @@
   There are recent changes on
   %b= @site.name
   %br/
-  - for entry in @site.log_entries.recent.unique
+  - for entry in @site.log_entries.recent.uniq
     %br/
     %b= entry.user.display_name
     = entry.friendly_description
