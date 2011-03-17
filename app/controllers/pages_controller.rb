@@ -102,7 +102,7 @@ class PagesController < ApplicationController
     @page.mark_deleted!
     archive = @page.archive
     LogEntry.create!(:site => @page.site, :page_archive => archive, :user => current_user, :description => 'page_delete' )
-    flash[:confirm] = "The page was deleted"
+    flash[:notice] = "The page was deleted"
     redirect_to site_pages_path(@site)
   end
 

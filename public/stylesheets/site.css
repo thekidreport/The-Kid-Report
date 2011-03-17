@@ -23,7 +23,8 @@ body {
 #body_wrapper {
   padding: 10px;
   -moz-border-radius: 10px;
-  -webkit-border-radius: 10px; }
+  -webkit-border-radius: 10px;
+  margin-bottom: 20px; }
 
 #tools {
   font-size: 0.8em;
