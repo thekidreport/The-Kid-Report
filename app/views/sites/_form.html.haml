@@ -1,31 +1,22 @@
 - simple_form_for @site, :html => {:multipart => true} do |f|
   = error_messages_for @site
   %ul.form
-    %li
-      = f.input :name, :input_html => {:size => 20}, :label => 'Site name'
-    %li
-      = f.input :description, :size => 40
-    %li
-      = f.input :time_zone, :preference => /US/
-    %li
-      = f.input :footer, :as => :string, :size => 40
+    %li= f.input :name, :input_html => {:size => 20}, :label => 'Site name'
+    %li= f.input :description, :size => 40
+    %li= f.input :time_zone, :preference => /US/
+    %li= f.input :footer, :as => :string, :size => 40
       
   - unless @site.new_record?
     %ul.form
-      %li 
-        = f.input :passcode, :input_html => {:size => 20}, :hint => "The secret code required to join the site"
-    
-      %li.indent
-        = f.input :members_only, :label => 'Only members are allowed to view site', :as => :boolean
+      %li= f.input :passcode, :input_html => {:size => 20}, :hint => "The secret code required to join the site"
+      %li.indent= f.input :members_only, :label => 'Only members are allowed to view site', :as => :boolean
       
     %ul.form
-      %li.indent
-        = f.input :auto_message, :label => 'Send members a message on site updates', :as => :boolean
+      %li.indent= f.input :auto_message, :label => 'Send members a message on site updates', :as => :boolean
       
       
     %ul.form
-      %li
-        = f.input :logo
+      %li= f.input :logo
       %li
         = f.label :background_color, 'Background'
         = raw f.picky_color :background_color

@@ -30,8 +30,6 @@ class PagesController < ApplicationController
       else
         render :text => 'Page not found', :status => :not_found
       end
-    elsif @site.home_page
-      redirect_to permalink_path(@site.permalink, @site.home_page.permalink)
     else
       @page = Page.new(:name => 'No Pages', :content => "This site has no pages.")
     end
@@ -102,7 +100,8 @@ class PagesController < ApplicationController
   def destroy
     @page = @site.pages.not_deleted.find(params[:id])
     @page.mark_deleted!
-    LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_delete' )
+    archive = @page.archive
+    LogEntry.create!(:site => @page.site, :page_archive => archive, :user => current_user, :description => 'page_delete' )
     flash[:confirm] = "The page was deleted"
     redirect_to site_pages_path(@site)
   end

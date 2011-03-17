@@ -68,14 +68,13 @@
             
                 #gutter
                   - if @site.logo.exists?
-                    #logo.image= link_to_unless_current image_tag(@site.logo(:original)), permalink_path(@site.permalink, @site.home_page.try(:permalink))
+                    #logo.image= link_to_unless_current image_tag(@site.logo(:original)), site_root_path(@site.permalink)
                   - else
-                    #logo.text= link_to_unless_current @site.name, permalink_path(@site.permalink, @site.home_page.try(:permalink))
+                    #logo.text= link_to_unless_current @site.name, site_root_path(@site.permalink)
                   %ul.page_nav
+                    %li= link_to 'Dashboard', site_root_path(@site.permalink)
                     - for page in @site.pages.not_deleted.visible.order('position')
                       %li= link_to page.name, permalink_path(@site.permalink, page.permalink)
-                    - if current_user && @site.events.any? 
-                      %li= link_to 'Events', site_events_path(@site)
                   - if current_user && current_user.member_of?(@site) && current_user.can_edit?(@site)
                     %ul#tools
                       %h3 Tools

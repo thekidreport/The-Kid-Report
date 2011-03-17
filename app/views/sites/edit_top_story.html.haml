@@ -1,0 +1,13 @@
+- @page_title = 'Edit Top Story'
+
+- simple_form_for @site do |f|
+  = error_messages_for @site
+  %ul.form
+    %li= f.text_area :top_story, :style => 'width:69%; height:200px', :class => "mceEditor"
+      
+  %ul.form
+    %li
+      = f.submit 'Save Changes'
+
+
+

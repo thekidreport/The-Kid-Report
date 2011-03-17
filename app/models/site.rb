@@ -14,6 +14,7 @@ class Site < ActiveRecord::Base
   has_many :log_entries, :dependent => :destroy
   has_many :messages, :dependent => :destroy
   has_many :documents, :dependent => :destroy
+  has_many :comments, :through => :pages
   
   has_attached_file :logo, 
     :storage => :s3, 

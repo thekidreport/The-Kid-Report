@@ -1,7 +1,10 @@
+
+%h3 
+  Comments
+  
 - if current_user
   - form_for [@site, page, page.comments.build(:user_id => current_user.id)], :remote => true do |f|
     %ul.form
-      %h3.header Comments
       = f.hidden_field 'page_id'
       %li
         %span.hint
@@ -10,8 +13,8 @@
         = f.text_area 'body'
       %li= submit_tag 'Add Comment', :id => "add_comment_button"
 - else
-  %span.hint
-    = link_to 'Sign in', signin_path
+  %p.hint
+    = link_to 'Sign in', new_user_session_path
     to leave a comment
-  %br/
+
 = render :partial => 'comments/comment', :collection => page.comments.all

@@ -71,14 +71,14 @@ body {
       border: solid 1px #aaaaaa;
       font-family: Verdana, Arial, Helvetica, sans-serif;
       font-size: 10px; }
-  #comments .comment {
-    background-color: #eeeeee;
-    padding: 0.5em;
-    -moz-border-radius: 7px;
-    -webkit-border-radius: 7px;
-    margin-left: 20px;
-    margin-bottom: 1em;
-    font-size: 0.9em; }
+
+.comment {
+  background-color: #eeeeee;
+  padding: 0.5em;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  margin-bottom: 1em;
+  font-size: 0.9em; }
 
 .sortable {
   cursor: move; }
@@ -96,9 +96,37 @@ body {
   .page_nav a:hover {
     text-decoration: underline; }
 
+.ec-calendar {
+  margin-bottom: 2em; }
+
 .ec-event-cell .ec-event a {
   display: inline; }
 
 .user_generated ul, .user_generated ol {
   margin-left: 2em;
   list-style: inherit; }
+
+.tight {
+  font-size: 0.9em; }
+  .tight a {
+    text-decoration: none; }
+    .tight a:hover {
+      text-decoration: underline; }
+  .tight li {
+    margin-bottom: 0.4em; }
+
+.contacts {
+  font-size: 0.9em; }
+  .contacts li {
+    border: solid 1px #cccccc;
+    padding: 5px;
+    margin: 0.5em 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px; }
+    .contacts li .name {
+      font-weight: bold; }
+    .contacts li .phone {
+      color: brown; }
+
+.date {
+  color: #888888; }

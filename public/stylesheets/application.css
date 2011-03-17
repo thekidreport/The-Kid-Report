@@ -64,7 +64,8 @@ body {
   -webkit-border-bottom-left-radius: 7px;
   -webkit-box-shadow: 0 5px 16px #4b6350;
   -moz-box-shadow: 0 5px 16px #4b6350;
-  border-radius: 5px;
+  border-radius-bottom-right: 5px;
+  border-radius-bottom-left: 5px;
   opacity: 0.6;
   filter: alpha(opacity=60); }
 
