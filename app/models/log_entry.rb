@@ -33,7 +33,7 @@ class LogEntry < ActiveRecord::Base
     end
     
     def set_last_edited_at
-      self.loggable.page.update_attribute(:last_edited_at, Time.now) if self.loggable.try(:page)
+      self.loggable.page.update_attribute(:last_edited_at, Time.now) if self.loggable.respond_to?(:page) && self.loggable.page
       self.site.update_attribute(:last_edited_at, Time.now) if self.site
     end
     
