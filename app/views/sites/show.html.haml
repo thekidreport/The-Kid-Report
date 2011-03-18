@@ -1,9 +1,15 @@
 - @page_title = "#{@site.name}"
+- if current_user && current_user.can_edit?(@site)
+  - @page_actions = link_to 'Edit Front Page', edit_top_story_site_path(@site)
 
 %table.framework
   %tr
     %td.left.wide
-      .user_generated= raw @site.top_story
+      - if @site.top_story.present?
+        #top_story
+          %h1.header.highlight_colored
+            Top Story
+          .user_generated= raw @site.top_story
       = raw event_calendar(:link_to_day_action => nil)
 
       - if @site.comments.any?

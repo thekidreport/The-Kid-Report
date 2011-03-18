@@ -9,9 +9,9 @@
     %b
       - if entry.loggable.respond_to? :page
         = link_to_if entry.loggable.page.not_deleted, entry.loggable.page.name, permalink_url(entry.site.permalink, entry.loggable.page.permalink)
-      - if entry.loggable.is_a?(Comment)
-        %br
-        %i= entry.loggable.body
+    - if entry.loggable.is_a?(Comment)
+      %br
+      %i= entry.loggable.body
         
 %p{:style => "font-size:.8em;color:gray"}
   Visit #{link_to @site.name, permalink_url(@site.permalink, @site.home_page.try(:permalink))} online.

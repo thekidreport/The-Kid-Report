@@ -10,8 +10,8 @@ module CalendarHelper
       :month => @month,
       :event_strips => @event_strips,
       :month_name_text => I18n.localize(@shown_month, :format => "%B %Y"),
-      :previous_month_text => "<< " + month_link(@shown_month.prev_month),
-      :next_month_text => month_link(@shown_month.next_month) + " >>",
+      :previous_month_text => raw("&#171; ") + month_link(@shown_month.prev_month),
+      :next_month_text => month_link(@shown_month.next_month) + raw(" &#187;"),
       :link_to_day_action => 'new'
       }
   end

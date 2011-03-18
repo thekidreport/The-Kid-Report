@@ -59,6 +59,14 @@ body {
 #logo.image {
   text-align: center; }
 
+#top_story {
+  margin-bottom: 2em; }
+  #top_story .header {
+    background-color: #eeeeee;
+    padding: 5px 0.8em;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px; }
+
 #comments {
   width: 480px;
   margin-top: 20px;

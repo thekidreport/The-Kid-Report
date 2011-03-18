@@ -17,7 +17,7 @@
       \#body_wrapper {  
       = "background-color: ##{@site.body_color};" if @site.body_color.present? 
       }
-      \#gutter, .highlight_colored {  
+      \#gutter, .highlight_colored, #top_story .header {  
       = "background-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
       }
       \#footer {  
@@ -72,7 +72,7 @@
                   - else
                     #logo.text= link_to_unless_current @site.name, site_root_path(@site.permalink)
                   %ul.page_nav
-                    %li= link_to 'Dashboard', site_root_path(@site.permalink)
+                    %li= link_to 'Front page', site_root_path(@site.permalink)
                     - for page in @site.pages.not_deleted.visible.order('position')
                       %li= link_to page.name, permalink_path(@site.permalink, page.permalink)
                   - if current_user && current_user.member_of?(@site) && current_user.can_edit?(@site)
