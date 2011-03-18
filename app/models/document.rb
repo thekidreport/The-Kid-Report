@@ -4,6 +4,7 @@ class Document < ActiveRecord::Base
   
   has_many :attachments
   has_many :pages, :through => :attachments
+  has_many :log_entries, :as => :loggable
     
   has_attached_file :file, 
     :storage => :s3, 

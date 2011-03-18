@@ -57,8 +57,8 @@ class PagesController < ApplicationController
     @page.user = current_user
 
     if @page.save
-      @page.archive
-      LogEntry.create!(:page_archive => @page.page_archives.last, :site => @page.site, :user => current_user, :description => 'page_create')
+      archive = @page.archive!
+      LogEntry.create!(:loggable => archive, :site => @page.site, :user => current_user, :description => 'page_create')
       redirect_to permalink_path(@site.permalink, @page.permalink)
       return false
     else
@@ -81,8 +81,8 @@ class PagesController < ApplicationController
     @page = @site.pages.not_deleted.find(params[:id])
     @page.user = current_user
     if @page.update_attributes(params[:page])
-      archive = @page.archive
-      LogEntry.create!(:site => @page.site, :page_archive => archive, :user => current_user, :description => 'page_edit' )
+      archive = @page.archive!
+      LogEntry.create!(:site => @page.site, :loggable => archive, :user => current_user, :description => 'page_update' )
       flash[:notice] = "Page was updated successfully"
       redirect_to permalink_path(@page.site.permalink, @page.permalink)
       return false
@@ -102,7 +102,8 @@ class PagesController < ApplicationController
   def destroy
     @page = @site.pages.not_deleted.find(params[:id])
     @page.mark_deleted!
-    LogEntry.create!(:site => @page.site, :page_archive => @page.page_archives.last, :user => current_user, :description => 'page_delete' )
+    archive = @page.page_archive!
+    LogEntry.create!(:site => @page.site, :loggable => archive, :user => current_user, :description => 'page_delete' )
     flash[:confirm] = "The page was deleted"
     redirect_to site_pages_path(@site)
   end

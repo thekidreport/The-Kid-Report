@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110307004313) do
+ActiveRecord::Schema.define(:version => 20110318162436) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -66,10 +66,11 @@ ActiveRecord::Schema.define(:version => 20110307004313) do
 
   create_table "log_entries", :force => true do |t|
     t.integer  "site_id"
-    t.integer  "page_archive_id"
+    t.integer  "loggable_id"
     t.integer  "user_id"
     t.string   "description"
     t.datetime "created_at"
+    t.string   "loggable_type"
   end
 
   create_table "memberships", :force => true do |t|

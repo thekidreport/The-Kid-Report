@@ -47,6 +47,7 @@ Kidr::Application.routes.draw do
   root :to => 'application#show'
   match "/about", :to => 'application#about', :as => :about
   match "/tour", :to => 'application#tour', :as => :tour
+  match "/advisors", :to => 'application#advisors', :as => :tour
   
   # Finally - show a page...
   

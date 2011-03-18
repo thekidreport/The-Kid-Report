@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   has_event_calendar
   belongs_to :site
   belongs_to :page
+  has_many :log_entries, :as => :loggable
 
   before_save :set_end_at, :set_remind_on
   

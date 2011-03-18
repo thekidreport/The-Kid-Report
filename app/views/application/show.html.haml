@@ -29,7 +29,12 @@
                   - log_entry = site.log_entries.last
                   = log_entry.user.display_name
                   = log_entry.friendly_description
-                  = link_to_if (log_entry.page_archive.try(:page) && log_entry.page_archive.try(:page).not_deleted), log_entry.page_archive.try(:name), permalink_path(site.permalink, log_entry.page_archive.try(:page).try(:permalink))
+                  - if log_entry.loggable.respond_to? :page
+                    = link_to_if (log_entry.loggable.page.not_deleted), log_entry.loggable.page.name, permalink_path(site.permalink, log_entry.loggable.page.permalink)
+
+                  - if log_entry.loggable.is_a?(Comment)
+                    %br
+                    %span.comment= log_entry.loggable.body
                 - if site.events.coming_up.any?  
                   %p
                     %strong Upcoming Events

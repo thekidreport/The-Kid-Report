@@ -13,8 +13,7 @@ class SitesController < ApplicationController
     @site.pages_attributes = [ {:name => 'Welcome!', :content => '<p>Congratulations, your site is created!</p><p>The site is only visible to you (and the other members you add to the site).  This is an example page.  You can modify the content of the page by selecting "Edit this page" above.</p>', 
     :site => @site, :user => current_user, :comments_allowed => false, :last_edited_at => Time.now }]
     if @site.save
-      @home_page = @site.pages.first
-      LogEntry.create!(:site => @site, :page_archive => @home_page.archive, :user => current_user, :description => 'site_create' )
+      LogEntry.create!(:site => @site, :loggable => @site, :user => current_user, :description => 'site_create' )
       flash[:notice] = 'Site was successfully created.'
       Mailer::signup_thanks(current_user).deliver
       redirect_to permalink_path(@site.permalink, @home_page.permalink)
@@ -28,7 +27,7 @@ class SitesController < ApplicationController
     @page_title = "Edit site"
     @site = Site.not_deleted.find(params[:id])
     if current_user.can_edit?(@site) && @site.update_attributes(params[:site])
-      LogEntry.create!(:site => @site, :user => current_user, :description => 'site_update' )
+      LogEntry.create!(:site => @site, :loggable => @site, :user => current_user, :description => 'site_update' )
       flash[:notice] = 'Site was successfully updated.'
       redirect_to permalink_path(@site.permalink, @site.home_page.permalink)
     else

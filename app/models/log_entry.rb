@@ -1,7 +1,7 @@
 class LogEntry < ActiveRecord::Base
 
     belongs_to :site
-    belongs_to :page_archive
+    belongs_to :loggable, :polymorphic => true
     belongs_to :user
     
     scope :recent, where('log_entries.created_at > ?', 1.hour.ago)
@@ -14,7 +14,7 @@ class LogEntry < ActiveRecord::Base
         'created this site and the page'
       when 'site_update'
         'updated the site preferences'
-      when 'page_edit'
+      when 'page_update'
         'edited the page'
       when 'page_create'
         'created the page'
@@ -32,16 +32,12 @@ class LogEntry < ActiveRecord::Base
     end
     
     def set_last_edited_at
-      self.page_archive.page.update_attribute(:last_edited_at, Time.now) if self.page_archive && self.page_archive.page
+      self.loggable.page.update_attribute(:last_edited_at, Time.now) if self.loggable.try(:page)
       self.site.update_attribute(:last_edited_at, Time.now) if self.site
     end
     
-    def custom_unique_id
-      "#{user_id}#{site.id}#{description}#{page_archive.try(:page).try(:id)}"
-    end
-    
     def hash
-      custom_unique_id.hash
+      "#{user_id}#{site_id}#{description}#{loggable_id}".hash
     end
 
     def eql?(comparee)
@@ -49,7 +45,7 @@ class LogEntry < ActiveRecord::Base
     end
 
     def ==(comparee)
-      self.custom_unique_id == comparee.custom_unique_id
+      self.hash == comparee.hash
     end
 
 end

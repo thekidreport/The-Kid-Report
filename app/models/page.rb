@@ -43,7 +43,7 @@ class Page < ActiveRecord::Base
     self.visitor_count_start_at = Time.now
   end
 
-  def archive
+  def archive!
     archive = PageArchive.load self
     archive.save
     return archive
@@ -56,6 +56,7 @@ class Page < ActiveRecord::Base
   def mark_deleted
     self.deleted_at = Time.now
   end
+  
   def mark_deleted!
     mark_deleted
     self.save
