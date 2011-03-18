@@ -100,13 +100,18 @@ a {
   margin-bottom: 2em; }
   .shadow_box #logo {
     text-align: center; }
+  .shadow_box img.framed {
+    border: 8px solid white;
+    -moz-box-shadow: 2px 2px 5px;
+    -webkit-box-shadow: 2px 2px 5px; }
 
 .site {
   padding: 15px;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
+  border: solid 1px #ddd8d1;
   margin: 5px 5px 15px 0;
-  background: #eaeaea;
+  background: white;
   width: auto;
   line-height: 1.4em; }
   .site h3 {
