@@ -21,7 +21,7 @@ class MembershipsController < ApplicationController
       Invitation.destroy_all("email = '#{@membership.user.email}'")
       
       if @membership.user == current_user
-        redirect_to permalink_path(@site.permalink, @site.home_page.try(:permalink))
+        redirect_to site_root_path(@site.permalink)
       else
         redirect_to new_site_membership_path(@site)
       end

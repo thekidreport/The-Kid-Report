@@ -96,6 +96,10 @@ p {
   .framework .right {
     padding-left: 10px;
     vertical-align: top; }
+  .framework .thin {
+    width: 31%; }
+  .framework .wide {
+    width: 69%; }
 
 .safari .left_gutter {
   width: 220px; }

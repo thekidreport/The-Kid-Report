@@ -10,6 +10,10 @@ Kidr::Application.routes.draw do
   end
   
   resources :sites, :except => [:show, :index] do
+    member do
+      get :edit_top_story
+      put :update_top_story
+    end
     resources :pages do
       resources :attachments
       resources :comments
@@ -51,6 +55,7 @@ Kidr::Application.routes.draw do
   
   # Finally - show a page...
   
+  match "/:site_permalink" => "sites#show", :as => :site_root
   match "/:site_permalink(/:page_permalink)" => "pages#show", :as => :permalink
 
 end

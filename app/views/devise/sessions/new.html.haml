@@ -1,5 +1,8 @@
 - @page_title = 'Sign in'
 .shadow_box
+  .callout
+    %h3 Signed up yet?
+    = link_to 'Register today', new_user_registration_path
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     %ul.form
       %li

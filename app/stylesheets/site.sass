@@ -1,3 +1,9 @@
+@mixin hover_underline
+  a
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
 body
   padding-top: 15px
 
@@ -24,6 +30,7 @@ body
   padding: 10px
   -moz-border-radius: 10px
   -webkit-border-radius: 10px
+  margin-bottom: 20px
 
 #tools
   font-size: .8em
@@ -72,14 +79,13 @@ body
       border: solid 1px #AAA
       font-family: Verdana,Arial,Helvetica,sans-serif
       font-size: 10px
-  .comment
-    background-color: #EEE
-    padding: .5em
-    -moz-border-radius: 7px
-    -webkit-border-radius: 7px
-    margin-left: 20px
-    margin-bottom: 1em
-    font-size: .9em
+.comment
+  background-color: #EEE
+  padding: .5em
+  -moz-border-radius: 7px
+  -webkit-border-radius: 7px
+  margin-bottom: 1em
+  font-size: .9em
 
 .sortable
   cursor: move
@@ -98,6 +104,9 @@ body
     &:hover
       text-decoration: underline
 
+.ec-calendar 
+  margin-bottom: 2em
+
 .ec-event-cell .ec-event a
   display: inline
       
@@ -106,3 +115,25 @@ body
   ul, ol
     margin-left: 2em
     list-style: inherit
+
+.tight
+  font-size: .9em
+  @include hover_underline
+  li
+    margin-bottom: .4em
+
+.contacts
+  font-size: .9em
+  li
+    border: solid 1px #CCC
+    padding: 5px
+    margin: .5em 0
+    -moz-border-radius: 5px
+    -webkit-border-radius: 5px
+    .name
+      font-weight: bold
+    .phone
+      color: brown
+      
+.date
+  color: #888

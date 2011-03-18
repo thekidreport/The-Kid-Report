@@ -5,6 +5,7 @@ class LogEntry < ActiveRecord::Base
     belongs_to :user
     
     scope :recent, where('log_entries.created_at > ?', 1.hour.ago)
+    scope :edit, where("description = 'page_edit'")
 
     after_save :set_last_edited_at
     

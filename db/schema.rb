@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(:version => 20110318162436) do
     t.boolean  "members_only",      :default => true,     :null => false
     t.string   "passcode",          :default => "abc123", :null => false
     t.boolean  "auto_message",      :default => true,     :null => false
+    t.text     "top_story"
   end
 
   create_table "users", :force => true do |t|
@@ -164,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20110318162436) do
     t.string   "name"
     t.boolean  "admin"
     t.datetime "deleted_at"
+    t.string   "phone"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

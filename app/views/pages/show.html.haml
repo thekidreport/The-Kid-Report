@@ -17,6 +17,6 @@
           = event.name
 .user_generated= raw @page.content
 
-- if current_user && current_user.member_of?(@site) && @page.comments_allowed?
+- if @page.comments_allowed?
   #comments
     = render 'comments/page_comments', :page => @page 
