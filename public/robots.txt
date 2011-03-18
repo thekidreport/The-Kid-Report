@@ -5,4 +5,5 @@ Disallow: /
 Allow: /tour
 Allow: /about
 Allow: /feedbacks
+Allow: /example
 Allow: /users/sign_in
