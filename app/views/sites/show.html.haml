@@ -7,7 +7,7 @@
     %td.left.wide
       - if @site.top_story.present?
         #top_story
-          %h1.header.highlight_colored
+          %h2.header
             Top Story
           .user_generated= raw @site.top_story
       = raw event_calendar(:link_to_day_action => nil)

@@ -17,8 +17,11 @@
       \#body_wrapper {  
       = "background-color: ##{@site.body_color};" if @site.body_color.present? 
       }
-      \#gutter, .highlight_colored, #top_story .header {  
+      \#gutter, .highlight_colored {  
       = "background-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
+      }
+      \#top_story .header {
+      = "border-bottom: solid 2px ##{@site.highlight_color};" if @site.highlight_color.present? 
       }
       \#footer {  
       = "border-top:1px solid ##{@site.highlight_color};" if @site.highlight_color.present?   
