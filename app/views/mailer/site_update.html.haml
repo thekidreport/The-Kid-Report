@@ -7,10 +7,9 @@
     %b= entry.user.display_name
     = entry.friendly_description
     %b
-      - if entry.page_archive && entry.page_archive.page
-        = link_to entry.page_archive.page.name, permalink_url(entry.site.permalink, entry.page_archive.page.permalink)
-      - elsif entry.page_archive
-        = entry.page_archive.name
+      - if entry.loggable.respond_to? :page
+        = link_to_if entry.loggable.page.not_deleted, entry.loggable.page.name, permalink_url(entry.site.permalink, entry.loggable.page.permalink)
+        
 %p{:style => "font-size:.8em;color:gray"}
   Visit #{link_to @site.name, permalink_url(@site.permalink, @site.home_page.try(:permalink))} online.
   %br/

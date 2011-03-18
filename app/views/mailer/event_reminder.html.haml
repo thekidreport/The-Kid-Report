@@ -10,7 +10,7 @@
   - for event in @site.events.remind_today
     %br
       %b= event.name
-      is happening on #{event.start_at.to_s(:date)}
+      is #{event.start_at.to_s(:date)}
 %p{:style => "font-size:.8em;color:gray"}
   Visit #{link_to @site.name, permalink_url(@site.permalink, @site.home_page.try(:permalink))} online.
   %br

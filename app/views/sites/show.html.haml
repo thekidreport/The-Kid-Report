@@ -6,18 +6,19 @@
       .user_generated= raw @site.top_story
       = raw event_calendar(:link_to_day_action => nil)
 
-      %h3 Recent Comments
-      .contacts
-        = render :partial => 'comments/comment', :collection => @site.comments.order('created_at desc').limit(5)
+      - if @site.comments.any?
+        %h3 Recent Comments
+        .contacts
+          = render :partial => 'comments/comment', :collection => @site.comments.order('created_at desc').limit(5)
       %h3 Recent Edits
       %ul.tight
-        - for log_entry in @site.log_entries.edit.order('created_at desc').limit(10).uniq
+        - for log_entry in @site.log_entries.page_update.order('created_at desc').limit(10).uniq
           %li
             %span.date  
               = log_entry.created_at.to_s(:date)
             = log_entry.user.display_name
             = log_entry.friendly_description
-            = link_to log_entry.page_archive.try(:page).try(:name), permalink_path(@site, log_entry.page_archive.try(:page).try(:permalink)) if log_entry.page_archive.try(:page)
+            = link_to log_entry.loggable.try(:page).try(:name), permalink_path(@site, log_entry.loggable.try(:page).try(:permalink)) if log_entry.loggable.try(:page)
 
             
     %td.right.thin

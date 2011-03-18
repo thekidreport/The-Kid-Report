@@ -9,10 +9,10 @@
   - unless @site.new_record?
     %ul.form
       %li= f.input :passcode, :input_html => {:size => 20}, :hint => "The secret code required to join the site"
-      %li.indent= f.input :members_only, :label => 'Only members are allowed to view site', :as => :boolean
+      %li.indent= f.input :members_only, :label => 'The site is private.  Only members are allowed in.', :as => :boolean
       
     %ul.form
-      %li.indent= f.input :auto_message, :label => 'Send members a message on site updates', :as => :boolean
+      %li.indent= f.input :auto_message, :label => 'Notify members automatically when the site is updated', :as => :boolean
       
       
     %ul.form
