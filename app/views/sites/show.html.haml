@@ -1,6 +1,6 @@
 - @page_title = "Front page"
 - if current_user && current_user.can_edit?(@site)
-  - @page_actions = link_to 'Edit Front Page', edit_top_story_site_path(@site)
+  - @page_actions = link_to 'Edit Top Story', edit_top_story_site_path(@site)
 
 %table.framework
   %tr

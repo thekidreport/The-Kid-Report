@@ -18,7 +18,7 @@ class SitesController < ApplicationController
                               :theme_advanced_resize_horizontal => false,
                               :theme_advanced_path => false,
                               :extended_valid_elements => "font[size|color|face]",
-                              :external_image_list_url => '../../photos.js'
+                              :external_image_list_url => 'photos.js'
                             }
                             
   uses_tiny_mce :options => TINY_MCE_OPTIONS, :only => [:edit_top_story]
