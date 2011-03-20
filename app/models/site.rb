@@ -75,6 +75,9 @@ class Site < ActiveRecord::Base
       for user in site.users.not_deleted
         Mailer::site_update(site, user).deliver
       end
+      for invitation in site.invitations
+        Mailer::site_teaser(site, invitation).deliver
+      end
     end
   end
   

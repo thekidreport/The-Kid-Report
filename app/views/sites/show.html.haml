@@ -37,3 +37,6 @@
             - if user.phone.present?
               .phone= user.phone
             .email= mail_to user.email, user.email
+        - for invitation in @site.invitations
+          %li
+            .email= mail_to invitation.email, invitation.email

@@ -41,6 +41,14 @@ class Mailer < ActionMailer::Base
     end
   end
   
+  def site_teaser (site, invitation)
+    @site = site
+    @invitation = invitation
+    mail( :to => invitation.email, :subject => "[The Kid Report] #{site.name} news" ) do |format|
+      format.html { render 'site_teaser', :layout => 'application_mailer' }
+    end
+  end
+  
   def event_reminder (site, user)
     @site = site
     mail( :to => user.email, :subject => "[The Kid Report] #{site.name} event notice" ) do |format|

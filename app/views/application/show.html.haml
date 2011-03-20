@@ -85,7 +85,7 @@
           - else
             #logo.text= link_to_unless_current @example.name, site_root_path(@example.permalink)
           %p{:style => 'text-align:center'}
-            Take a look at our #{ link_to 'example site', permalink_path(@example.permalink, @example.home_page.try(:permalink)) }
+            Take a look at our #{ link_to 'example site', site_root_path(@example.permalink) }
       .shadow_box
         .chevron
           %h4 Inform Parents

@@ -13,10 +13,10 @@
       %br
       %i= entry.loggable.body
 
-- if @invitation && @site.members_only?
+- if @site.members_only?
   %p
     To become a member of the site, enter the passcode '#{@site.passcode}' when you visit the site.
 
 %p{:style => "font-size:.8em;color:gray"}
-  Visit #{link_to @site.name, site_root_url(@site.permalink)} online.
+    Visit #{link_to @site.name, site_root_url(@site.permalink)} online.
   %br/
