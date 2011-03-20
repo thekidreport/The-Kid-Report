@@ -4,7 +4,7 @@ class InvitationsController < ApplicationController
   before_filter :site_admin_required!
   
   def index
-    @invitations = @site.invitations.all.paginate(:page => params[:page], :per_page => 20)
+    @invitations = @site.invitations.all
   end
   
   def relay

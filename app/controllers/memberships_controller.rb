@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
   skip_before_filter :ensure_membership, :only => [:new, :create]
   
   def index
-    @memberships = @site.memberships.includes(:user).order('memberships.role_id desc, users.name asc, users.email asc').all.paginate(:page => params[:page], :per_page => 20)
+    @memberships = @site.memberships.includes(:user).order('memberships.role_id desc, users.name asc, users.email asc')
   end
 
   def new
