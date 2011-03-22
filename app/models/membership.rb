@@ -12,7 +12,7 @@ class Membership < ActiveRecord::Base
     
     validates_uniqueness_of :user_id, :scope => :site_id, :message => 'is already a member'
     
-    validate :confirm_passcode
+    validate :confirm_passcode, :on => :create
     
     def set_user
       if self.email.present? && self.user.nil?
