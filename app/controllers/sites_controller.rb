@@ -46,7 +46,7 @@ class SitesController < ApplicationController
       LogEntry.create!(:site => @site, :loggable => @site, :user => current_user, :description => 'site_create' )
       flash[:notice] = 'Site was successfully created.'
       Mailer::signup_thanks(current_user).deliver
-      redirect_to permalink_path(@site.permalink, @home_page.permalink)
+      redirect_to site_root_path(@site.permalink)
       return false
     else
       render :action => :new

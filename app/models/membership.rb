@@ -30,7 +30,7 @@ class Membership < ActiveRecord::Base
     end
     
     def confirm_passcode
-      self.errors.add_to_base 'Wrong passcode' unless self.passcode == self.site.passcode
+      self.errors.add_to_base 'Wrong passcode' unless self.site.nil? || self.passcode == self.site.passcode
     end
 
 end
