@@ -15,7 +15,7 @@ class Mailer < ActionMailer::Base
       format.html { render 'site_message' }
     end
   end
-  
+
   def invite(invite)
     @site = invite.site
     @email = invite.email
@@ -23,7 +23,15 @@ class Mailer < ActionMailer::Base
       format.html { render 'site_invite', :layout => 'application_mailer' }
     end
   end
-  
+
+  def confirm_membership(membership)
+    @site = membership.site
+    @user = membership.user
+    mail( :to => @user.email, :subject => "[The Kid Report] #{membership.site.name} Invitation" ) do |format|
+      format.html { render 'site_membership_confirmation', :layout => 'application_mailer' }
+    end
+  end
+
   # Cron
   def status_update (user_count, site_count)
     @user_count = user_count

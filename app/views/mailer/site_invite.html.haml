@@ -3,7 +3,7 @@
 %p 
   The Kid Report is a site where Teachers and Parents can share classroom information.
 %p
-  Here's the link to your site: #{ permalink_url(@site.permalink, @site.home_page.try(:permalink)) }.
+  Here's the link to your site: #{ site_root_url(@site.permalink) }.
 - if @site.members_only?
   %p
     You will need to create an account on The Kid Report website before you can join the #{@site.name}.  Once that's done, the following  passcode is needed to join the site and view content: #{@site.passcode}

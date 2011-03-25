@@ -1,13 +1,11 @@
 - @page_title = 'New Member'
 
-- if current_user.member_of?(@site)
-  %p
-    To add a member, enter their email address and the site's passcode.
-- else
+- if @site.members_only?
   %p
     This is a private group.  Only members are allowed.
-  %p
-    To join this group, please enter your email address and the site's passcode.  You can get the passcode from the site administrator.
+    
+%p
+  To join this group, please enter your email address and the site's passcode.  You can get the passcode from the site administrator.
   
   
 - form_for [@site, @membership] do |f|
@@ -17,9 +15,5 @@
     %li
       = f.label :passcode
       = f.text_field :passcode
-    - if current_user.member_of?(@site)
-      %li
-        = f.label :email
-        = f.text_field :email
     %li.indent
       = f.submit "Create Membership"

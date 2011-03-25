@@ -1,8 +1,9 @@
 - @page_title = 'Forgot your password?'
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-  = raw error_messages_for(resource)
-  %ul.form
-    %li
-      = f.label :email
-      = f.text_field :email
-    %li.indent= f.submit "Send me reset password instructions"
+.shadow_box
+  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+    = raw error_messages_for(resource)
+    %ul.form
+      %li
+        = f.label :email
+        = f.text_field :email
+      %li.indent= f.submit "Send me reset password instructions"

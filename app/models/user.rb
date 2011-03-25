@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :messages_receive, :through => :recipients
   has_many :log_entries, :dependent => :nullify
   has_many :sites, :through => :memberships
+  has_many :invitations, :foreign_key => :email, :primary_key => :email
 
 	EMAIL_REGEX = /([_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|museum|name)))/
 

@@ -1,0 +1,8 @@
+%p
+  Hi #{@user.display_name}, you have been added to the site '#{@site.name}' on The Kid Report.
+%p 
+  Since you already had an account on The Kid Report, you will see the link to the site on the front page the next time you log in.  
+%p  
+  Here's a link to go to the site directly: #{ site_root_url(@site.permalink) }.
+%p
+  Thanks for using The Kid Report!

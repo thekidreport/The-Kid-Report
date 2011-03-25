@@ -18,8 +18,6 @@ class MembershipsController < ApplicationController
     @membership.user = current_user unless @membership.email.present?
     if @membership.save
       flash[:notice] = 'The member was successfully added.'
-      Invitation.destroy_all("email = '#{@membership.user.email}'")
-      
       if @membership.user == current_user
         redirect_to site_root_path(@site.permalink)
       else

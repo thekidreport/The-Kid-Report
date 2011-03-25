@@ -8,9 +8,16 @@ class Invitation < ActiveRecord::Base
   
   validate :not_a_member
   
+  after_create :create_member_if_user
   
   def not_a_member
     self.errors.add_to_base("This email is already a member") if self.site.users.find_by_email(self.email).present?
+  end
+  
+  def create_member_if_user
+    if user = User.find_by_email(self.email)
+      self.site.memberships.create(:user => user, :passcode => self.site.passcode, :role => Role.member)
+    end
   end
   
 end
