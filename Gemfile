@@ -14,9 +14,10 @@ gem 'pg'
 gem 'tiny_mce'
 gem 'haml', '3.0.25'
 gem 'simple_form'
+gem 'hoptoad_notifier'
+gem 'heroku'
 
 group :development do
-  gem 'heroku'
   gem 'heroku_san'
   gem 'taps'
 end
