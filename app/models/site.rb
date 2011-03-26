@@ -23,6 +23,15 @@ class Site < ActiveRecord::Base
     :default_style => :original,
     :styles => { :original => "180x" }
     
+    
+  has_attached_file :background, 
+    :storage => :s3, 
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
+    :path => "/site_backgrounds/:id/:style/:filename",
+    :default_style => :original
+    
+  validates_attachment_size :background, :less_than => 1.megabyte
+  
   scope :not_deleted, where('sites.deleted_at is null')
   scope :with_recent_changes, lambda { where('sites.last_edited_at > ?', 1.hour.ago) }
   scope :with_reminders, lambda { where('events.remind_on = ?', Date.today).joins(:events) }

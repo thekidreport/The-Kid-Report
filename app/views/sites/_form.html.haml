@@ -17,8 +17,10 @@
       
     %ul.form
       %li= f.input :logo
+      %li= f.input :background, :label => 'BG image'
+      %li.indent= f.input :background_repeat, :label => "Background image repeats"
       %li
-        = f.label :background_color, 'Background'
+        = f.label :background_color, :label => 'BG color'
         = raw f.picky_color :background_color
       %li
         = f.label :highlight_color, 'Highlight'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110318162436) do
+ActiveRecord::Schema.define(:version => 20110326054753) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -127,30 +127,35 @@ ActiveRecord::Schema.define(:version => 20110318162436) do
   create_table "sites", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "permalink",                               :null => false
+    t.string   "permalink",                                     :null => false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.string   "time_zone"
     t.datetime "last_edited_at"
     t.text     "footer"
-    t.string   "background_color",  :default => "FFFFFF"
-    t.string   "body_color",        :default => "FFFFFF"
-    t.string   "highlight_color",   :default => "EEEEEE"
-    t.string   "font_color",        :default => "000000"
-    t.string   "link_color",        :default => "4488BB"
+    t.string   "background_color",        :default => "FFFFFF"
+    t.string   "body_color",              :default => "FFFFFF"
+    t.string   "highlight_color",         :default => "EEEEEE"
+    t.string   "font_color",              :default => "000000"
+    t.string   "link_color",              :default => "4488BB"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
-    t.boolean  "members_only",      :default => true,     :null => false
-    t.string   "passcode",          :default => "abc123", :null => false
-    t.boolean  "auto_message",      :default => true,     :null => false
+    t.boolean  "members_only",            :default => true,     :null => false
+    t.string   "passcode",                :default => "abc123", :null => false
+    t.boolean  "auto_message",            :default => true,     :null => false
     t.text     "top_story"
+    t.string   "background_file_name"
+    t.string   "background_content_type"
+    t.integer  "background_file_size"
+    t.boolean  "background_repeat"
   end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

@@ -13,6 +13,8 @@
     %style
       body {  
       ="background-color: ##{@site.background_color};" if @site.background_color.present? 
+      ="background-image: url(#{@site.background.url});" if @site.background.exists? 
+      ="background-repeat: no-repeat;" unless @site.background_repeat?
       }
       \#body_wrapper {  
       = "background-color: ##{@site.body_color};" if @site.body_color.present? 
