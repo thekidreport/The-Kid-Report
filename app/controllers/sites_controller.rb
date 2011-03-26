@@ -1,9 +1,9 @@
 class SitesController < ApplicationController
   
   before_filter :load_site_by_id, :only => [:edit, :edit_top_story, :update, :destroy]
-  before_filter :authenticate_user!, :only => :show, :if => :site_members_only
   before_filter :authenticate_user!, :except => :show
   before_filter :site_admin_required!, :only => [:edit, :edit_top_story, :update, :destroy]
+  before_filter :site_member_required!, :only => :show, :if => :site_members_only
   
   
   TINY_MCE_OPTIONS = { :theme => "advanced",
