@@ -128,7 +128,12 @@ ul.form label {
   display: inline-block;
   width: 100px;
   text-align: right;
-  line-height: 1.6em; }
+  line-height: 1.6em;
+  padding-right: 0.5em; }
+ul.form li .hint {
+  font-style: italic;
+  color: #444444;
+  padding-left: 0.5em; }
 ul.form li.indent {
   padding-left: 103px; }
   ul.form li.indent label {

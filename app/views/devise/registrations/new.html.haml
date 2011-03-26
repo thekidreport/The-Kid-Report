@@ -1,18 +1,14 @@
 - @page_title = 'Sign up'
 .shadow_box
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  .callout
+    %h3 Contact Information
+    Add your name so others in your site will know how to reach you.
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
     = raw error_messages_for(resource)
     %ul.form
-      %li
-        = f.label :email
-        = f.text_field :email
-      %li
-        = f.label :phone
-        = f.text_field :phone
-      %li
-        = f.label :password
-        = f.password_field :password
-      %li
-        = f.label :password_confirmation, 'Confirmation'
-        = f.password_field :password_confirmation
+      %li= f.input :name, :size => 20
+      %li= f.input :phone
+      %li= f.input :email
+      %li= f.input :password
+      %li= f.input :password_confirmation, :label => 'Confirmation'
       %li.indent= f.submit "Sign up"
