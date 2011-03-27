@@ -61,7 +61,7 @@ body {
 
 #top_story {
   margin-bottom: 2em; }
-  #top_story .header {
+  #top_story h2 {
     border-bottom: solid 2px #eeeeee; }
 
 #comments {
