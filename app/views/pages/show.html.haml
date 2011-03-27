@@ -10,11 +10,11 @@
 - if @page && @page.events.think_about.any?
   %ul.callout
     %b Events
-    %br
-      - for event in @page.events.think_about
-        %li
-          = event.start_at.to_s(:tiny_date)
-          = event.name
+    - for event in @page.events.think_about
+      %li{:style => 'margin-bottom:.5em'}
+        .date= event.start_at.to_s(:pretty)
+        .name= event.name
+        .location= event.location
 .user_generated= raw @page.content
 
 - if @page.comments_allowed?

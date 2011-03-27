@@ -17,8 +17,8 @@ class EventsController < ApplicationController
 
   def new
     if params[:year] && params[:month] && params[:day]
-      @start_at = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
-      @end_at = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
+      @start_at = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]} 12:00:00").to_datetime
+      @end_at = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]} 12:00:00").to_datetime
       @remind_on = @start_at - 2.days
     end
     @event = @site.events.build(:start_at => @start_at, :end_at => @end_at, :remind_on => @remind_on, :reminder => false)

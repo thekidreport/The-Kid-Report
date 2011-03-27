@@ -8,12 +8,15 @@
       = f.text_field :name, :style => 'width:150px'
       = f.label :page_id, 'References page', :style => 'width:150px'
       = f.select :page_id, @site.pages.not_deleted.map{|p| [p.name, p.id]}, :include_blank => true
+    %li
+      = f.label :location
+      = f.text_field :location, :style => 'width:400px'
     %li.indent
       = f.check_box :multi_day
       = f.label :multi_day, 'Spans multiple days', :style => 'width:auto'
     %li
       = f.label :start_at
-      = f.date_select :start_at
+      = f.calendar_date_select :start_at
     %li#end_at_field
       = f.label :end_at
       = f.date_select :end_at

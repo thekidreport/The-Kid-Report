@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110326054753) do
+ActiveRecord::Schema.define(:version => 20110327174134) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20110326054753) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.date     "remind_on"
+    t.string   "location"
   end
 
   create_table "feedback", :force => true do |t|
