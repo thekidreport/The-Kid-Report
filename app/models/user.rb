@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   scope :not_deleted, where('users.deleted_at is null')
 	
 	before_save :reset_deleted_at
+	after_create :set_memberships
 
 	def display_name
 		if self.name.present?
@@ -71,6 +72,10 @@ class User < ActiveRecord::Base
   protected
   def password_required?
     !persisted? || password.present? || password_confirmation.present?
+  end
+  
+  def set_memberships
+    self.invitations.each {|i| Membership.create(:user => self, :site => i.site, :role => Role.member, :passcode => i.site.passcode) }
   end
 
 	
