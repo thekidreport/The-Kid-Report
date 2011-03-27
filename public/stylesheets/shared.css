@@ -198,6 +198,10 @@ ul.form li.indent {
   width: 200px;
   margin-left: 20px;
   margin-bottom: 20px; }
+  .callout .date {
+    font-size: 0.8em; }
+  .callout .name {
+    font-weight: bold; }
 
 .isolate {
   -moz-border-radius: 7px;
