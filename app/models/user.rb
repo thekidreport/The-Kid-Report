@@ -68,15 +68,16 @@ class User < ActiveRecord::Base
     end 
     update_attributes(params) 
   end 
-
-  protected
-  def password_required?
-    !persisted? || password.present? || password_confirmation.present?
-  end
   
   def set_memberships
     self.invitations.each {|i| Membership.create(:user => self, :site => i.site, :role => Role.member, :passcode => i.site.passcode) }
   end
+  
+  protected
+  def password_required?
+    !persisted? || password.present? || password_confirmation.present?
+  end
+
 
 	
 end
