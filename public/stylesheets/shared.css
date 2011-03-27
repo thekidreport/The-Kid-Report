@@ -191,7 +191,8 @@ ul.form li.indent {
 .callout {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
-  background-color: #eeeeee;
+  background-color: white;
+  border: solid 1px #eeeeee;
   float: right;
   padding: 10px;
   width: 200px;

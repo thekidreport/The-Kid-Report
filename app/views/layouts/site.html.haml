@@ -23,6 +23,9 @@
       \#gutter, .highlight_colored {  
       = "background-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
       }
+      \.callout {
+      = "border-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
+      }
       \#top_story .header {
       = "border-bottom: solid 2px ##{@site.highlight_color};" if @site.highlight_color.present? 
       }
