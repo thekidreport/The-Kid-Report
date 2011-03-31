@@ -2,8 +2,8 @@
 %html{:class => browser}
   %head
     %title= @page_title
-    %meta{:content => "Free, Classroom, Teacher, Parent, WebSite, Collaboration, Tool, Email, Membership, Wiki", :name => "keywords"}/
-    %meta{:content => "Teachers can share information with parents easily. Parents can get the information they need when they need it. Private. Free. Simple. ", :name => "description"}
+    %meta{:content => "Parent Involvement, Parent Engagement, Free, Classroom, Teacher, Parent, WebSite, Collaboration, Tool, Email, Membership, Wiki", :name => "keywords"}/
+    %meta{:content => "Free websites for classrooms to engage parents and encourage Parent Involvement", :name => "description"}
       = javascript_include_tag :defaults
       = javascript_include_tag 'picky_color'
       = stylesheet_link_tag 'picky_color'
@@ -28,7 +28,7 @@
             #header
               #logo
                 = link_to image_tag('logo.png'), root_path
-                .tagline Increase Parent Involvement
+                .tagline Encourage Parent Involvement
               #user_nav
                 - if user_signed_in?
                   Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
@@ -54,4 +54,8 @@
                     = @page_title
                 = yield
             #footer
-              The Kid Report - Teacher and Parent Websites
+              The Kid Report - Encourage Parent Involvement
+              &bull;
+              = link_to 'Privacy Policy', privacy_path
+              &bull;
+              = link_to 'Terms of Service', terms_path

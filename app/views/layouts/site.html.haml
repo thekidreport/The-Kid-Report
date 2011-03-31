@@ -62,7 +62,7 @@
     #body_wrapper
       #header.highlight_colored
         = link_to image_tag('mini_logo.png'), root_path
-        \: #{link_to @site.name, permalink_path(@site.permalink, @site.home_page.try(:permalink))}
+        \: #{link_to @site.name, site_root_path(@site.permalink)}
         #user_nav
           - if user_signed_in?
             Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
