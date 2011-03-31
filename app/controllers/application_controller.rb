@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_www
     if Rails.env.production?
-      redirect_to(request.protocol + "www." + request.host_with_port + request.request_uri, :status => 301) and return if !(request.domain(2) =~ /www/)
+      redirect_to("https://www." + request.host_with_port + request.request_uri, :status => 301) and return if !(request.domain(2) =~ /www/) || request.protocol != 'https://'
     end
   end
   

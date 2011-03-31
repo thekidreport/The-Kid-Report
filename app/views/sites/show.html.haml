@@ -13,7 +13,7 @@
       - if @site.comments.any?
         %h3 Recent Comments
         .contacts
-          = render :partial => 'comments/comment', :collection => @site.comments.order('created_at desc').limit(5)
+          = render :partial => 'comments/comment', :collection => @site.comments.order('created_at desc').limit(10)
       %h3 Recent Edits
       %ul.tight
         - for log_entry in @site.log_entries.page_update.order('created_at desc').limit(10).uniq
