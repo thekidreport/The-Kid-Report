@@ -107,6 +107,8 @@ a {
     border: 8px solid white;
     -moz-box-shadow: 2px 2px 5px;
     -webkit-box-shadow: 2px 2px 5px; }
+  .shadow_box form {
+    margin: 1em 0; }
 
 .site {
   padding: 15px;

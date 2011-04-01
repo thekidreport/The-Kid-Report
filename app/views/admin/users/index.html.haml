@@ -1,12 +1,17 @@
 .shadow_box
+
+  = form_tag(url_for, :method => :get) do
+    = text_field_tag :name, params[:name]
+    = submit_tag :search
+  
   %table.grid
     %thead
       %tr
-        %th User
-        %th Email
-        %th{:style => "text-align:center; width:120px"} Since
-        %th{:style => "text-align:center; width:60px"} Sign Ins
-        %th{:style => "text-align:center; width:60px"} Admin
+        %th= order :name, :as => 'User'
+        %th= order :email
+        %th{:style => "text-align:center; width:120px"}= order :created_at, :as => 'Since'
+        %th{:style => "text-align:center; width:60px"}= order :sign_in_count, :as => 'Sign Ins' 
+        %th{:style => "text-align:center; width:60px"}= order :admin, :as => 'Admin' 
         %th Sites
     = render @users
   = will_paginate @users

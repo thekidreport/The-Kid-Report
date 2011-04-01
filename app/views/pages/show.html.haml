@@ -9,11 +9,13 @@
         %li= link_to attachment.document.name, download_site_document_path(@site, attachment.document)
 - if @page && @page.events.think_about.any?
   %ul.callout
-    %b Events
+    %h3 Events
     - for event in @page.events.think_about
       %li{:style => 'margin-bottom:.5em'}
-        .date= event.start_at.to_s(:pretty)
         .name= event.name
+        .date= event.start_at.to_s(:pretty)
+        - if event.end_at? && event.end_at != event.start_at
+          .date= event.end_at.to_s(:pretty)
         .location= event.location
 .user_generated= raw @page.content
 

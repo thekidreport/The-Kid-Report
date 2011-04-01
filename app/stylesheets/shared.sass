@@ -125,6 +125,8 @@ p
     color: white
     text-align: left
     border: 1px solid #888
+    a 
+      color: white
   tr.even
     background-color: #EEE
   td
@@ -211,6 +213,19 @@ ul.form
     font-size: .8em
   .name
     font-weight: bold
+    position: relative
+    .more
+      font-weight: normal
+      display: none
+      padding: 5px
+      font-size: .9em
+      position: absolute
+      background-color: white
+  .name:hover
+    .more
+      display: block
+  h3
+    margin-bottom: 1em
 
 .isolate
   -moz-border-radius: 7px

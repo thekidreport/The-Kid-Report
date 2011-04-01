@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   scope :not_deleted, where('users.deleted_at is null')
 	
-	before_save :reset_deleted_at
+	before_save :reset_deleted_at, :set_name
 	after_create :set_memberships
 
 	def display_name
@@ -33,6 +33,13 @@ class User < ActiveRecord::Base
 			return "Friend"
 		end
 	end
+	
+	def set_name
+	  unless self.name.present?
+	    self.name = self.display_name 
+	    self.save
+    end
+  end
 	
 	def member_of? site
 	  site.users.not_deleted.include?(self) || self.admin?
