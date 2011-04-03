@@ -130,6 +130,7 @@ a {
     float: right;
     font-size: 0.9em; }
   .site .event .info {
+    font-size: 1em;
     float: none; }
 
 .comment {

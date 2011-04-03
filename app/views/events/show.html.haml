@@ -1,22 +1,30 @@
+.events{:style => 'float:left'}
+  .event
+    .date
+      .wday
+        #{@event.start_on.to_s(:wday)}
+      .dom
+        #{@event.start_on.to_s(:dom)}
 - if @event.page && @event.page != @page
   %div{:style => 'float:right'}
     %b Page: 
     = link_to @event.page.name, permalink_path(@site.permalink, @event.page.permalink)
-- if @event.location
-  %p
+%p
+  - if @event.location
     %b Location:
     = @event.location
-%p
+    %br
+  %b Date#{" and Time" unless !@event.all_day? }:
   = @event.start_on.to_s(:date)  
   - if !@event.all_day?
     = @event.end_at.to_s(:time)
   - if @event.start_on < @event.end_on
     to #{@event.end_on.to_s(:date)}
 
-- if @event.remind_on
-  %p Reminder will be sent on: #{@event.remind_on.to_s(:date)}
+    - if @event.remind_on
+    %b Reminder: 
+    = @event.remind_on.to_s(:date)
+
+- if @event.description.present?
   %p
-    = @event.description
-    
-    
-    
+    = @event.description    

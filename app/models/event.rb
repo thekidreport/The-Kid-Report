@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   attr_accessor :multi_day, :reminder
   
   scope :remind_today, lambda { where('Date(remind_on) = ?', Date.today)}
-  scope :think_about, lambda { where('Date(start_on) > ?', 3.weeks.ago).order(:start_on).limit(6)}
+  scope :think_about, lambda { where('Date(start_on) > ?', 1.weeks.ago).order(:start_on).limit(6)}
   scope :coming_up, lambda { where('Date(start_on) between ? AND ?', Date.today, 6.weeks.from_now).order('start_on, start_time') }
 
   def set_end_on 

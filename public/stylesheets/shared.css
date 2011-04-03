@@ -271,3 +271,8 @@ ul.form li.indent {
     vertical-align: middle; }
     .events .event .info .name {
       font-weight: bold; }
+    .events .event .info .description {
+      font-size: 0.9em; }
+
+#MB_window p {
+  margin-top: 0; }

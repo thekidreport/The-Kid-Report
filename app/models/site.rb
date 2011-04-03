@@ -21,7 +21,7 @@ class Site < ActiveRecord::Base
     :s3_credentials => "#{Rails.root}/config/s3.yml", 
     :path => "/site_logos/:id/:style/:filename",
     :default_style => :original,
-    :styles => { :original => "180x" }
+    :styles => { :original => "180x", :small => "64x" }
     
     
   has_attached_file :background, 
