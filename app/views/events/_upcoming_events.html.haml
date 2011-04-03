@@ -18,4 +18,4 @@
             #{event.start_time.to_s(:time) unless event.all_day? || event.start_time.nil?}
             - if event.location.present?
               at #{event.location}
-            #{truncate(event.description, :length => 70)}
+            #{event.description.truncate(55)}

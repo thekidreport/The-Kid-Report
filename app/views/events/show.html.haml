@@ -1,30 +1,37 @@
-.events{:style => 'float:left'}
+- if current_user.can_edit?(@site)
+
+.events
   .event
+  
+    %div{:style => 'float:right'}
+      = link_to 'Edit', edit_site_event_path(@site, @event)
     .date
       .wday
         #{@event.start_on.to_s(:wday)}
       .dom
         #{@event.start_on.to_s(:dom)}
-- if @event.page && @event.page != @page
-  %div{:style => 'float:right'}
-    %b Page: 
-    = link_to @event.page.name, permalink_path(@site.permalink, @event.page.permalink)
-%p
-  - if @event.location
-    %b Location:
-    = @event.location
-    %br
-  %b Date#{" and Time" unless !@event.all_day? }:
-  = @event.start_on.to_s(:date)  
-  - if !@event.all_day?
-    = @event.end_at.to_s(:time)
-  - if @event.start_on < @event.end_on
-    to #{@event.end_on.to_s(:date)}
+    .info
+      - if @event.location
+        %b Location:
+        = @event.location
+        %br
+      %b Date#{" and Time" unless !@event.all_day? }:
+      = @event.start_on.to_s(:date)  
+      - if !@event.all_day?
+        = @event.end_at.to_s(:time)
+      - if @event.start_on < @event.end_on
+        to #{@event.end_on.to_s(:date)}
 
-    - if @event.remind_on
-    %b Reminder: 
-    = @event.remind_on.to_s(:date)
+      - if @event.remind_on
+        %br
+        %b Reminder: 
+        = @event.remind_on.to_s(:date)
+    
+      - if @event.page && @event.page != @page
+        %br
+        %b Page: 
+        = link_to @event.page.name, permalink_path(@site.permalink, @event.page.permalink)
 
-- if @event.description.present?
-  %p
-    = @event.description    
+      - if @event.description.present?
+        %p
+          = @event.description    
