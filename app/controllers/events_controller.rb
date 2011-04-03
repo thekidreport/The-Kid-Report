@@ -13,40 +13,42 @@ class EventsController < ApplicationController
   
   def show
     @event = @site.events.find(params[:id])
+    render :layout => false
   end
 
   def new
     if params[:year] && params[:month] && params[:day]
-      @start_at = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]} 12:00:00").to_datetime
-      @end_at = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]} 12:00:00").to_datetime
+      @start_on = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}").to_datetime
+      @end_on = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}").to_datetime
+      @start_time = Time.parse('12:00')
+      @end_time = Time.parse('13:00')
       @remind_on = @start_at - 2.days
     end
-    @event = @site.events.build(:start_at => @start_at, :end_at => @end_at, :remind_on => @remind_on, :reminder => false)
+    @event = @site.events.build(:start_on => @start_on, :end_on => @end_on, :start_time => @start_time, :end_time => @end_time, :remind_on => @remind_on, :reminder => false)
   end
   
   def create
     @event = @site.events.build(params[:event])
     if @event.save
-      redirect_to site_events_path(:month => @event.start_at.month)
+      redirect_to site_events_path(:month => @event.start_on.month)
       return false
     else
       render :action => :new
     end
-
   end
 
 
   def edit
     @event = @site.events.find(params[:id])
     @event.reminder = @event.remind_on.present?
-    @event.multi_day = @event.end_at && @event.end_at > @event.start_at
+    @event.multi_day = @event.end_on && @event.end_on > @event.start_on
   end
 
   def update
     @event = @site.events.find(params[:id])
     if @event.update_attributes(params[:event])
       flash[:notice] = "Event was updated successfully"
-      redirect_to site_events_path(:month => @event.start_at.month)
+      redirect_to site_events_path(:month => @event.start_on.month)
       return false
     else
       render :action => :edit
@@ -56,7 +58,7 @@ class EventsController < ApplicationController
   def destroy
     @event = @site.events.find(params[:id])
     @event.destroy if @event
-    redirect_to site_events_path(:month => @event.start_at.month)
+    redirect_to site_events_path(:month => @event.start_on.month)
   end
   
 end

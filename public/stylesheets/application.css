@@ -129,6 +129,8 @@ a {
     color: #666666;
     float: right;
     font-size: 0.9em; }
+  .site .event .info {
+    float: none; }
 
 .comment {
   padding: 0.5em;

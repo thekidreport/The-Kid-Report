@@ -8,12 +8,12 @@
       - if @site.top_story.present?
         #top_story
           .user_generated= raw @site.top_story
-      = raw event_calendar(:link_to_day_action => nil)
+      = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @site.events.think_about }
 
       - if @site.comments.any?
         %h3 Recent Comments
         .contacts
-          = render :partial => 'comments/comment', :collection => @site.comments.order('created_at desc').limit(10)
+          = render :partial => 'comments/comment', :collection => @site.comments.order('created_at desc').limit(5)
       %h3 Recent Edits
       %ul.tight
         - for log_entry in @site.log_entries.page_update.order('created_at desc').limit(10).uniq

@@ -1,4 +1,4 @@
-- @page_title = 'Encourage Parent Involvement | The Kid Report'
+- @page_title = 'The Kid Report - Private Networks for Parents and Teachers'
 %table.framework
   %tr
     %td.left{:style => "width:61%"}
@@ -7,9 +7,7 @@
         %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:10px; color: #666"}
           Free, Non-profit, No ads, Grant funded
         %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:30px"}
-          Share information with other parents to engage them
-          %br
-          and increase Parent Involvement
+          Share information about your classroom and club with the parents
         - if user_signed_in? && current_user.sites.not_deleted.any?
           .chevron
             %h4
@@ -37,11 +35,7 @@
                     %span.comment= log_entry.loggable.body
                 - if site.events.coming_up.any?  
                   %p
-                    %strong Upcoming Events
-                    - for event in site.events.coming_up
-                      %br
-                      #{event.start_at.to_s(:date)} #{link_to event.name, site_event_path(site, event)}
-                  
+                    = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => site.events.coming_up }
                 
         - else
           .chevron

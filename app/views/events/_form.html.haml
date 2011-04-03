@@ -1,6 +1,6 @@
 = raw error_messages_for @event
 - form_for [@site, @event] do |f|
-  %ul.form
+  %ul.form{:style => 'margin-bottom:0'}
     - if  @event && !@event.new_record?
       %li{:style => "float:right"}= link_to "Delete event", site_event_path(@site,  @event), :confirm => "Are you sure you want to delete this event?", :method => :delete
     %li
@@ -14,12 +14,21 @@
     %li.indent
       = f.check_box :multi_day
       = f.label :multi_day, 'Spans multiple days', :style => 'width:auto'
-    %li
-      = f.label :start_at
-      = f.calendar_date_select :start_at
-    %li#end_at_field
-      = f.label :end_at
-      = f.calendar_date_select :end_at
+      = f.check_box :all_day
+      = f.label :all_day, 'All day', :style => 'width:auto'
+    %li#start_at_fields
+      = f.label :start_on
+      = f.calendar_date_select :start_on, :time => false
+      %span#start_at_time
+        = f.label :start_time
+        = f.time_select :start_time, {:minute_step => 5}
+      
+    %li#end_at_fields
+      = f.label :end_on
+      = f.calendar_date_select :end_on, :time => false
+      %span#end_at_time
+        = f.label :end_time
+        = f.time_select :end_time, {:minute_step => 5}
     %li
       = f.label :description
       = f.text_area :description, :style => 'width:400px; height:70px'
@@ -31,7 +40,15 @@
       = f.date_select :remind_on
     %li.indent
       = f.submit button_value
-= javascript_tag js_md = "if($('event_multi_day').checked){$('end_at_field').show()} else {$('end_at_field').hide()}"
+= javascript_tag js_md = "if($('event_multi_day').checked){$('end_at_fields').show()} else {$('end_at_fields').hide()}"
 = observe_field :event_multi_day, :function => js_md
 = javascript_tag js_r = "if($('event_reminder').checked){$('remind_on_field').show()} else {$('remind_on_field').hide()}"
 = observe_field :event_reminder, :function => js_r
+= javascript_tag js_time = "if($('event_all_day').checked){ $('start_at_time').hide();$('end_at_time').hide(); }else{$('start_at_time').show();$('end_at_time').show();}"
+= observe_field :event_all_day, :function => js_time
+= javascript_tag "$$('#event_start_time_4i option').each(function(option) { option.update(convert_hour(option.innerHTML)) })"
+= javascript_tag "$$('#event_end_time_4i option').each(function(option) { option.update(convert_hour(option.innerHTML)) })"
+  
+
+
+

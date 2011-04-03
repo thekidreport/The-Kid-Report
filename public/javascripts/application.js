@@ -13,3 +13,21 @@ function add_fields(link, association, content) {
     before: content.replace(regexp, new_id)  
   });  
 }
+
+function convert_hour(hour_string) {
+  if (hour_string.substring(0,1) == 0) {
+    hour_string = hour_string.substring(1);
+  }
+  var mh = parseInt(hour_string)
+  if (!isNaN(mh)) {
+    var nh = mh % 12
+    if (nh == 0) { nh = 12 }
+    if (mh < 12) {
+      nh = nh + 'am'
+    } else {
+      nh = nh + 'pm'
+    }
+    return nh
+  }
+  return hour_string
+}

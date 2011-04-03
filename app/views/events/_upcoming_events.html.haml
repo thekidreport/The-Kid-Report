@@ -1,0 +1,21 @@
+- if upcoming_events.present?
+  %ul.events
+    - month = ''
+    - for event in upcoming_events
+      - if month != event.start_on.to_s(:month)
+        %li.month
+          = month = event.start_on.to_s(:month)
+      %li.event
+        .date
+          .wday
+            #{event.start_on.to_s(:wday)}
+          .dom
+            #{event.start_on.to_s(:dom)} 
+        .info
+          .name 
+            #{link_to_function event.name, "Modalbox.show('#{site_event_path(event.site, event)}', {title: '#{event.name}', width: 460, overlayDuration:0.1, slideDownDuration:0.1}); return false;"} 
+          .description
+            #{event.start_time.to_s(:time) unless event.all_day? || event.start_time.nil?}
+            - if event.location.present?
+              at #{event.location}
+            #{truncate(event.description, :length => 70)}

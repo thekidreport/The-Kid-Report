@@ -5,8 +5,8 @@
     %meta{:content => "Kids, Activities, News, Parent Involvement, Parent Engagement, Free, Classroom, Teacher, Parent, WebSite, Collaboration, Tool, Email, Membership, Wiki", :name => "keywords"}/
     %meta{:content => "Free websites for classrooms to share information about the kids and their activites", :name => "description"}
       = javascript_include_tag :defaults
-      = javascript_include_tag 'picky_color'
-      = stylesheet_link_tag 'picky_color'
+      = javascript_include_tag 'picky_color', 'modalbox'
+      = stylesheet_link_tag 'picky_color', 'modalbox'
       = stylesheet_link_tag ['shared', 'application']
       = csrf_meta_tag
       :javascript
@@ -28,7 +28,7 @@
             #header
               #logo
                 = link_to image_tag('logo.png'), root_path
-                .tagline Our Kids and their Activites
+                .tagline It's about the Kids
               #user_nav
                 - if user_signed_in?
                   Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
