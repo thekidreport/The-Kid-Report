@@ -14,7 +14,7 @@ gem 'pg'
 gem 'tiny_mce'
 gem 'haml', '3.0.25'
 gem 'simple_form'
-gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
+gem 'calendar_date_select', :git => 'https://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
 gem 'hoptoad_notifier'
 gem 'heroku'
 
