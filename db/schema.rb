@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110402031937) do
+ActiveRecord::Schema.define(:version => 20110404165958) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -105,10 +105,10 @@ ActiveRecord::Schema.define(:version => 20110402031937) do
   create_table "pages", :force => true do |t|
     t.integer  "site_id"
     t.integer  "user_id"
-    t.string   "name",                                      :null => false
-    t.string   "permalink",                                 :null => false
+    t.string   "name",                                     :null => false
+    t.string   "permalink",                                :null => false
     t.text     "content"
-    t.boolean  "comments_allowed",       :default => false, :null => false
+    t.boolean  "comments_allowed",       :default => true, :null => false
     t.datetime "last_edited_at"
     t.integer  "visitor_count",          :default => 0
     t.datetime "visitor_count_start_at"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20110402031937) do
     t.string   "background_content_type"
     t.integer  "background_file_size"
     t.boolean  "background_repeat"
+    t.boolean  "display_contact_list",    :default => false,    :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -1,6 +1,11 @@
 %tr
   %td
-    "#{membership.user.display_name}" &lt;#{membership.user.email}&gt;
+    %strong #{membership.user.display_name} 
+    %br
+    #{membership.user.email}
+    - if membership.user.phone.present?
+      %br
+      = membership.user.phone 
   %td
     = membership.role.name
   %td
