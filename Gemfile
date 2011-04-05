@@ -21,7 +21,7 @@ gem 'heroku', '1.17.17'
 
 group :development do
   gem 'heroku_san'
-  gem 'taps'
+  gem 'taps', '0.3.21'
 end
 
 group :test do
