@@ -21,14 +21,16 @@ class Site < ActiveRecord::Base
     :s3_credentials => "#{Rails.root}/config/s3.yml", 
     :path => "/site_logos/:id/:style/:filename",
     :default_style => :original,
-    :styles => { :original => "180x", :small => "64x" }
+    :styles => { :original => "180x", :small => "64x" },
+    :s3_protocol => 'https'
     
     
   has_attached_file :background, 
     :storage => :s3, 
     :s3_credentials => "#{Rails.root}/config/s3.yml", 
     :path => "/site_backgrounds/:id/:style/:filename",
-    :default_style => :original
+    :default_style => :original,
+    :s3_protocol => 'https'
     
   validates_attachment_size :background, :less_than => 1.megabyte
   

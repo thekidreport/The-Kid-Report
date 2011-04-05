@@ -10,6 +10,7 @@ class Document < ActiveRecord::Base
     :storage => :s3, 
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
     :path => "/attachments/:id/:style/:filename",
+    :s3_protocol => 'https',
     :styles => {
        :large => "640x800",
        :medium => "210x",
