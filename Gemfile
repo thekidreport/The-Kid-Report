@@ -16,7 +16,7 @@ gem 'haml', '3.0.25'
 gem 'simple_form'
 gem 'calendar_date_select', :git => 'https://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
 gem 'hoptoad_notifier'
-gem 'heroku'
+gem 'heroku', '1.17.17'
 
 
 group :development do
