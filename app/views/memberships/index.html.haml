@@ -1,5 +1,8 @@
 - @page_title = 'Memberships'
-- @page_actions = raw [link_to("Invite one", new_site_invitation_path(@site)), link_to("Invite many", new_many_site_invitations_path(@site))].join(' | ')
+- @page_actions = capture do 
+  = link_to("Invite one", new_site_invitation_path(@site))
+  = link_to("Invite many", new_many_site_invitations_path(@site))
+
 %p
   = link_to_unless_current('Members', site_memberships_path(@site))
   |

@@ -1,5 +1,7 @@
 - @page_title = 'Invitations'
-- @page_actions = raw [link_to("Invite one", new_site_invitation_path(@site)), link_to("Invite many", new_many_site_invitations_path(@site))].join(' | ')
+- @page_actions = capture do 
+  = link_to("Invite one", new_site_invitation_path(@site))
+  = link_to("Invite many", new_many_site_invitations_path(@site))
 %p
   When invitations are sent, the recipient will be given the site passcode, which is '#{@site.passcode}'
 
