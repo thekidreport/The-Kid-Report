@@ -10,9 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :phone
   
   has_many :memberships, :dependent => :destroy
-  has_many :messages, :dependent => :nullify
-  has_many :recipients, :dependent => :destroy
-  has_many :messages_receive, :through => :recipients
+  has_many :notifications, :dependent => :destroy
   has_many :log_entries, :dependent => :nullify
   has_many :sites, :through => :memberships
   has_many :invitations, :foreign_key => :email, :primary_key => :email

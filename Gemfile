@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
 gem 'hoptoad_notifier'
 gem 'heroku'
+gem 'delayed_job'
 
 
 group :development do

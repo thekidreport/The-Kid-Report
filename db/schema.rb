@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110402031937) do
+ActiveRecord::Schema.define(:version => 20110410184623) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(:version => 20110402031937) do
     t.integer  "page_id"
     t.integer  "user_id"
     t.text     "body",       :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.text     "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,6 +105,14 @@ ActiveRecord::Schema.define(:version => 20110402031937) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "messageable_id"
+    t.string   "messageable_type"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer "message_id"
+    t.integer "user_id"
+    t.string  "email"
   end
 
   create_table "page_archives", :force => true do |t|
@@ -117,11 +138,6 @@ ActiveRecord::Schema.define(:version => 20110402031937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
-  end
-
-  create_table "recipients", :force => true do |t|
-    t.integer "message_id"
-    t.integer "user_id"
   end
 
   create_table "roles", :force => true do |t|

@@ -7,7 +7,11 @@
         %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:10px; color: #666"}
           Free, Non-profit, No ads, Grant funded
         %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:30px"}
-          Share information about your classroom and club with the parents
+          Use The Kid Report to share information with other parents.  
+          %br
+          Keep your documents and schedule in one place.
+          %br
+          Reach parents easily by email.
         - if user_signed_in? && current_user.sites.not_deleted.any?
           .chevron
             %h4

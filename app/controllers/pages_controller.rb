@@ -53,7 +53,6 @@ class PagesController < ApplicationController
   def create
     @page = @site.pages.build(params[:page])
     @page.user = current_user
-
     if @page.save
       archive = @page.archive!
       LogEntry.create!(:loggable => archive, :site => @page.site, :user => current_user, :description => 'page_create')
@@ -62,7 +61,6 @@ class PagesController < ApplicationController
     else
       render :action => :new
     end
-
   end
 
   def edit

@@ -64,6 +64,10 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
+    daemons (1.1.2)
+    delayed_job (2.1.4)
+      activesupport (~> 3.0)
+      daemons
     devise (1.2.rc)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.2)
@@ -176,6 +180,7 @@ DEPENDENCIES
   capybara
   cucumber
   cucumber-rails
+  delayed_job
   devise (= 1.2.rc)
   event-calendar (= 2.3.2)
   haml (= 3.0.25)

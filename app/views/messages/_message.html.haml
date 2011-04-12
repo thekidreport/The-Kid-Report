@@ -1,10 +1,10 @@
-%tr
-  %td
-    %b= message.subject
-    %br
-  %td
-    = message.user.try(:display_name)
-  %td
-    = message.users.not_deleted.map(&:display_name).join(', ')
-  %td
-    = message.created_at.to_s(:short)
+%li.comment
+  .action{:style => 'float:right'}
+    = message.messageable_type
+  %span.date= message.created_at.to_s(:date)
+  from
+  %b= message.user ? message.user.display_name : 'System'
+  to
+  = pluralize(message.notifications.count, 'other')
+  .description= raw add_breaks(message.body)
+  

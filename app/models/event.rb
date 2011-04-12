@@ -5,6 +5,9 @@ class Event < ActiveRecord::Base
   belongs_to :site
   belongs_to :page
   has_many :log_entries, :as => :loggable
+  has_many :messages, :as => :messageable
+  
+  validates_presence_of :name
 
   before_save :set_end_on, :set_remind_on
   
@@ -21,6 +24,12 @@ class Event < ActiveRecord::Base
   
   def set_remind_on
     self.remind_on = nil if self.reminder == '0'
+  end
+  
+  def self.send_reminders
+    for event in Event.remind_today
+      event.site.messages.create(:messageable => event, :body => "#{event.name} #{event.description}") unless event.messages.where('Date(created_at) = ?', Date.today).any?
+    end
   end
 
 end

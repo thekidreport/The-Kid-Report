@@ -8,4 +8,4 @@
   -if @page 
     = link_to('x', site_page_comment_path(comment.page.site, comment.page, comment), :method => :delete, :confirm => 'Are you sure?', :remote => true, :style => 'float:right') if current_user && (current_user.can_edit?(comment.page.site) || comment.user.eql?(current_user))
   %p
-    = comment.body
+    = raw add_breaks(comment.body)

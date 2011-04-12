@@ -79,23 +79,4 @@ class Site < ActiveRecord::Base
     Site.find_by_permalink('example')
   end
   
-  def self.send_updates
-    for site in Site.with_recent_changes
-      for user in site.users.not_deleted
-        Mailer::site_update(site, user).deliver
-      end
-      for invitation in site.invitations
-        Mailer::site_teaser(site, invitation).deliver
-      end
-    end
-  end
-  
-  def self.send_reminders
-    for site in Site.with_reminders
-      for user in site.users.not_deleted
-        Mailer::event_reminder(site, user).deliver
-      end
-    end
-  end
-  
 end

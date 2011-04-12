@@ -18,6 +18,7 @@ Kidr::Application.routes.draw do
       resources :attachments
       resources :comments
       resources :archives
+      resources :messages, :only => [:new, :create]
       member do
         put :reset
       end

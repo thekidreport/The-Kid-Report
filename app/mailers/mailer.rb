@@ -42,10 +42,21 @@ class Mailer < ActionMailer::Base
   end
 
   # Cron
-  def site_update (site, user)
+  def site_update(site, user)
     @site = site
     mail( :to => user.email, :subject => "[The Kid Report] #{site.name} update" ) do |format|
       format.html { render 'site_update', :layout => 'application_mailer' }
+    end
+  end
+  
+  def notification(notification)
+    @notification = notification
+    @message = @notification.message
+    @site = @message.site
+    @user = User.find_by_email(notification.email)
+
+    mail( :to => notification.email, :subject => "#{@site.name}: #{@message.subject}" ) do |format|
+      format.html { render 'notification', :layout => 'application_mailer' }
     end
   end
   

@@ -4,20 +4,26 @@ class MessagesController < ApplicationController
   before_filter :site_editor_required!
   
   def index
-    @messages = @site.messages.all.paginate(:page => params[:page])
+    @messages = @site.messages.order("created_at desc").all.paginate(:page => params[:page], :per_page => 10)
   end
   
   def new
-    @message = Message.new(params[:message])
-    params[:recipients] = params[:recipients] || Array.new
+    @message = @site.messages.build(params[:message])
+    if params[:page_id]  
+      @page = @site.pages.find(params[:page_id])
+      @message.messageable = @page
+    end
   end
   
   def create
     @message = @site.messages.build(params[:message])
     @message.user = current_user
+    if params[:page_id]  
+      @page = @site.pages.find(params[:page_id])
+      @message.messageable = @page
+    end
     if @message.save
-      Mailer::site_message(@message).deliver
-      flash[:notice] = 'Message was created and sent successfully'
+      flash[:notice] = 'Message was created and notifications are being sent'
       redirect_to site_messages_path(@site)
     else
       render :action => :new

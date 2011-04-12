@@ -7,3 +7,4 @@
     %td
       = link_to 'View', permalink_path(page.site.permalink, page.permalink)
       | #{link_to 'Edit', edit_site_page_path(page.site, page)}
+      | #{link_to 'Send', new_site_page_message_path(page.site, page)}

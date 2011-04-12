@@ -22,7 +22,7 @@ class EventsController < ApplicationController
       @end_on = Time.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}").to_datetime
       @start_time = Time.parse('12:00')
       @end_time = Time.parse('13:00')
-      @remind_on = @start_at - 2.days
+      @remind_on = @start_on - 2.days
     end
     @event = @site.events.build(:start_on => @start_on, :end_on => @end_on, :start_time => @start_time, :end_time => @end_time, :remind_on => @remind_on, :reminder => false)
   end
@@ -41,6 +41,7 @@ class EventsController < ApplicationController
   def edit
     @event = @site.events.find(params[:id])
     @event.reminder = @event.remind_on.present?
+    @event.remind_on = @start_on - 2.days unless @event.remind_on
     @event.multi_day = @event.end_on && @event.end_on > @event.start_on
   end
 

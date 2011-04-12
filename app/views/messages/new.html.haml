@@ -1,24 +1,19 @@
 - @page_title = "Send a message"
 = raw error_messages_for @message
 %p
-  Send a message to the members of this site...
-- form_for [@site, @message] do |f|
-  %table
-    - for members_in_row in @site.users.not_deleted.in_groups_of(2)
-      %tr
-        - for member in members_in_row
-          %td
-            - if member
-              = check_box_tag 'message[user_ids][]', member.id, @message.users.not_deleted.include?(member.id.to_s)
-              "#{member.display_name}" &lt;#{member.email}&gt;
+  %b Members:
+  = @site.users.map{|u| u.email }.join(', ')
+- if @site.invitations.any?
   %p
-    Select: #{link_to_function 'All', "$$('input[type=\"checkbox\"]').each( function(e){ e.checked = 1; } );"} | #{link_to_function 'None', "$$('input[type=\"checkbox\"]').each( function(e){ e.checked = 0; } );"}
+    %b Invited: 
+    = @site.invitations.map{|i| i.email }.join(', ')
+  
+- form_for [@site, @page, @message] do |f|
   %p
-    %label{:for => "newsite_description"} Subject
+    = f.label :body, "Your message"
     %br/
-    = text_field 'message', 'subject', { :style => 'width:600px' }
-  %p
-    %label{:for => "newsite_description"} Body
-    %br/
-    = text_area 'message', 'body', { :style => 'width:600px', :rows => '8' }
+    = f.text_area 'body', { :style => 'width:600px', :rows => '4' }
   = submit_tag 'Send message'
+  
+- if @page
+  = raw @page.content

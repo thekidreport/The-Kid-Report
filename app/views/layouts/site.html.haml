@@ -106,7 +106,7 @@
                           %span.count= @site.memberships.count
                           = link_to image_tag('icons/plus.png'), new_site_invitation_path(@site), :title => 'New member', :class => 'new'
                       %li
-                        = link_to 'Email', site_messages_path(@site)
+                        = link_to 'Messages', site_messages_path(@site)
                         = link_to image_tag('icons/plus.png'), new_site_message_path(@site), :title => 'New message', :class => 'new'
                       - if current_user.can_admin?(@site)
                         %li= link_to 'Activity Log', site_log_entries_path(@site)
