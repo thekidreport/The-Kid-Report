@@ -27,7 +27,7 @@ class Message < ActiveRecord::Base
     elsif self.messageable.is_a? Event
       self.subject = "#{self.site.name} reminder: #{self.messageable.name}"
     else
-      self.subject = "#{self.site.name}: #{self.body.truncate(30)}"
+      self.subject = "#{self.site.name} message from #{self.user.try(:name)} "
     end
   end
 end
