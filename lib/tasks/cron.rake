@@ -6,8 +6,8 @@ task :cron => :environment do
     Mailer::status_update(User.not_deleted.count, Site.not_deleted.count).deliver
   end
  
-  if Time.now.hour == 10 # run at 10am
-    Site.send_reminders
+  if Time.now.hour == 8 # run at 8am
+    Event.send_reminders
   end
  
 end
