@@ -1,5 +1,5 @@
 %p
-  = raw @message.body
+  = raw @message.body.add_breaks
 - if @message.messageable
   - if @message.messageable.is_a? Page
     = raw @message.messageable.content
@@ -7,7 +7,7 @@
     - event = @message.messageable
     %p This event takes place on #{event.start_on.to_s(:date)}
     - if event.description.present?
-      %p= raw event.description
+      %p= raw event.description.add_breaks
       
     
 %p{:style => "font-size:.8em;color:gray"}

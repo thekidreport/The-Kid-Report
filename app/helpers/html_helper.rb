@@ -22,7 +22,6 @@ module HtmlHelper
     end
   end
 
-
   DELIMITER = ' > '
   def breadcrumbs links
     out = '<div id="breadcrumbs">'
@@ -33,26 +32,6 @@ module HtmlHelper
     }
     out += "</div>"
     return out
-  end
-  
-  def ellipsis string, length
-    if string.length > length
-      string_to_return = ''
-      words = string.split(' ')
-      delim = ''
-      for word in words
-        if string_to_return.length < length
-          string_to_return += "#{delim}#{word}"
-        end
-        delim = ' '
-      end
-      unless string_to_return[string_to_return.length-1,1] == '.'
-        string_to_return += '...'
-      end
-      return string_to_return
-    else
-      return string
-    end
   end
   
   def error(content, title = nil)

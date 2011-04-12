@@ -43,5 +43,9 @@ class String
     self.gsub(/<[^>]*>/,'')
   end
   
+  def add_breaks
+    self.gsub(/$/,'<br>')
+  end
+  
   
 end
