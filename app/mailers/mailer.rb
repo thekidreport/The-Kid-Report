@@ -55,7 +55,7 @@ class Mailer < ActionMailer::Base
     @site = @message.site
     @user = User.find_by_email(notification.email)
 
-    mail( :to => notification.email, :subject => "#{@site.name}: #{@message.subject}" ) do |format|
+    mail( :to => notification.email, :subject => @message.subject ) do |format|
       format.html { render 'notification', :layout => 'application_mailer' }
     end
   end
