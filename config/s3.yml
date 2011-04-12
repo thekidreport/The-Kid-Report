@@ -7,6 +7,11 @@ test:
   bucket: kidr_development
   access_key_id: 150GZX10JGCWX85K2BG2
   secret_access_key: M9DYmraxr1O1ISUnnSd7PMW/U+5L6UzCWnytgFPe
+  
+staging:
+  bucket: kidr_development
+  access_key_id: 150GZX10JGCWX85K2BG2
+  secret_access_key: M9DYmraxr1O1ISUnnSd7PMW/U+5L6UzCWnytgFPe
 
 production:
   bucket: kidr_production
