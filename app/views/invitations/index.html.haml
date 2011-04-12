@@ -3,10 +3,10 @@
 %p
   When invitations are sent, the recipient will be given the site passcode, which is '#{@site.passcode}'
 
-%p
+%p  
   = link_to_unless_current('Members', site_memberships_path(@site))
   |
-  = link_to_unless_current('Invitations', site_invitations_path(@site))
+  = link_to_unless_current('Open Invitations', site_invitations_path(@site))
 %table.grid
   %thead
     %tr

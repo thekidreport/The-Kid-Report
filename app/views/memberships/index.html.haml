@@ -1,8 +1,9 @@
 - @page_title = 'Memberships'
+- @page_actions = raw [link_to("Invite one", new_site_invitation_path(@site)), link_to("Invite many", new_many_site_invitations_path(@site))].join(' | ')
 %p
   = link_to_unless_current('Members', site_memberships_path(@site))
   |
-  = link_to_unless_current('Invitations', site_invitations_path(@site))
+  = link_to_unless_current('Open Invitations', site_invitations_path(@site))
 %table.grid
   %thead
     %tr

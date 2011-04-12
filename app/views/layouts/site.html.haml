@@ -90,7 +90,7 @@
                       %li= link_to 'Preferences', edit_site_path(@site)
                       %li
                         = link_to 'Pages', site_pages_path(@site)
-                        %span.count= @site.pages.count
+                        %span.count= @site.pages.not_deleted.count
                         = link_to image_tag('icons/plus.png'), new_site_page_path(@site), :title => 'New page', :class => 'new'
                       %li
                         = link_to 'Documents', site_documents_path(@site)

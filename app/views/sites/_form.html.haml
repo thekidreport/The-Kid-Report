@@ -10,10 +10,10 @@
     %ul.form
       %li= f.input :passcode, :input_html => {:size => 20}, :hint => "The secret code required to join the site"
       %li.indent= f.input :members_only, :label => 'The site is private.  Only members are allowed in.', :as => :boolean
+      %li.indent= f.input :display_contact_list, :label => 'Show members\' contact information on Front Page', :as => :boolean
       
     %ul.form
       %li.indent= f.input :auto_message, :label => 'Notify members automatically when the site is updated', :as => :boolean
-      
       
     %ul.form
       %li= f.input :logo
@@ -34,6 +34,7 @@
       %li
         = f.label :link_color, 'Link'
         = raw f.picky_color :link_color
+        
   %ul.form
     %li.indent
       = f.submit button_value
