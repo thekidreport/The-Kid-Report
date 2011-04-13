@@ -1,4 +1,5 @@
 class Mailer < ActionMailer::Base
+  require 'open-uri'
   
   default :from => "support@thekidreport.org"
 
@@ -54,6 +55,12 @@ class Mailer < ActionMailer::Base
     @message = @notification.message
     @site = @message.site
     @user = User.find_by_email(notification.email)
+    
+    if @message.messageable.is_a? Page
+      for document in @message.messageable.documents 
+        attachments[document.name] = open(document.file.url) # open-uri method
+      end
+    end
 
     mail( :to => notification.email, :subject => @message.subject ) do |format|
       format.html { render 'notification', :layout => 'application_mailer' }

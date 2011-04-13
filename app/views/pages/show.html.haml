@@ -10,7 +10,7 @@
       - for attachment in @page.attachments
         %li= link_to attachment.document.name, download_site_document_path(@site, attachment.document)
 - if @page && @page.events.think_about.any?
-  %div{:style => 'float:right; width: 31%'}
+  %div{:style => 'float:right; width: 31%; margin-left: 1em'}
     = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @page.events.think_about }
   
 .user_generated= raw @page.content
