@@ -3,7 +3,7 @@
 - if @message.messageable
   - if @message.messageable.is_a? Page
     - page = @message.messageable
-    %p= link_to page.name, permalink_url(page.site.permalink, page.permalink) 
+    %p Link to #{link_to page.name, permalink_url(page.site.permalink, page.permalink)}
     %h3= page.name
     = raw @message.messageable.content
   - elsif @message.messageable.is_a? Event
