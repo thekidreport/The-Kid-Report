@@ -1,6 +1,4 @@
 class Mailer < ActionMailer::Base
-  require 'open-uri'
-  
   default :from => "support@thekidreport.org"
 
   def signup_thanks( user )
@@ -57,9 +55,15 @@ class Mailer < ActionMailer::Base
     @user = User.find_by_email(notification.email)
     
     if @message.messageable.is_a? Page
-      for document in @message.messageable.documents 
-        attachments[document.name] = open(document.file.url) # open-uri method
+      @message.messageable.documents.each do |a|
+        tempfile = File.new("#{Rails.root.to_s}/tmp/#{a.file_file_name}", "w")
+        tempfile << open(a.file.url)
+        tempfile.puts
+        attachments[a.file_file_name] = File.read("#{Rails.root.to_s}/tmp/#{a.file_file_name}")
+        # Delete it tempfile
+        # File.delete("#{Rails.root.to_s}/tmp/#{a.file_file_name}")
       end
+    
     end
 
     mail( :to => notification.email, :subject => @message.subject ) do |format|
