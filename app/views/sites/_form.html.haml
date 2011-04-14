@@ -1,5 +1,5 @@
 - simple_form_for @site, :html => {:multipart => true} do |f|
-  = error_messages_for @site
+  = raw error_messages_for(@site)
   %ul.form
     %li= f.input :name, :input_html => {:size => 20}, :label => 'Site name'
     %li= f.input :description, :size => 40
@@ -11,7 +11,7 @@
       %li= f.input :passcode, :input_html => {:size => 20}, :hint => "The secret code required to join the site"
       %li.indent= f.input :members_only, :label => 'The site is private.  Only members are allowed in.', :as => :boolean
       %li.indent= f.input :display_contact_list, :label => 'Show members\' contact information on Front Page', :as => :boolean
-      %li= f.input :reply_to_email
+      %li= f.input :reply_to_email, :hint => 'Messages will use this as the return address', :error => false
     %ul.form
       %li= f.input :logo
       %li= f.input :background, :label => 'BG image'

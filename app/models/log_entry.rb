@@ -5,14 +5,14 @@ class LogEntry < ActiveRecord::Base
     belongs_to :user
     
     scope :recent, where('log_entries.created_at > ?', 1.hour.ago)
-    scope :page_update, where("description = 'page_update'")
+    scope :page_update, where("description = 'page_update' OR description = 'page_create' OR description = 'site_create'")
 
     after_save :set_last_edited_at
     
     def friendly_description
       case self.description
       when 'site_create'
-        'created this site and the page'
+        'created this site'
       when 'site_update'
         'updated the site preferences'
       when 'page_update'

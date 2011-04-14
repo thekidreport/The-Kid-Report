@@ -23,7 +23,8 @@
               = log_entry.created_at.to_s(:date)
             = log_entry.user.display_name
             = log_entry.friendly_description
-            = link_to log_entry.loggable.try(:page).try(:name), permalink_path(@site.permalink, log_entry.loggable.try(:page).try(:permalink)) if log_entry.loggable.try(:page)
+            - if log_entry.loggable.respond_to?(:page)
+              = link_to log_entry.loggable.try(:page).try(:name), permalink_path(@site.permalink, log_entry.loggable.try(:page).try(:permalink)) if log_entry.loggable.try(:page)
             
     %td.right.thin
       = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @site.events.think_about }

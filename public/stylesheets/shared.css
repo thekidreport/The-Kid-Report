@@ -164,7 +164,7 @@ ul.form li.indent {
   position: relative; }
 
 .error {
-  border: solid 1px #cc0000;
+  border-color: #cc0000;
   color: #cc0000; }
 
 #error_explanation h2, .error h2 {

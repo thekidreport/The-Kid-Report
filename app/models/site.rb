@@ -39,7 +39,7 @@ class Site < ActiveRecord::Base
   scope :with_reminders, lambda { where('events.remind_on = ?', Date.today).joins(:events) }
 
   validates_presence_of :name
-  validates_format_of :reply_to_email, :with => User::EMAIL_REGEX
+  validates_format_of :reply_to_email, :with => User::EMAIL_REGEX, :allow_blank => true
   
   before_save :set_permalink
 
