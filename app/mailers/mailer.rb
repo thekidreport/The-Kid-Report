@@ -65,7 +65,6 @@ class Mailer < ActionMailer::Base
       end
     
     end
-
     mail( :to => notification.email, :subject => @message.subject, :reply_to => @site.reply_to_email ) do |format|
       format.html { render 'notification', :layout => 'application_mailer' }
     end
