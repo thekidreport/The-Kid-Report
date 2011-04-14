@@ -2,11 +2,11 @@
 = raw error_messages_for @message
 %p
   %b Members:
-  = @site.users.map{|u| u.email }.join(', ')
+  = @site.users.map{|u| u.name }.join(', ')
 - if @site.invitations.any?
   %p
     %b Invited: 
-    = @site.invitations.map{|i| i.email }.join(', ')
+    = @site.invitations.map{|i| i.name }.join(', ')
   
 - form_for [@site, @page, @message] do |f|
   %p

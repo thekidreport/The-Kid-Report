@@ -2,7 +2,7 @@
 - if current_user && current_user.can_edit?(@site) && !@page.new_record?
   - @page_actions = capture do 
     = link_to('Edit', edit_site_page_path(@site, @page))
-    = link_to('Send', new_site_page_message_path(@site, @page))
+    = link_to('Send Message', new_site_page_message_path(@site, @page))
 - if @page && @page.attachments.any?
   %ul.callout
     %b Attachments

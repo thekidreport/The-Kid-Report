@@ -39,7 +39,7 @@ class SitesController < ApplicationController
   end 
   
   def create
-    @site = Site.new(params[:site].merge(:last_edited_at => Time.now))
+    @site = Site.new(params[:site].merge(:last_edited_at => Time.now, :reply_to_email => current_user.email))
     @site.memberships_attributes = [{ :user => current_user, :role => Role.admin }]
     @site.pages_attributes = [ {:name => 'Welcome!', :content => '<p>Congratulations, your site is created!</p><p>The site is only visible to you (and the other members you add to the site).  This is an example page.  You can modify the content of the page if you\'re an editor by clicking "Edit" above.</p>', 
     :site => @site, :user => current_user, :comments_allowed => false, :last_edited_at => Time.now }]

@@ -3,16 +3,13 @@
 - if @message.messageable
   - if @message.messageable.is_a? Page
     - page = @message.messageable
-    %p Link to #{link_to page.name, permalink_url(page.site.permalink, page.permalink)}
+    %p Link to #{link_to(page.name, permalink_url(page.site.permalink, page.permalink))}
     %h3= page.name
-    = raw @message.messageable.content
+    = raw page.content
   - elsif @message.messageable.is_a? Event
     - event = @message.messageable
     %p This event takes place on #{event.start_on.to_s(:date)}
     - if event.description.present?
       %p= raw event.description.add_breaks
       
-    
-%p{:style => "font-size:.8em;color:gray"}
-  Visit #{link_to @site.name, site_root_url(@site.permalink)} online.
-  %br  
+= render 'site_footer'

@@ -4,4 +4,4 @@
   %td{:style => "text-align:center"}= user.created_at.to_s(:tiny_date)
   %td{:style => "text-align:right"}= user.sign_in_count
   %td{:style => "text-align:center"}= 'Yes' if user.admin?
-  %td= raw user.sites.not_deleted.map{|site| link_to( site.name, permalink_path(site.permalink, site.home_page.try(:permalink))) }.join(', ')
+  %td= raw user.sites.not_deleted.map{|site| link_to( site.name, site_path(site.permalink)) }.join(', ')

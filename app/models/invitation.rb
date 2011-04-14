@@ -20,4 +20,8 @@ class Invitation < ActiveRecord::Base
     end
   end
   
+  def name
+    self.email.split('@').first
+  end
+  
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110410184623) do
+ActiveRecord::Schema.define(:version => 20110414181639) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20110410184623) do
     t.integer  "background_file_size"
     t.boolean  "background_repeat"
     t.boolean  "display_contact_list",    :default => false,    :null => false
+    t.string   "reply_to_email"
   end
 
   create_table "users", :force => true do |t|

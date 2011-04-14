@@ -1,6 +1,8 @@
 - @page_title = "Front page"
 - if current_user && current_user.can_edit?(@site)
-  - @page_actions = link_to 'Edit Top Story', edit_top_story_site_path(@site)
+  - @page_actions = capture do 
+    = link_to 'Edit Top Story', edit_top_story_site_path(@site)
+    = link_to 'Send Message', new_site_message_path(@site)
 
 %table.framework
   %tr
@@ -8,12 +10,11 @@
       - if @site.top_story.present?
         #top_story
           .user_generated= raw @site.top_story
-      = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @site.events.think_about }
 
-      - if @site.comments.any?
-        %h3 Recent Comments
-        .contacts
-          = render :partial => 'comments/comment', :collection => @site.comments.order('created_at desc').limit(5)
+      - if @site.messages.any?
+        %h3 Recent Messages
+        %ul
+          = render :partial => 'messages/message', :collection => @site.messages.order('created_at desc').limit(5)
       %h3 Recent Edits
       %ul.tight
         - for log_entry in @site.log_entries.page_update.order('created_at desc').limit(10).uniq
@@ -25,6 +26,7 @@
             = link_to log_entry.loggable.try(:page).try(:name), permalink_path(@site.permalink, log_entry.loggable.try(:page).try(:permalink)) if log_entry.loggable.try(:page)
             
     %td.right.thin
+      = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @site.events.think_about }
       - if @site.display_contact_list? 
         %h3 Contacts
         %ul.contacts.tight
