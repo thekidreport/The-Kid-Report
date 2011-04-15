@@ -143,6 +143,13 @@ ul.form li.indent {
   ul.form li.indent label {
     width: auto; }
 
+form .inputs .input {
+  margin-bottom: 0.5em; }
+  form .inputs .input label {
+    margin-right: 0.7em; }
+form .actions {
+  margin-top: 2em; }
+
 #error_explanation {
   border: solid 1px #cc0000;
   background-color: #eef1ee;

@@ -8,12 +8,19 @@
     %b Invited: 
     = @site.invitations.map{|i| i.name }.join(', ')
   
-- form_for [@site, @page, @message] do |f|
-  %p
-    = f.label :body, "Your message"
-    %br/
-    = f.text_area 'body', { :style => 'width:600px', :rows => '4' }
-  = submit_tag 'Send message'
-  
-- if @page
-  = raw @page.content
+- simple_form_for [@site, @page, @message] do |f|
+  .inputs
+    = f.input :body, :label => 'Your message', :label_html => { :style => 'display:block' }, :input_html => { :style => 'width:600px', :rows => '4' }
+    .input
+      #{f.label :page_id, 'References page', :style => 'width:auto'}#{f.select :page_id, @site.pages.map{|p| [p.name, p.id]}, :include_blank => true}
+      = f.check_box :embed_page
+      = f.label :embed_page, 'Embedded'
+  .actions
+    = submit_tag 'Send message'
+    
+#page_content
+
+
+= javascript_tag js_md = "if( $('message_embed_page').checked && $('message_page_id').getValue() > 0 ) { new Ajax.Request( '#{site_pages_path(@site)}/' + $('message_page_id').getValue() + '.js', { method: 'get', onComplete: function(transport) { $('page_content').innerHTML = transport.responseText } } )  } else { $('page_content').innerHTML = '' }"
+= observe_field :message_embed_page, :function => js_md
+= observe_field :message_page_id, :function => js_md

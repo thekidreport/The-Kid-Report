@@ -1,15 +1,15 @@
 %p
   = raw @message.body.add_breaks
-- if @message.messageable
-  - if @message.messageable.is_a? Page
-    - page = @message.messageable
-    %p Link to #{link_to(page.name, permalink_url(page.site.permalink, page.permalink))}
-    %h3= page.name
-    = raw page.content
-  - elsif @message.messageable.is_a? Event
-    - event = @message.messageable
-    %p This event takes place on #{event.start_on.to_s(:date)}
-    - if event.description.present?
-      %p= raw event.description.add_breaks
-      
+
+- if @message.event
+  %p This event takes place on #{@message.event.start_on.to_s(:date)}
+  - if @message.event.description.present?
+    %p= raw @message.event.description.add_breaks
+
+- if @message.page
+  %p Link to #{link_to(@message.page.name, permalink_url(@message.page.site.permalink, @message.page.permalink))}
+  -if @message.embed_page?
+    %h3= @message.page.name  
+    = raw @message.page.content  
+
 = render 'site_footer'

@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
     belongs_to :page
     belongs_to :user
     has_many :log_entries, :as => :loggable
-    has_many :messages, :as => :messageable
+    has_many :messages
     
     validates_presence_of :body
     

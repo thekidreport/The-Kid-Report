@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414181639) do
+ActiveRecord::Schema.define(:version => 20110415041042) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -107,6 +107,10 @@ ActiveRecord::Schema.define(:version => 20110414181639) do
     t.datetime "updated_at"
     t.integer  "messageable_id"
     t.string   "messageable_type"
+    t.integer  "page_id"
+    t.integer  "comment_id"
+    t.integer  "event_id"
+    t.boolean  "embed_page",       :default => false
   end
 
   create_table "notifications", :force => true do |t|

@@ -54,8 +54,8 @@ class Mailer < ActionMailer::Base
     @site = @message.site
     @user = User.find_by_email(notification.email)
     
-    if @message.messageable.is_a? Page
-      @message.messageable.documents.each do |a|
+    if @message.page && @message.embed_page?
+      @message.page.documents.each do |a|
         tempfile = File.new("#{Rails.root.to_s}/tmp/#{a.file_file_name}", "w")
         tempfile << open(a.file.url)
         tempfile.puts

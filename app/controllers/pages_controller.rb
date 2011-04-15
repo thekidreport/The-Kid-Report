@@ -31,7 +31,15 @@ class PagesController < ApplicationController
         render :text => 'Page not found', :status => :not_found
       end
     else
-      @page = Page.new(:name => 'No Pages', :content => "This site has no pages.")
+      respond_to do |format|
+        format.html {
+          @page = Page.new(:name => 'No Pages', :content => "This site has no pages.")
+        }
+        format.js {
+          render :text => @site.pages.find(params[:id]).content
+        }
+      end
+      
     end
   end
   

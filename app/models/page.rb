@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
   has_many :attachments, :dependent => :destroy
   has_many :documents, :through => :attachments
   has_many :events
-  has_many :messages, :as => :messageable
+  has_many :messages
   accepts_nested_attributes_for :attachments, :allow_destroy => true
   
   has_many :comments, :order => 'updated_at DESC, created_at DESC', :dependent => :destroy

@@ -1,13 +1,10 @@
 %li.comment
-  - if message.messageable
+  - if message.page || message.event
     .action{:style => 'float:right; margin-left: 1em'}
-      - if message.messageable.is_a? Page
-        = link_to message.messageable.name, permalink_path(@site.permalink, message.messageable.permalink)
-      - elsif message.messageable.is_a? Comment
-        = link_to message.messageable.page.name, permalink_path(@site.permalink, message.messageable.page.permalink) 
-      - elsif message.messageable.is_a? Event
-        - event = message.messageable
-        #{link_to_function event.name, "Modalbox.show('#{site_event_path(event.site, event)}', {title: '#{event.name}', width: 460, overlayDuration:0.1, slideDownDuration:0.1}); return false;"} 
+      - if message.page
+        = link_to message.page.name, permalink_path(@site.permalink, message.page.permalink)
+      - if message.event
+        #{link_to_function message.event.name, "Modalbox.show('#{site_event_path(message.event.site, message.event)}', {title: '#{message.event.name}', width: 460, overlayDuration:0.1, slideDownDuration:0.1}); return false;"} 
   %span.date= message.created_at.to_s(:date)
   from
   %b= message.user ? message.user.display_name : 'System'

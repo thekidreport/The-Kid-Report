@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     @message = @site.messages.build(params[:message])
     if params[:page_id]  
       @page = @site.pages.find(params[:page_id])
-      @message.messageable = @page
+      @message.page = @page
     end
   end
   
@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
     if params[:page_id]  
       @page = @site.pages.find(params[:page_id])
-      @message.messageable = @page
+      @message.page = @page
     end
     if @message.save
       flash[:notice] = 'Message was created and notifications are being sent'
