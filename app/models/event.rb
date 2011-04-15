@@ -18,8 +18,8 @@ class Event < ActiveRecord::Base
   scope :coming_up, lambda { where('Date(start_on) between ? AND ?', Date.today, 6.weeks.from_now).order('start_on, start_time') }
 
   def set_end_on 
-    self.end_on = self.start_on if self.end_on < self.start_on
     self.end_on = self.start_on if self.multi_day == '0'
+    self.end_on = self.start_on if self.end_on < self.start_on
   end
   
   def set_remind_on
