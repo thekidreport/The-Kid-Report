@@ -28,13 +28,13 @@ class Message < ActiveRecord::Base
       self.subject += ": #{self.page.name}"
     end
     if self.comment
-      self.subject = " comment"
+      self.subject += " comment"
     end
     if self.event
-      self.subject = " reminder: #{self.event.name}"
+      self.subject += " reminder: #{self.event.name}"
     end
     if self.user
-      self.subject = ": a message from #{self.user.name}"
+      self.subject += ": a message from #{self.user.name}"
     end
   end
 end
