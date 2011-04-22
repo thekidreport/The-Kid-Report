@@ -47,8 +47,8 @@ h3 {
 #body_wrapper {
   margin: auto;
   min-width: 700px;
-  max-width: 1000px;
-  width: expression(document.body.clientWidth < 700? "700px" : document.body.clientWidth > 1000? "1000px" : "auto"); }
+  max-width: 1200px;
+  width: expression(document.body.clientWidth < 700? "700px" : document.body.clientWidth > 1200? "1200px" : "auto"); }
 
 #user_nav {
   right: 10px;
@@ -151,8 +151,8 @@ form .actions {
   margin-top: 2em; }
 
 #error_explanation {
-  border: solid 1px #cc0000;
-  background-color: #eef1ee;
+  border: solid 1px #bb7666;
+  background-color: white;
   color: #cc0000;
   margin: 10px auto;
   padding: 7px;
@@ -161,17 +161,17 @@ form .actions {
   position: relative; }
 
 .alert {
-  border: solid 1px #88dd88;
-  background-color: #eef1ee;
+  border: solid 1px #a4c0a8;
+  background-color: white;
   color: green;
-  margin: 10px auto;
+  margin: 10px 0px;
   padding: 7px;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   position: relative; }
 
 .error {
-  border-color: #cc0000;
+  border-color: #bb7666;
   color: #cc0000; }
 
 #error_explanation h2, .error h2 {

@@ -114,9 +114,10 @@ ActiveRecord::Schema.define(:version => 20110415041042) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.integer "message_id"
-    t.integer "user_id"
-    t.string  "email"
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.string   "email"
+    t.datetime "created_at"
   end
 
   create_table "page_archives", :force => true do |t|

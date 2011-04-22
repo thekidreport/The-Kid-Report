@@ -28,7 +28,7 @@
             #header
               #logo
                 = link_to image_tag('logo.png'), root_path
-                .tagline It's about the Kids
+                .tagline It's about the kids
               #user_nav
                 - if user_signed_in?
                   Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
@@ -49,9 +49,9 @@
               #content
                 = raw notice flash[:notice]
                 = raw error flash[:alert]
-                %h1#page_title
-                  - unless url_for == root_path
-                    = @page_title
+                - if @page_title
+                  %h1#page_title
+                    = @page_title unless url_for == root_path
                 = yield
             #footer
               The Kid Report - Private Parent Teacher Networks
