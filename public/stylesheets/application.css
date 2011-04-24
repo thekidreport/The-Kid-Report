@@ -147,10 +147,10 @@ blockquote {
 
 .headline {
   text-align: center;
-  font-family: "Helvetica Neue";
-  color: #0d374b;
+  font-family: Verdana;
+  color: #4674a3;
   margin-top: 0;
-  text-shadow: 1px 1px 5px white; }
+  text-shadow: 0.5px 0.5px 1px black; }
 
 #page_title {
   font-size: 2em;
