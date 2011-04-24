@@ -1,4 +1,6 @@
 - @page_title = 'Edit Membership'
+- @breadcrumbs << link_to('Memberships', site_memberships_path(@site)) << @page_title
+
 - form_for [@site, @membership] do |f|
   = raw error_messages_for @membership
   = hidden_field_tag 'site_id', @site.id

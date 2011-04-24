@@ -1,0 +1,36 @@
+%style
+  body {  
+  ="background-color: ##{@site.background_color};" if @site.background_color.present? 
+  ="background-image: url(#{@site.background.url});" if @site.background_file_name.present? 
+  ="background-repeat: no-repeat;" unless @site.background_repeat?
+  }
+  \#body_wrapper {  
+  = "background-color: ##{@site.body_color};" if @site.body_color.present? 
+  }
+  \#gutter, .highlight_colored {  
+  = "background-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
+  }
+  \.callout {
+  = "border-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
+  }
+  \#top_story .header {
+  = "border-bottom: solid 2px ##{@site.highlight_color};" if @site.highlight_color.present? 
+  }
+  \#footer {  
+  = "border-top:1px solid ##{@site.highlight_color};" if @site.highlight_color.present?   
+  }
+  \#content, #header, #footer {  
+  = "color: ##{@site.font_color};" if @site.font_color.present? 
+  }
+  a {  
+  = "color: ##{@site.link_color};" if @site.link_color.present? 
+  }
+  \.page_nav li a {  
+  = "background-color: ##{@site.link_color};" if @site.link_color.present? 
+  }
+  \.page_nav li a {  
+  = "color: ##{@site.highlight_color};" if @site.highlight_color.present?  
+  }
+  \#tools h3 { 
+  = "border-bottom: 1px solid  ##{@site.link_color};" if @site.link_color.present?
+  }

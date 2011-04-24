@@ -11,42 +11,7 @@
     = stylesheet_link_tag ['shared', 'site']
     = calendar_date_select_includes
     = csrf_meta_tag
-    %style
-      body {  
-      ="background-color: ##{@site.background_color};" if @site.background_color.present? 
-      ="background-image: url(#{@site.background.url});" if @site.background.exists? 
-      ="background-repeat: no-repeat;" unless @site.background_repeat?
-      }
-      \#body_wrapper {  
-      = "background-color: ##{@site.body_color};" if @site.body_color.present? 
-      }
-      \#gutter, .highlight_colored {  
-      = "background-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
-      }
-      \.callout {
-      = "border-color: ##{@site.highlight_color};" if @site.highlight_color.present? 
-      }
-      \#top_story .header {
-      = "border-bottom: solid 2px ##{@site.highlight_color};" if @site.highlight_color.present? 
-      }
-      \#footer {  
-      = "border-top:1px solid ##{@site.highlight_color};" if @site.highlight_color.present?   
-      }
-      \#content, #header, #footer {  
-      = "color: ##{@site.font_color};" if @site.font_color.present? 
-      }
-      a {  
-      = "color: ##{@site.link_color};" if @site.link_color.present? 
-      }
-      \.page_nav li a {  
-      = "background-color: ##{@site.link_color};" if @site.link_color.present? 
-      }
-      \.page_nav li a {  
-      = "color: ##{@site.highlight_color};" if @site.highlight_color.present?  
-      }
-      \#tools h3 { 
-      = "border-bottom: 1px solid  ##{@site.link_color};" if @site.link_color.present?
-      }
+    = render "sites/custom_style"
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-20337737-1']);
@@ -59,71 +24,77 @@
       })();
     
   %body
-    #body_wrapper
-      #header.highlight_colored
-        = link_to image_tag('mini_logo.png'), root_path
-        \: #{link_to @site.name, site_root_path(@site.permalink)}
-        #user_nav
-          - if user_signed_in?
-            Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
-          - else
-            = link_to 'Sign in', new_user_session_path
-            | #{link_to 'Create account', new_user_registration_path}
-      #body
-        %table.framework
-          %tr
-            - if current_user && current_user.member_of?(@site) || @site.public?
-              %td.left.left_gutter
+    #outside_wrapper
+      #inside_wrapper
+        #body_wrapper
+          #header.highlight_colored
+            #site_nav
+              = link_to image_tag('mini_logo.png'), root_path
+              &#187; #{link_to_unless_current @site.name, site_root_path(@site.permalink)}
+              - if @breadcrumbs
+                - for breadcrumb in @breadcrumbs
+                  &#187; #{breadcrumb}
+            #user_nav
+              - if user_signed_in?
+                Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
+              - else
+                = link_to 'Sign in', new_user_session_path
+                | #{link_to 'Create account', new_user_registration_path}
+          #body
+            %table.framework
+              %tr
+                - if current_user && current_user.member_of?(@site) || @site.public?
+                  %td.left.left_gutter
             
-                #gutter
-                  - if @site.logo.exists?
-                    #logo.image= link_to_unless_current image_tag(@site.logo(:original)), site_root_path(@site.permalink)
-                  - else
-                    #logo.text= link_to_unless_current @site.name, site_root_path(@site.permalink)
-                  %ul.page_nav
-                    %li= link_to 'Front page', site_root_path(@site.permalink)
-                    - for page in @site.pages.not_deleted.visible.order('position')
-                      %li= link_to page.name, permalink_path(@site.permalink, page.permalink)
-                  - if current_user && current_user.member_of?(@site) && current_user.can_edit?(@site)
-                    %ul#tools
-                      %h3 Tools
-                      %li= link_to 'Preferences', edit_site_path(@site)
-                      %li
-                        = link_to 'Pages', site_pages_path(@site)
-                        %span.count= @site.pages.not_deleted.count
-                        = link_to image_tag('icons/plus.png'), new_site_page_path(@site), :title => 'New page', :class => 'new'
-                      %li
-                        = link_to 'Documents', site_documents_path(@site)
-                        %span.count= @site.documents.count
-                        = link_to image_tag('icons/plus.png'), new_site_document_path(@site), :title => 'New document', :class => 'new'
-                      %li
-                        = link_to 'Events', site_events_path(@site)
-                        %span.count= @site.events_count
-                        = link_to image_tag('icons/plus.png'), new_site_event_path(@site), :title => 'New event', :class => 'new'
-                      - if current_user.can_admin?(@site)
-                        %li
-                          = link_to 'Members', site_memberships_path(@site)
-                          %span.count= @site.memberships.count
-                          = link_to image_tag('icons/plus.png'), new_site_invitation_path(@site), :title => 'New member', :class => 'new'
-                      %li
-                        = link_to 'Messages', site_messages_path(@site)
-                        = link_to image_tag('icons/plus.png'), new_site_message_path(@site), :title => 'New message', :class => 'new'
-                      - if current_user.can_admin?(@site)
-                        %li= link_to 'Activity Log', site_log_entries_path(@site)
-            %td.right
-              #content
-                = raw notice flash[:notice]
-                %h1#page_title
-                  - if @page_actions
-                    %span#page_actions= @page_actions
-                  = @page_title
-                = yield
-      #footer
-        - if @page && !@page.new_record?
-          = pluralize @page.visitor_count, 'Visitor'
-          = (@page.visitor_count_start_at).strftime "since %m/%d/%Y"
-          - if current_user && current_user.can_edit?(@site)
-            = link_to 'Reset', reset_site_page_path(@site.id, @page.id), :method => :put
-        %br
-          = @site.name
-          = " - #{@site.footer}" if @site.footer.present?
+                    #gutter
+                      - if @site.logo_file_name.present? 
+                        #logo.image= link_to_unless_current image_tag(@site.logo(:original)), site_root_path(@site.permalink)
+                      - else
+                        #logo.text= link_to_unless_current @site.name, site_root_path(@site.permalink)
+                      %ul.page_nav
+                        %li= link_to 'Front page', site_root_path(@site.permalink)
+                        - for page in @site.pages.not_deleted.visible.order('position')
+                          %li= link_to page.name, permalink_path(@site.permalink, page.permalink)
+                      - if current_user && current_user.member_of?(@site) && current_user.can_edit?(@site)
+                        %ul#tools
+                          %h3 Tools
+                          %li= link_to 'Preferences', edit_site_path(@site)
+                          %li
+                            = link_to 'Pages', site_pages_path(@site)
+                            %span.count= @site.pages.not_deleted.count
+                            = link_to image_tag('icons/plus.png'), new_site_page_path(@site), :title => 'New page', :class => 'new'
+                          %li
+                            = link_to 'Documents', site_documents_path(@site)
+                            %span.count= @site.documents.count
+                            = link_to image_tag('icons/plus.png'), new_site_document_path(@site), :title => 'New document', :class => 'new'
+                          %li
+                            = link_to 'Events', site_events_path(@site)
+                            %span.count= @site.events_count
+                            = link_to image_tag('icons/plus.png'), new_site_event_path(@site), :title => 'New event', :class => 'new'
+                          - if current_user.can_admin?(@site)
+                            %li
+                              = link_to 'Members', site_memberships_path(@site)
+                              %span.count= @site.memberships.count
+                              = link_to image_tag('icons/plus.png'), new_site_invitation_path(@site), :title => 'New member', :class => 'new'
+                          %li
+                            = link_to 'Messages', site_messages_path(@site)
+                            = link_to image_tag('icons/plus.png'), new_site_message_path(@site), :title => 'New message', :class => 'new'
+                          - if current_user.can_admin?(@site)
+                            %li= link_to 'Activity Log', site_log_entries_path(@site)
+                %td.right
+                  #content
+                    = raw notice flash[:notice]
+                    %h1#page_title
+                      - if @page_actions
+                        %span#page_actions= @page_actions
+                      = @page_title
+                    = yield
+          #footer
+            - if @page && !@page.new_record?
+              = pluralize @page.visitor_count, 'Visitor'
+              = (@page.visitor_count_start_at).strftime "since %m/%d/%Y"
+              - if current_user && current_user.can_edit?(@site)
+                = link_to 'Reset', reset_site_page_path(@site.id, @page.id), :method => :put
+            %br
+              = @site.name
+              = " - #{@site.footer}" if @site.footer.present?

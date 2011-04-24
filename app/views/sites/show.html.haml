@@ -1,4 +1,4 @@
-- @page_title = "Front page"
+- @page_title = @site.name
 - if current_user && current_user.can_edit?(@site)
   - @page_actions = capture do 
     = link_to 'Edit Top Story', edit_top_story_site_path(@site)
@@ -7,17 +7,19 @@
 %table.framework
   %tr
     %td.left.wide
+    
       - if @site.top_story.present?
         #top_story
           .user_generated= raw @site.top_story
+
 
       - if @site.messages.any?
         %h3 Recent Messages
         %ul
           = render :partial => 'messages/message', :collection => @site.messages.order('created_at desc').limit(5)
-      %h3 Recent Edits
+      %h2 Recent Edits
       %ul.tight
-        - for log_entry in @site.log_entries.page_update.order('created_at desc').limit(10).uniq
+        - for log_entry in @site.log_entries.page_update.order('created_at desc').limit(4).uniq
           %li
             %span.date  
               = log_entry.created_at.to_s(:date)
@@ -27,17 +29,38 @@
               = link_to log_entry.loggable.try(:page).try(:name), permalink_path(@site.permalink, log_entry.loggable.try(:page).try(:permalink)) if log_entry.loggable.try(:page)
             
     %td.right.thin
-      = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @site.events.think_about }
+      - if @site.events.think_about.any?
+        %h2 Events
+        = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @site.events.think_about }
+      - if @site.documents.any?  
+        #documents
+          %h2 Documents
+          %table.grid 
+            %thead
+              %th Name
+              %th{:style => 'width:30%'} Date
+            
+          .scroll
+            %table.grid 
+              %tbody
+                - for document in @site.documents.order('lower(file_file_name)')
+                  %tr
+                    %td
+                      = link_to document.name, download_site_document_path(@site, document), :title => document.name
+                    %td{:style => 'width:25%'}
+                      = document.updated_at.to_s(:tiny_date)
+                      
       - if @site.display_contact_list? 
-        %h3 Contacts
-        %ul.contacts.tight
-          - for user in @site.users
-            %li
-              - if user.name.present?
-                .name= user.name
-              - if user.phone.present?
-                .phone= user.phone
-              .email= mail_to user.email, user.email
-          - for invitation in @site.invitations
-            %li
-              .email= mail_to invitation.email, invitation.email
+        #contacts
+          %h2 Contacts
+          %ul.contacts.tight.scroll
+            - for user in @site.users.order(:name)
+              %li
+                - if user.name.present?
+                  .name= user.name
+                - if user.phone.present?
+                  .phone= user.phone
+                .email= mail_to user.email, user.email
+            - for invitation in @site.invitations.order(:email)
+              %li
+                .email= mail_to invitation.email, invitation.email

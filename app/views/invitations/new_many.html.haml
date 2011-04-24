@@ -1,4 +1,5 @@
 - @page_title = "Create invitations"
+- @breadcrumbs << link_to('Invitations', site_invitations_path(@site)) << @page_title
 - form_tag create_many_site_invitations_path do
   = raw error_messages_for @site
   %ul.form

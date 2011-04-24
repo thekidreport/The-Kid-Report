@@ -1,2 +1,3 @@
 - @page_title = 'Send Invitation'
+- @breadcrumbs << link_to('Invitations', site_invitations_path(@site)) << @page_title
 = render 'form', :button_value => 'Send Invitation'

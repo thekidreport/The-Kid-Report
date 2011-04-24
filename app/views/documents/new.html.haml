@@ -1,2 +1,3 @@
 - @page_title = "Upload Document"
+- @breadcrumbs << link_to('Documents', site_documents_path(@site)) << @page_title
 = render 'form', :button_value => 'Upload document'

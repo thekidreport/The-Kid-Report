@@ -1,2 +1,3 @@
 - @page_title = 'Edit page'
+- @breadcrumbs << link_to('Pages', site_pages_path(@site)) << @page_title
 = render 'form', :button_value => 'Save changes'

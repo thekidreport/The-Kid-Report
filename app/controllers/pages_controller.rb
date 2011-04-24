@@ -43,6 +43,10 @@ class PagesController < ApplicationController
     end
   end
   
+  def index
+    @breadcrumbs << 'Pages'
+  end
+  
   def reorder
     @site.pages.not_deleted.each do | p |
       p.position = params["page_list"].index(p.id.to_s) + 1

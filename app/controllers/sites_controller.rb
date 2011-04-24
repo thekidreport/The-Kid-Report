@@ -26,7 +26,6 @@ class SitesController < ApplicationController
   
   def show
     @site = Site.not_deleted.find_by_permalink(params[:site_permalink])
-    
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i
     @shown_month = Date.civil(@year, @month)
@@ -87,6 +86,7 @@ class SitesController < ApplicationController
   private
   def load_site_by_id
     @site = Site.not_deleted.find(params[:id])
+    @breadcrumbs = [] if @site
   end
 
 end

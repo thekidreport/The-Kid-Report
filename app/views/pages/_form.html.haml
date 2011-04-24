@@ -9,9 +9,9 @@
     %li.indent
       = f.check_box :comments_allowed
       = f.label :comments_allowed, :style => 'width:auto'
-    %li.indent
+      %br
       = f.check_box :visible
-      = f.label :visible, :style => 'width:auto'
+      = f.label :visible, 'Add to navigation', :style => 'width:auto'
     - if @page.page_archives.any?
       %li{:style => "float:right"}
         - options = [["-- Load previous version --",""]]

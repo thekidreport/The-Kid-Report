@@ -1,4 +1,5 @@
 - @page_title = 'Invitations'
+- @breadcrumbs << @page_title
 - @page_actions = capture do 
   = link_to("Invite one", new_site_invitation_path(@site))
   = link_to("Invite many", new_many_site_invitations_path(@site))

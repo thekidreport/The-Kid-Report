@@ -94,8 +94,6 @@ p {
   .framework .left {
     padding-right: 10px;
     vertical-align: top; }
-    .framework .left h3 {
-      margin-top: 1em; }
   .framework .right {
     padding-left: 10px;
     vertical-align: top; }
@@ -103,6 +101,9 @@ p {
     width: 31%; }
   .framework .wide {
     width: 69%; }
+
+.left h3 {
+  margin-top: 1em; }
 
 .safari .left_gutter {
   width: 220px; }
@@ -114,7 +115,8 @@ p {
   width: 100%; }
 
 .grid {
-  width: 100%; }
+  width: 100%;
+  table-layout: fixed; }
   .grid th {
     padding: 4px 8px;
     background-color: #444444;
@@ -126,6 +128,7 @@ p {
   .grid tr.even {
     background-color: #eeeeee; }
   .grid td {
+    overflow: hidden;
     padding: 2px 8px; }
 
 ul.form label {

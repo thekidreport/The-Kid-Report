@@ -21,41 +21,40 @@
         })();
 
   %body
-    #top_smudge
-      #middle_smudge
-        #bottom_smudge
-          #body_wrapper
-            #header
-              #logo
-                = link_to image_tag('logo.png'), root_path
-                .tagline It's about the kids
-              #user_nav
-                - if user_signed_in?
-                  Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
-                - else
-                  = link_to 'Sign in', new_user_session_path, :rel => 'nofollow'
-                  | #{link_to 'Create account', new_user_registration_path, :rel => 'nofollow'}
-            #nav
-              #nav_left
-                #nav_right
-                  %ul#nav
-                    %li= link_to 'Home', root_path, :rel => 'nofollow'
-                    %li= link_to 'Tour', tour_path, :rel => 'nofollow'
-                    %li= link_to 'About', about_path, :rel => 'nofollow'
-                    %li{:style => "float:right"}= link_to 'On Twitter', 'http://twitter.com/thekidreport'
-                    %li{:style => "float:right"}= link_to 'Our Blog', 'http://blog.thekidreport.org'
-                    %li{:style => "float:right"}= link_to 'Feedback', new_feedback_path, :rel => 'nofollow'
-            #body
-              #content
-                = raw notice flash[:notice]
-                = raw error flash[:alert]
-                - if @page_title
-                  %h1#page_title
-                    = @page_title unless url_for == root_path
-                = yield
-            #footer
-              The Kid Report - Private Parent Teacher Networks
-              &bull;
-              = link_to 'Privacy Policy', privacy_path
-              &bull;
-              = link_to 'Terms of Service', terms_path
+    #outside_wrapper
+      #inside_wrapper
+        #body_wrapper
+          #header
+            #logo
+              = link_to image_tag('logo.png'), root_path
+              .tagline It's about the kids
+            #user_nav
+              - if user_signed_in?
+                Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
+              - else
+                = link_to 'Sign in', new_user_session_path, :rel => 'nofollow'
+                | #{link_to 'Create account', new_user_registration_path, :rel => 'nofollow'}
+          #nav
+            #nav_left
+              #nav_right
+                %ul#nav
+                  %li= link_to 'Home', root_path, :rel => 'nofollow'
+                  %li= link_to 'Tour', tour_path, :rel => 'nofollow'
+                  %li= link_to 'About', about_path, :rel => 'nofollow'
+                  %li{:style => "float:right"}= link_to 'On Twitter', 'http://twitter.com/thekidreport'
+                  %li{:style => "float:right"}= link_to 'Our Blog', 'http://blog.thekidreport.org'
+                  %li{:style => "float:right"}= link_to 'Feedback', new_feedback_path, :rel => 'nofollow'
+          #body
+            #content
+              = raw notice flash[:notice]
+              = raw error flash[:alert]
+              - if @page_title
+                %h1#page_title
+                  = @page_title unless url_for == root_path
+              = yield
+          #footer
+            The Kid Report - Private Parent Teacher Networks
+            &bull;
+            = link_to 'Privacy Policy', privacy_path
+            &bull;
+            = link_to 'Terms of Service', terms_path

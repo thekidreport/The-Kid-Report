@@ -1,6 +1,13 @@
 body {
   padding-top: 15px; }
 
+#outside_wrapper {
+  padding: 0 30px;
+  height: 100%; }
+
+#inside_wrapper {
+  height: 100%; }
+
 #header {
   position: relative;
   padding: 5px;
@@ -9,12 +16,17 @@ body {
   font-weight: bold;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px; }
-  #header a {
+
+#site_nav {
+  padding-left: 90px; }
+  #site_nav a {
     text-decoration: none; }
-    #header a:hover {
+    #site_nav a:hover {
       text-decoration: underline; }
-  #header img {
-    vertical-align: top; }
+  #site_nav img {
+    position: absolute;
+    left: 10px;
+    top: 1px; }
 
 #nav {
   background-color: #190900;
@@ -97,6 +109,9 @@ body {
   margin-bottom: 1em;
   font-size: 0.9em; }
 
+#documents, #contacts {
+  margin-top: 1em; }
+
 .sortable {
   cursor: move; }
 
@@ -144,6 +159,16 @@ body {
       font-weight: bold; }
     .contacts li .phone {
       color: brown; }
+
+.scroll {
+  overflow-y: scroll;
+  height: 300px;
+  border: solid 1px #aaaaaa; }
+  .scroll table tr {
+    padding: 5px;
+    border-bottom: 1px solid #aaaaaa; }
+  .scroll li {
+    margin: 0.5em; }
 
 .date {
   color: #888888; }

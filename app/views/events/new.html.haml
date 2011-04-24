@@ -1,2 +1,3 @@
 - @page_title = 'New Event'
+- @breadcrumbs << link_to('Events', site_events_path(@site)) << @page_title
 = render 'form', :button_value => 'Create Event'

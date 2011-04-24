@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   
   def show
     @example = Site.example
+    @recent_users = User.limit(5).order('created_at desc')
+    @recent_sites = Site.limit(5).order('created_at desc')
   end
   
   def select_layout
@@ -59,6 +61,7 @@ class ApplicationController < ActionController::Base
         return false
       end
     end
+    @breadcrumbs = [] if @site
   end
   
   def site_members_only

@@ -1,13 +1,12 @@
-- @page_title = 'The Kid Report - Private Parent-Teacher Networks'
+- @page_title = 'The Kid Report - Private Parent Teacher Networks'
 %table.framework
   %tr
     %td.left{:style => "width:61%"}
       .shadow_box
-        %h1.headline 
-          Websites for Teachers, Coaches and Parents
+        %h1.headline Private Parent Teacher Networks
           
         %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:30px"}
-          Use The Kid Report to share information with other parents.  
+          Share information with other parents.  
           %br
           Keep your documents and schedule in one place.
           %br
@@ -38,8 +37,7 @@
                     %br
                     %span.comment= log_entry.loggable.body
                 - if site.events.coming_up.any?  
-                  %p
-                    = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => site.events.coming_up }
+                  = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => site.events.coming_up }
                 
         - else
           .chevron
@@ -53,12 +51,7 @@
           %div{:style => "display: inline-block; vertical-align: middle; text-align:center"}
             = image_tag 'screen_shot.png'
             %p{:style => "margin:0"} It's easy to create and edit pages
-        - if user_signed_in? && current_user.admin?
-          %p
-            %b Admin tools
-            %br
-              = link_to 'Users', admin_users_path
-              ,	#{link_to 'Sites', admin_sites_path}
+
       .shadow_box
         .chevron
           %h4 Parent Involvement
@@ -78,7 +71,7 @@
         .shadow_box
           .chevron
             %h4 Example Site
-          - if @example.logo.exists?
+          - if @example.logo_file_name.present? 
             #logo.image= link_to image_tag(@example.logo(:original), :class => :framed), site_root_path(@example.permalink)
           - else
             #logo.text= link_to_unless_current @example.name, site_root_path(@example.permalink)
@@ -91,5 +84,21 @@
           = image_tag 'kids.png', :class => :framed
         %p.poetry
           Informed parents are engaged and involved.
+      - if user_signed_in? && current_user.admin?
+        .shadow_box
+          .chevron
+            %h4 Admin Tools
+          %p
+            = link_to 'Users', admin_users_path
+            = User.count
+          %ul
+            - for user in @recent_users
+              %li= user.email
+          %p
+            = link_to 'Sites', admin_sites_path
+            = Site.count
+          %ul
+            - for site in @recent_sites
+              %li= link_to site.name, site_root_path(site.permalink)
       %p
         = link_to 'Create a Site', new_site_path, :class => :primary_action
