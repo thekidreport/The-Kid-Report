@@ -86,7 +86,8 @@ ul.form {
 
 p {
   margin: 1em 0;
-  line-height: 1.4em; }
+  line-height: 1.6em;
+  font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; }
 
 .framework {
   table-layout: fixed;
