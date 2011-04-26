@@ -7,7 +7,7 @@
     %p= raw @message.event.description.add_breaks
 
 - if @message.page
-  %p Link to #{link_to(@message.page.name, permalink_url(@message.page.site.permalink, @message.page.permalink))}
+  %p Link to #{link_to(@message.page.name, permalink_url(@message.page.site.permalink, @message.page.permalink, :protocol => 'https://'))}
   -if @message.embed_page?
     %h3= @message.page.name  
     = raw @message.page.content  
