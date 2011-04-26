@@ -39,7 +39,7 @@
                 - if site.events.coming_up.any?  
                   = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => site.events.coming_up }
           - if Event.for_user(current_user).any? && current_user.admin?
-            = link_to 'Subscribe to calendar feed', events_url(:format => :ics, :protocol => 'webcal', :token => current_user.authentication_token)
+            = link_to 'Subscribe to calendar feed', feed_events_url(:format => :ics, :protocol => 'webcal', :token => current_user.authentication_token)
         - else
           .chevron
             %h4 Easy to Use
