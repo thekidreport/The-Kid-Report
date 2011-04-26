@@ -18,6 +18,7 @@ gem 'calendar_date_select', :git => 'https://github.com/paneq/calendar_date_sele
 gem 'hoptoad_notifier'
 gem 'heroku', '1.17.17'
 gem 'delayed_job'
+gem 'ri_cal'
 
 
 group :development do

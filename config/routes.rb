@@ -48,6 +48,11 @@ Kidr::Application.routes.draw do
     resources :log_entries, :only => :index
   end
   resources :feedbacks
+  resources :events, :only => :index do
+    collection do
+      get :feed
+    end
+  end
   
   root :to => 'application#show'
   match "/about", :to => 'application#about', :as => :about

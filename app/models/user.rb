@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
+  # :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   scope :not_deleted, where('users.deleted_at is null')
 	
-	before_save :reset_deleted_at, :set_name
+	before_save :reset_deleted_at, :set_name, :ensure_authentication_token
 	after_create :set_memberships
 
 	def display_name
@@ -76,6 +76,21 @@ class User < ActiveRecord::Base
   
   def set_memberships
     self.invitations.each {|i| Membership.create(:user => self, :site => i.site, :role => Role.member, :passcode => i.site.passcode) }
+  end
+  
+  def ical
+    @events = Event.for_user(self)
+    RiCal.Calendar do |cal|
+      @events.each do |e|
+        cal.event do |event|
+          event.summary = e.name.to_s
+          event.description = e.description.to_s
+          event.dtstart =  e.start_at
+          event.dtend = e.end_at
+          event.location = e.location.to_s
+        end
+      end
+    end
   end
   
   protected

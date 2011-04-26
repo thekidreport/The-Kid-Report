@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   before_filter :authenticate_user!
-  before_filter :site_editor_required!, :except => [:index, :show]
+  before_filter :site_editor_required!, :except => [:index, :show, :feed]
   before_filter :site_member_required!, :only => [:index, :show]
 
   def index
@@ -9,6 +9,12 @@ class EventsController < ApplicationController
     @year = (params[:year] || Time.zone.now.year).to_i
     @shown_month = Date.civil(@year, @month)
     @event_strips = @site.events.event_strips_for_month(@shown_month)
+  end
+  
+  def feed
+    respond_to do |format| 
+      format.ics { render :text => current_user.ical.export }
+    end
   end
   
   def show

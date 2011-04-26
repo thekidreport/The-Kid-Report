@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415041042) do
+ActiveRecord::Schema.define(:version => 20110426053025) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -114,10 +114,9 @@ ActiveRecord::Schema.define(:version => 20110415041042) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.integer  "message_id"
-    t.integer  "user_id"
-    t.string   "email"
-    t.datetime "created_at"
+    t.integer "message_id"
+    t.integer "user_id"
+    t.string  "email"
   end
 
   create_table "page_archives", :force => true do |t|
@@ -197,8 +196,10 @@ ActiveRecord::Schema.define(:version => 20110415041042) do
     t.boolean  "admin"
     t.datetime "deleted_at"
     t.string   "phone"
+    t.string   "authentication_token"
   end
 
+  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
