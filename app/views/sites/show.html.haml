@@ -32,6 +32,9 @@
       - if @site.events.think_about.any?
         %h2 Events
         = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @site.events.think_about }
+        - if @site.events.any? && current_user.admin?
+          = link_to 'Subscribe to calendar feed', feed_site_events_url(@site, :format => :ics, :protocol => 'webcal', :token => current_user.authentication_token)
+          
       - if @site.documents.any?  
         #documents
           %h2 Documents

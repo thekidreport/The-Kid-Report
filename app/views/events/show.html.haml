@@ -18,9 +18,11 @@
       %b Date#{" and Time" unless !@event.all_day? }:
       = @event.start_on.to_s(:date)  
       - if !@event.all_day?
-        = @event.end_at.to_s(:time)
+        = @event.start_time.try(:to_s, :time)
       - if @event.start_on < @event.end_on
         to #{@event.end_on.to_s(:date)}
+      - if !@event.all_day?
+        = @event.end_time.try(:to_s, :time)
 
       - if @event.remind_on
         %br

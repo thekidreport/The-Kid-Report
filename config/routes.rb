@@ -26,7 +26,9 @@ Kidr::Application.routes.draw do
         post :reorder
       end
     end
-    resources :events
+    resources :events do
+      collection { get :feed }
+    end
       
     resources :documents do
       member do
@@ -49,9 +51,7 @@ Kidr::Application.routes.draw do
   end
   resources :feedbacks
   resources :events, :only => :index do
-    collection do
-      get :feed
-    end
+    collection { get :feed }
   end
   
   root :to => 'application#show'

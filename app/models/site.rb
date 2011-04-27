@@ -82,4 +82,17 @@ class Site < ActiveRecord::Base
     Site.find_by_permalink('example')
   end
   
+  
+  def ical
+    @events = self.events
+    RiCal.Calendar do |cal|
+      cal.add_property('X-WR-CALNAME',self.name)
+      @events.each do |e|
+        cal.event do |event|
+          e.assign_to_ical_event(event)
+        end
+      end
+    end
+  end
+  
 end

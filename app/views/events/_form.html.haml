@@ -12,20 +12,18 @@
       = f.label :location
       = f.text_field :location, :style => 'width:400px'
     %li.indent
-      = f.check_box :multi_day
-      = f.label :multi_day, 'Spans multiple days', :style => 'width:auto'
       = f.check_box :all_day
       = f.label :all_day, 'All day', :style => 'width:auto'
     %li#start_at_fields
-      = f.label :start_on
-      = f.calendar_date_select :start_on, :time => false
+      = f.label :start_on, 'Start date'
+      = f.calendar_date_select :start_on, :time => false, :style => 'width:100px'
       %span#start_at_time
         = f.label :start_time
         = f.time_select :start_time, {:minute_step => 5}
       
     %li#end_at_fields
-      = f.label :end_on
-      = f.calendar_date_select :end_on, :time => false
+      = f.label :end_on, 'End date'
+      = f.calendar_date_select :end_on, :time => false, :style => 'width:100px'
       %span#end_at_time
         = f.label :end_time
         = f.time_select :end_time, {:minute_step => 5}
@@ -36,12 +34,10 @@
       = f.check_box :reminder
       = f.label :reminder, 'Send a reminder', :style => 'width:auto'
     %li#remind_on_field
-      = f.label :remind_on
-      = f.date_select :remind_on
+      = f.label :remind_on, "On this day"
+      = f.calendar_date_select :remind_on, :time => false, :style => 'width:100px'
     %li.indent
       = f.submit button_value
-= javascript_tag js_md = "if($('event_multi_day').checked){$('end_at_fields').show()} else {$('end_at_fields').hide()}"
-= observe_field :event_multi_day, :function => js_md
 = javascript_tag js_r = "if($('event_reminder').checked){$('remind_on_field').show()} else {$('remind_on_field').hide()}"
 = observe_field :event_reminder, :function => js_r
 = javascript_tag js_time = "if($('event_all_day').checked){ $('start_at_time').hide();$('end_at_time').hide(); }else{$('start_at_time').show();$('end_at_time').show();}"

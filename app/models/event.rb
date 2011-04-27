@@ -11,7 +11,8 @@ class Event < ActiveRecord::Base
 
   before_save :set_end_on, :set_remind_on
   
-  attr_accessor :multi_day, :reminder
+  attr_accessor :reminder
+  # :multi_day was removed
   
   scope :remind_today, lambda { where('Date(remind_on) = ?', Date.today)}
   scope :think_about, lambda { where('Date(start_on) > ?', 1.weeks.ago).order(:start_on).limit(6)}
@@ -19,8 +20,9 @@ class Event < ActiveRecord::Base
   scope :for_user, lambda { |user| where('memberships.user_id = ?', user.id).includes(:site => :memberships) }
 
   def set_end_on 
-    self.end_on = self.start_on if self.multi_day == '0'
+    self.end_on = self.start_on if self.end_on.blank?
     self.end_on = self.start_on if self.end_on < self.start_on
+    self.end_time = self.start_time + 30.minutes if (self.end_on == self.start_on && self.end_time < self.start_time)
   end
   
   def set_remind_on
@@ -31,6 +33,25 @@ class Event < ActiveRecord::Base
     for event in Event.remind_today
       event.site.messages.create(:event => event, :page => event.page, :body => "#{event.name} #{event.description}") unless event.messages.where('Date(created_at) = ?', Date.today).any?
     end
+  end
+  
+  def assign_to_ical_event(ical_event)
+    ical_event.summary = self.name.to_s
+    ical_event.description = self.description.to_s
+    if self.all_day? || self.start_time.blank?
+      ical_event.dtstart =  self.start_at.strftime("%Y%m%d")
+    else
+      ical_event.dtstart =  self.start_at.strftime("%Y%m%d") + 'T' + self.start_time.strftime("%H%M%S")
+    end
+    if self.start_at < self.end_at
+      ical_event.dtend = self.end_at.strftime("%Y%m%d") 
+      if self.all_day? || self.end_time.blank?
+        ical_event.dtend =  self.end_at.strftime("%Y%m%d")
+      else
+        ical_event.dtend =  self.end_at.strftime("%Y%m%d") + 'T' + self.end_time.strftime("%H%M%S")
+      end
+    end 
+    ical_event.location = self.location.to_s
   end
 
 end

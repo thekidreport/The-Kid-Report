@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   
   def feed
     respond_to do |format| 
-      format.ics { render :text => current_user.ical.export }
+      format.ics { render :text => @site ? @site.ical.export : current_user.ical.export }
     end
   end
   
@@ -48,7 +48,6 @@ class EventsController < ApplicationController
     @event = @site.events.find(params[:id])
     @event.reminder = @event.remind_on.present?
     @event.remind_on = @start_on - 2.days unless @event.remind_on
-    @event.multi_day = @event.end_on && @event.end_on > @event.start_on
   end
 
   def update

@@ -81,13 +81,10 @@ class User < ActiveRecord::Base
   def ical
     @events = Event.for_user(self)
     RiCal.Calendar do |cal|
+      cal.add_property('X-WR-CALNAME','The Kid Report')
       @events.each do |e|
         cal.event do |event|
-          event.summary = e.name.to_s
-          event.description = e.description.to_s
-          event.dtstart =  e.start_at
-          event.dtend = e.end_at
-          event.location = e.location.to_s
+          e.assign_to_ical_event(event)
         end
       end
     end
