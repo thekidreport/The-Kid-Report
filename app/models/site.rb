@@ -86,7 +86,7 @@ class Site < ActiveRecord::Base
   def ical
     @events = self.events
     RiCal.Calendar do |cal|
-      cal.add_property('X-WR-CALNAME',self.name)
+      cal.add_x_property('X-WR-CALNAME',self.name)
       @events.each do |e|
         cal.event do |event|
           e.assign_to_ical_event(event)
