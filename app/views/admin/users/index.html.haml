@@ -9,9 +9,8 @@
       %tr
         %th= order :name, :as => 'User'
         %th= order :email
-        %th{:style => "text-align:center; width:120px"}= order :created_at, :as => 'Since'
-        %th{:style => "text-align:center; width:60px"}= order :sign_in_count, :as => 'Sign Ins' 
-        %th{:style => "text-align:center; width:60px"}= order :admin, :as => 'Admin' 
+        %th{:style => "text-align:center; width:70px"}= order :created_at, :as => 'Since'
+        %th{:style => "text-align:center; width:60px"}= order :sign_in_count, :as => 'Sign Ins'
         %th Sites
     = render @users
   = will_paginate @users

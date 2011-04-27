@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/ctide/ri_cal.git
+  revision: 8f3f73abfcfe4cb80099afc0d72b4693b5ef4776
+  branch: master
+  specs:
+    ri_cal (0.8.8)
+
+GIT
   remote: https://github.com/paneq/calendar_date_select.git
   revision: 8e7ec79435a68665df40b14bd90f47e6ac5e9135
   branch: rails3test
@@ -133,7 +140,6 @@ GEM
     rake (0.8.7)
     rest-client (1.6.1)
       mime-types (>= 1.16)
-    ri_cal (0.8.8)
     rspec (2.5.0)
       rspec-core (~> 2.5.0)
       rspec-expectations (~> 2.5.0)
@@ -194,7 +200,7 @@ DEPENDENCIES
   paperclip
   pg
   rails (= 3.0.3)
-  ri_cal
+  ri_cal!
   rspec
   simple_form
   taps (= 0.3.21)
