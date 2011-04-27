@@ -1,8 +1,11 @@
 class EventsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :feed
+  before_filter :authenticate_user!, :if => :site_members_only
   before_filter :site_editor_required!, :except => [:index, :show, :feed]
+  
   before_filter :site_member_required!, :only => [:index, :show]
+  before_filter :site_member_required!, :only => [:index, :show, :feed], :if => :site_members_only
 
   def index
     @month = (params[:month] || Time.zone.now.month).to_i

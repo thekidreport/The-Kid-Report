@@ -33,7 +33,7 @@
         %h2 Events
         = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => @site.events.think_about }
         = image_tag('icons/ics.gif', :style => 'vertical-align:middle')
-        = link_to 'Subscribe to calendar feed', feed_site_events_url(@site, :format => :ics, :protocol => 'webcal', :token => current_user.authentication_token)
+        = link_to 'Subscribe to calendar feed', feed_site_events_url(@site, :format => :ics, :protocol => 'webcal', :token => (@site.members_only? ? current_user.try(:authentication_token) : nil))
           
       - if @site.documents.any?  
         #documents
