@@ -7,3 +7,5 @@ Allow: /about
 Allow: /feedbacks
 Allow: /example
 Allow: /users/sign_in
+Allow: /events/feed.ics
+Allow: /sites/*/events/feed.ics
