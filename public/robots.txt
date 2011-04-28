@@ -1,11 +1,4 @@
 # See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
 
 User-agent: *
-Disallow: /
-Allow: /tour
-Allow: /about
-Allow: /feedbacks
-Allow: /example
-Allow: /users/sign_in
-Allow: /events/feed.ics
-Allow: /sites/*/events/feed*
+Allow: /
