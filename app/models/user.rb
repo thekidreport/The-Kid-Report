@@ -90,6 +90,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def events_coming_up
+    Event.for_user(self).coming_up
+  end
+  
   protected
   def password_required?
     !persisted? || password.present? || password_confirmation.present?

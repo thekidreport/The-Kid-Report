@@ -12,9 +12,11 @@
           #{event.start_on.to_s(:dom)} 
       .info
         .name 
-          #{link_to_function event.name, "Modalbox.show('#{site_event_path(event.site, event)}', {title: '#{event.name}', width: 460, overlayDuration:0.1, slideDownDuration:0.1}); return false;"} 
+          #{link_to_function event.name, "Modalbox.show('#{site_event_path(event.site, event)}', {title: '#{event.name}', width: 460, overlayDuration:0.1, slideDownDuration:0.1}); return false;"}         
+          - if @site.nil?
+            \- #{link_to(event.site.name, permalink_path(event.site.permalink))}
         .description
           #{event.start_time.to_s(:time) unless event.all_day? || event.start_time.nil?}
           - if event.location.present?
             at #{event.location}
-          #{event.description.truncate(55)}
+          #{event.description.truncate(140)}
