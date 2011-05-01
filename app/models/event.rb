@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   
   validates_presence_of :name
 
-  before_save :set_end_on, :set_remind_on
+  before_save :set_end_on, :set_time, :set_remind_on
   
   attr_accessor :reminder
   # :multi_day was removed
@@ -22,7 +22,17 @@ class Event < ActiveRecord::Base
   def set_end_on 
     self.end_on = self.start_on if self.end_on.blank?
     self.end_on = self.start_on if self.end_on < self.start_on
-    self.end_time = self.start_time + 30.minutes if (self.end_on == self.start_on && self.end_time < self.start_time)
+    self.end_time = self.start_time + 30.minutes if (self.end_on == self.start_on && (self.end_time.blank? || self.end_time < self.start_time))
+  end
+  
+  def set_time
+    if self.all_day?
+      self.start_on = self.start_on.strftime("%Y%m%d") + 'T000000'
+      self.end_on = self.end_on.strftime("%Y%m%d") + 'T000000'
+    else
+      self.start_on = self.start_on.strftime("%Y%m%d") + 'T' + self.start_time.strftime("%H%M%S")
+      self.end_on = self.end_on.strftime("%Y%m%d") + 'T' + self.end_time.strftime("%H%M%S")
+    end
   end
   
   def set_remind_on
@@ -39,16 +49,16 @@ class Event < ActiveRecord::Base
     ical_event.summary = "#{self.site.name}: #{self.name.to_s}"
     ical_event.description = self.description.to_s
     if self.all_day? || self.start_time.blank?
-      ical_event.dtstart =  self.start_at.gmtime.strftime("%Y%m%d")
+      ical_event.dtstart =  self.start_on.gmtime.strftime("%Y%m%d")
     else
-      ical_event.dtstart =  self.start_at.gmtime.strftime("%Y%m%d") + 'T' + self.start_time.gmtime.strftime("%H%M%S") + 'Z'
+      ical_event.dtstart =  self.start_on.gmtime.strftime("%Y%m%dT%H%M%S")
     end
-    if self.start_at < self.end_at
-      ical_event.dtend = self.end_at.gmtime.strftime("%Y%m%d") 
+    if self.start_on < self.end_on
+      ical_event.dtend = self.end_on.gmtime.strftime("%Y%m%d") 
       if self.all_day? || self.end_time.blank?
-        ical_event.dtend =  self.end_at.gmtime.strftime("%Y%m%d")
+        ical_event.dtend =  self.end_on.gmtime.strftime("%Y%m%d")
       else
-        ical_event.dtend =  self.end_at.gmtime.strftime("%Y%m%d") + 'T' + self.end_time.gmtime.strftime("%H%M%S") + 'Z'
+        ical_event.dtend =  self.end_on.gmtime.strftime("%Y%m%dT%H%M%S")
       end
     end 
     ical_event.location = self.location.to_s
