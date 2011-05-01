@@ -39,16 +39,16 @@ class Event < ActiveRecord::Base
     ical_event.summary = "#{self.site.name}: #{self.name.to_s}"
     ical_event.description = self.description.to_s
     if self.all_day? || self.start_time.blank?
-      ical_event.dtstart =  self.start_at.strftime("%Y%m%d")
+      ical_event.dtstart =  self.start_at.gmtime.strftime("%Y%m%d")
     else
-      ical_event.dtstart =  self.start_at.strftime("%Y%m%d") + 'T' + self.start_time.strftime("%H%M%S")
+      ical_event.dtstart =  self.start_at.gmtime.strftime("%Y%m%d") + 'T' + self.start_time.gmtime.strftime("%H%M%S") + 'Z'
     end
     if self.start_at < self.end_at
-      ical_event.dtend = self.end_at.strftime("%Y%m%d") 
+      ical_event.dtend = self.end_at.gmtime.strftime("%Y%m%d") 
       if self.all_day? || self.end_time.blank?
-        ical_event.dtend =  self.end_at.strftime("%Y%m%d")
+        ical_event.dtend =  self.end_at.gmtime.strftime("%Y%m%d")
       else
-        ical_event.dtend =  self.end_at.strftime("%Y%m%d") + 'T' + self.end_time.strftime("%H%M%S")
+        ical_event.dtend =  self.end_at.gmtime.strftime("%Y%m%d") + 'T' + self.end_time.gmtime.strftime("%H%M%S") + 'Z'
       end
     end 
     ical_event.location = self.location.to_s
