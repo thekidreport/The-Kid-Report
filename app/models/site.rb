@@ -89,7 +89,7 @@ class Site < ActiveRecord::Base
       cal.add_x_property('X-WR-CALNAME',self.name)
       @events.each do |e|
         cal.event do |event|
-          e.assign_to_ical_event(event)
+          e.assign_to_ical_event(event, :site => true)
         end
       end
     end

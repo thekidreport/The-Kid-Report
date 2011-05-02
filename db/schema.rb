@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426053025) do
+ActiveRecord::Schema.define(:version => 20110501232751) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(:version => 20110426053025) do
     t.boolean  "all_day",     :default => false, :null => false
     t.time     "start_time"
     t.time     "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feedback", :force => true do |t|
@@ -114,9 +116,10 @@ ActiveRecord::Schema.define(:version => 20110426053025) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.integer "message_id"
-    t.integer "user_id"
-    t.string  "email"
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.string   "email"
+    t.datetime "created_at"
   end
 
   create_table "page_archives", :force => true do |t|
