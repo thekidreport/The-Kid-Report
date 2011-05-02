@@ -20,7 +20,7 @@ module CalendarHelper
     # args is an argument hash containing :event, :day, and :options
     calendar event_calendar_opts.merge(options) do |args|
       event = args[:event]
-      %(#{image_tag('icons/reminder.png', :title => event.remind_on.to_s(:date)) if event.remind_on.present?} #{link_to(image_tag('icons/link.png', :title => event.page.name), permalink_path(event.site.permalink, event.page.permalink)) if event.page.present?} #{link_to_if(current_user && current_user.can_edit?(event.site), event.name, "/sites/#{event.site.id}/events/#{event.id}/edit", :title => "#{event.name} #{event.start_on.to_s(:date)} #{event.start_time.to_s(:time) if event.start_time} #{" at #{event.location}" if event.location.present?}#{": #{event.description}" if event.description.present?}")})
+      %(#{image_tag('icons/reminder.png', :title => event.remind_on.to_s(:date)) if event.remind_on.present?} #{link_to(image_tag('icons/link.png', :title => event.page.name), permalink_path(event.site.permalink, event.page.permalink)) if event.page.present?} #{link_to_if(current_user && current_user.can_edit?(event.site), event.name, "/sites/#{event.site.id}/events/#{event.id}/edit", :title => "#{event.name} #{event.all_day? ? event.start_on.to_s(:date) : event.start_on.to_s(:datetime)} #{" at #{event.location}" if event.location.present?}#{": #{event.description}" if event.description.present?}")})
     end
   end
 end
