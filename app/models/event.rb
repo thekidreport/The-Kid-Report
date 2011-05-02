@@ -48,9 +48,9 @@ class Event < ActiveRecord::Base
   
   def assign_to_ical_event(ical_event, options = {})
     if options[:site]
-      ical_event.summary = "#{self.site.name}: #{self.name}"
-    else
       ical_event.summary = "#{self.name}"
+    else
+      ical_event.summary = "#{self.site.name}: #{self.name}"
     end
     ical_event.description = self.description.to_s
     if self.all_day? || self.start_time.blank?
