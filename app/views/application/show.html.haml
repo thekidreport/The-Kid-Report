@@ -18,6 +18,8 @@
           %ul
             - for site in current_user.sites.not_deleted.order('last_edited_at desc')
               %li.site
+                .logo
+                  #{link_to image_tag( site.logo(:small)), site_root_path(site.permalink) }
                 .info
                   = pluralize site.pages.count, 'page'
                   , #{pluralize site.memberships.count, 'member'}

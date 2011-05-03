@@ -136,7 +136,15 @@ blockquote {
     margin: 0; }
   .site p {
     margin: 0;
+    margin-left: 94px;
     margin-bottom: 0.5em; }
+  .site .logo {
+    float: left;
+    margin-right: 10px;
+    width: 64px;
+    text-align: center;
+    overflow: hidden;
+    padding: 10px; }
   .site .info {
     color: #666666;
     float: right;

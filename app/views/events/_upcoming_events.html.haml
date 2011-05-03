@@ -6,10 +6,18 @@
         = month = event.start_on.to_s(:month)
     %li.event
       .date
-        .wday
-          #{event.start_on.to_s(:wday)}
-        .dom
-          #{event.start_on.to_s(:dom)} 
+        - if (event.end_on.beginning_of_day > event.start_on.beginning_of_day)
+          .wday
+            %span.small
+              #{event.start_on.to_s(:wday)}-#{event.end_on.to_s(:wday)}
+          .dom.small
+            %span.small
+              = "#{event.start_on.to_s(:dom).strip}-#{event.end_on.to_s(:dom).strip}"
+        - else
+          .wday
+            #{event.start_on.to_s(:wday)}
+          .dom
+            #{event.start_on.to_s(:dom)}
       .info
         .name 
           #{link_to_function event.name, "Modalbox.show('#{site_event_path(event.site, event)}', {title: '#{event.name}', width: 460, overlayDuration:0.1, slideDownDuration:0.1}); return false;"}         
