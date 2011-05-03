@@ -24,7 +24,8 @@
           - if @site.nil?
             \- #{link_to(event.site.name, permalink_path(event.site.permalink))}
         .description
-          #{event.start_time.to_s(:time) unless event.all_day? || event.start_time.nil?}
+          - unless event.all_day?
+            #{event.start_on.to_s(:time)}#{"-#{event.end_on.to_s(:time).strip}" if event.start_on.beginning_of_day == event.end_on.beginning_of_day}
           - if event.location.present?
             at #{event.location}
           #{event.description.truncate(140)}
