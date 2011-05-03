@@ -36,9 +36,7 @@
                   - if log_entry.loggable.is_a?(Comment)
                     %br
                     %span.comment= log_entry.loggable.body
-          - if Event.for_user(current_user).any?
-            = image_tag('icons/ics.gif', :style => 'vertical-align:middle')
-            = link_to 'Subscribe to calendar feed', feed_events_url(:format => :ics, :protocol => 'webcal', :token => current_user.authentication_token)
+
         - else
           .chevron
             %h4 Easy to Use
@@ -52,6 +50,8 @@
             = image_tag 'screen_shot.png'
             %p{:style => "margin:0"} It's easy to create and edit pages
 
+        %p
+          = link_to 'Create a Site', new_site_path, :class => :primary_action
       .shadow_box
         .chevron
           %h4 Parent Involvement
@@ -73,17 +73,41 @@
             %h4 Upcoming events
           - if current_user.events_coming_up.any?  
             = render :partial => 'events/upcoming_events', :locals => { :upcoming_events => current_user.events_coming_up }
-      
-      - if @example
+          - if Event.for_user(current_user).any?
+            = image_tag('icons/ics.gif', :style => 'vertical-align:middle')
+            = link_to 'Subscribe to calendar feed', feed_events_url(:format => :ics, :protocol => 'webcal', :token => current_user.authentication_token)
+      - else
         .shadow_box
           .chevron
-            %h4 Example Site
-          - if @example.logo_file_name.present? 
-            #logo.image= link_to image_tag(@example.logo(:original), :class => :framed), site_root_path(@example.permalink)
-          - else
-            #logo.text= link_to_unless_current @example.name, site_root_path(@example.permalink)
+            %h4 Sign in
           %p{:style => 'text-align:center'}
-            Take a look at our #{ link_to 'example site', site_root_path(@example.permalink) }
+            Sign in below or #{link_to 'register', new_user_registration_path}
+        
+          = form_for(:user, :url => user_session_path) do |f|
+            %ul.form
+              %li
+                = f.label :email
+                = f.text_field :email, :style => 'width: 160px', :type => 'email'
+              %li
+                = f.label :password
+                = f.password_field :password, :style => 'width: 160px'
+                = link_to 'Forgot?', new_user_password_path
+              %li.indent
+                = f.check_box :remember_me
+                = f.label :remember_me
+                %br
+                = f.submit "Sign in", :class => 'primary'
+        
+        - if @example
+          .shadow_box
+            .chevron
+              %h4 Example Site
+            - if @example.logo_file_name.present? 
+              #logo.image= link_to image_tag(@example.logo(:original), :class => :framed), site_root_path(@example.permalink)
+            - else
+              #logo.text= link_to_unless_current @example.name, site_root_path(@example.permalink)
+            %p{:style => 'text-align:center'}
+              Take a look at our #{ link_to 'example site', site_root_path(@example.permalink) }
       .shadow_box
         .chevron
           %h4 Inform Parents
@@ -107,5 +131,3 @@
           %ul
             - for site in @recent_sites
               %li= link_to site.name, site_root_path(site.permalink)
-      %p
-        = link_to 'Create a Site', new_site_path, :class => :primary_action
