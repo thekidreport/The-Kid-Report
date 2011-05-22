@@ -27,7 +27,7 @@
           #header
             #logo
               = link_to image_tag('logo.png'), root_path
-              .tagline It's about the kids
+              .tagline Private Parent Networks
             #user_nav
               - if user_signed_in?
                 Welcome, #{link_to current_user.display_name, edit_user_registration_path} | #{link_to 'Sign out', destroy_user_session_path}
@@ -53,7 +53,7 @@
                   = @page_title unless url_for == root_path
               = yield
           #footer
-            The Kid Report - Private Parent Teacher Networks
+            The Kid Report - Private Parent Networks
             &bull;
             = link_to 'Privacy Policy', privacy_path
             &bull;

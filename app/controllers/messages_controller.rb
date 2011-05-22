@@ -23,10 +23,28 @@ class MessagesController < ApplicationController
       @message.page = @page
     end
     if @message.save
-      flash[:notice] = 'Message was created and notifications are being sent'
-      redirect_to site_messages_path(@site)
+      flash[:notice] = 'Message was created successfully'
+      respond_to do |format| 
+        format.html { redirect_to site_messages_path(@site) }
+        format.js { 
+          render :update do |page|
+            page.replace_html 'messages', :partial => "messages/page_messages", :locals => { :page => @message.page }
+          end  
+        }
+      end
     else
       render :action => :new
+    end
+  end
+  
+  
+  def destroy
+    @page = @site.pages.not_deleted.find(params[:page_id])
+    @message = @page.messages.find(params[:id])
+    @message.destroy if (current_user.can_edit?(@site) || @message.user.eql?(current_user))
+    LogEntry.create!(:loggable => @comment, :site => @site, :user => current_user, :description => 'comment_delete')
+    render :update do |page|
+      page.replace_html 'comments', :partial => "comments/page_comments", :locals => { :page => @comment.page }
     end
   end
   

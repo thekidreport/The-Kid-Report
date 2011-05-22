@@ -12,22 +12,11 @@
         #top_story
           .user_generated= raw @site.top_story
 
+      #messages
+        %h3 
+          Messages
+        = render 'messages/messages', :site => @site,  :page => nil, :messages => @site.messages
 
-      - if @site.messages.any?
-        %h3 Recent Messages
-        %ul
-          = render :partial => 'messages/message', :collection => @site.messages.order('created_at desc').limit(5)
-      %h2 Recent Edits
-      %ul.tight
-        - for log_entry in @site.log_entries.page_update.order('created_at desc').limit(4).uniq
-          %li
-            %span.date  
-              = log_entry.created_at.to_s(:date)
-            = log_entry.user.display_name
-            = log_entry.friendly_description
-            - if log_entry.loggable.respond_to?(:page)
-              = link_to log_entry.loggable.try(:page).try(:name), permalink_path(@site.permalink, log_entry.loggable.try(:page).try(:permalink)) if log_entry.loggable.try(:page)
-            
     %td.right.thin
       - if @site.events.think_about.any?
         %h2 Events

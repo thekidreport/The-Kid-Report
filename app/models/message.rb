@@ -37,4 +37,10 @@ class Message < ActiveRecord::Base
       self.subject += ": a message from #{self.user.name}"
     end
   end
+  
+    
+  def stop_double_click
+    errors.add_to_base('The message was created') if Message.find(:first, :conditions => ['body = ? AND user_id = ? AND created_at > ?', self.body, self.user_id, 1.minute.ago])
+  end
+  
 end

@@ -16,5 +16,8 @@
 .user_generated= raw @page.content
 
 - if @page.comments_allowed?
-  #comments
-    = render 'comments/page_comments', :page => @page 
+  %div.left.wide
+    #messages
+      %h3 
+        Messages
+      = render 'messages/messages', :site => @site,  :page => @page, :messages => @page.messages

@@ -1,16 +1,16 @@
-- @page_title = 'The Kid Report - Private Parent Teacher Networks'
+- @page_title = 'The Kid Report - Private Parent Networks'
 %table.framework
   %tr
     %td.left{:style => "width:61%"}
       .shadow_box
-        %h1.headline Private Parent Teacher Networks
+        %h1.headline Private Parent Networks
           
-        %p{:style => "text-align:center; font-size: 1.2em; margin-bottom:30px"}
-          Share information with other parents.  
+        %p{:style => "text-align:center; font-size: 1.2em; margin:0 30px 30px"}
+          The Kid Report allows teachers and parents to privately create pages, upload documents, and share a calendar.
+        %p{:style => "text-align:center; font-size: 1.2em; margin:0 30px 30px"}
+          Take a Wiki, Twitter, and a Blog and combine them into a private site...
           %br
-          Keep your documents and schedule in one place.
-          %br
-          Reach parents easily by email.
+          That's The Kid Report.
         - if user_signed_in? && current_user.sites.not_deleted.any?
           .chevron
             %h4
@@ -26,22 +26,10 @@
                 %h3= link_to site.name, site_root_path(site.permalink)
                 %p
                   = site.description
-                %p  
-                  %strong #{site.last_edited_at.to_s(:date)}
-                  %br
-                  - log_entry = site.log_entries.last
-                  = log_entry.user.display_name
-                  = log_entry.friendly_description
-                  - if log_entry.loggable.respond_to? :page
-                    = link_to_if (log_entry.loggable.page.not_deleted), log_entry.loggable.page.name, permalink_path(site.permalink, log_entry.loggable.page.permalink)
-
-                  - if log_entry.loggable.is_a?(Comment)
-                    %br
-                    %span.comment= log_entry.loggable.body
+                
+                = render 'messages/messages', :site => site, :page => nil, :messages => site.messages.limit(3)
 
         - else
-          .chevron
-            %h4 Easy to Use
           %ul.bullets{:style => "display: inline-block; vertical-align: middle; font-size: 1.2em; width: 27%"}
             %li Create pages
             %li Schedule Events

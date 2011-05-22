@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
   def create
     @page = @site.pages.not_deleted.find(params[:page_id])
     @comment = @page.comments.build(params[:comment].merge(:user => current_user)) if current_user.member_of?(@site)
-    @comment.save
-    LogEntry.create!(:loggable => @comment, :site => @site, :user => current_user, :description => 'comment_create')
+    LogEntry.create!(:loggable => @comment, :site => @site, :user => current_user, :description => 'comment_create') if @comment.save
     render :update do |page|
       page.replace_html 'comments', :partial => "comments/page_comments", :locals => { :page => @comment.page }
     end

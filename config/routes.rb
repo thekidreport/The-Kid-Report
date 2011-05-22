@@ -36,7 +36,7 @@ Kidr::Application.routes.draw do
       end
     end
     resources :photos, :only => :index
-    resources :messages, :only => [:index, :new, :create]
+    resources :messages, :only => [:index, :new, :create, :destroy]
     resources :memberships
     resources :invitations do
       member do 

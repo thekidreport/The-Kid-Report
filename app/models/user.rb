@@ -17,10 +17,20 @@ class User < ActiveRecord::Base
 
 	EMAIL_REGEX = /([_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|museum|name)))/
 
-  scope :not_deleted, where('users.deleted_at is null')
+  has_attached_file :avatar, 
+    :storage => :s3, 
+    :s3_credentials => S3_CREDENTIALS, 
+    :path => "/user_avatars/:id/:style/:filename",
+    :default_style => :original,
+    :styles => { :original => "180x", :small => "64x" },
+    :s3_protocol => 'https'
 	
 	before_save :reset_deleted_at, :set_name, :ensure_authentication_token
 	after_create :set_memberships
+	
+	def self.not_deleted
+	  where('users.deleted_at is null')
+  end
 
 	def display_name
 		if self.name.present?

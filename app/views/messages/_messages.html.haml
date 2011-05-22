@@ -1,0 +1,18 @@
+
+- if @site
+  - if current_user
+    - form_for [@site, page, Message.new(:user_id => current_user.id, :page => page, :site => @site)], :remote => true do |f|
+      %ul.form
+        = f.hidden_field 'page_id'
+        %li
+          %span.hint
+            Logged in as #{current_user.display_name}
+          %br/
+          = f.text_area 'body'
+        %li= submit_tag 'Add Message', :id => "add_message_button"
+  - else
+    %p.hint
+      = link_to 'Sign in', new_user_session_path
+      to leave a message
+
+= render :partial => 'messages/message', :collection => messages

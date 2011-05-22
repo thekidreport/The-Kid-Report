@@ -87,28 +87,6 @@ body {
   -moz-box-shadow: 1px 1px 2px #888888;
   text-decoration: none; }
 
-#comments {
-  width: 480px;
-  margin-top: 20px;
-  clear: both;
-  border-top: solid 1px #eeeeee; }
-  #comments form {
-    margin: 20px; }
-    #comments form textarea {
-      height: 6em;
-      width: 100%;
-      border: solid 1px #aaaaaa;
-      font-family: Verdana, Arial, Helvetica, sans-serif;
-      font-size: 10px; }
-
-.comment {
-  background-color: #eeeeee;
-  padding: 0.5em;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-  margin-bottom: 1em;
-  font-size: 0.9em; }
-
 #documents, #contacts {
   margin-top: 1em; }
 

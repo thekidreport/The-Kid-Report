@@ -12,7 +12,7 @@ class Site < ActiveRecord::Base
   accepts_nested_attributes_for :pages, :allow_destroy => true
   
   has_many :log_entries, :dependent => :destroy
-  has_many :messages, :dependent => :destroy
+  has_many :messages, :order => 'updated_at DESC, created_at DESC', :dependent => :destroy
   has_many :documents, :dependent => :destroy
   has_many :comments, :through => :pages
   
