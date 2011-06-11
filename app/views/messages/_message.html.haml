@@ -9,9 +9,8 @@
       - if message.event
         #{link_to_function message.event.name, "Modalbox.show('#{site_event_path(message.event.site, message.event)}', {title: '#{message.event.name}', width: 460, overlayDuration:0.1, slideDownDuration:0.1}); return false;"} 
   .details
-    %span.date= message.created_at.to_s(:date)
-    from
     %b= message.user ? message.user.display_name : 'System'
+    %span.date= message.created_at.to_s(:date)
     .description
       = raw message.body
   
