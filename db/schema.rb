@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110501232751) do
+ActiveRecord::Schema.define(:version => 20110518031538) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "page_id"
@@ -200,6 +200,9 @@ ActiveRecord::Schema.define(:version => 20110501232751) do
     t.datetime "deleted_at"
     t.string   "phone"
     t.string   "authentication_token"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token"

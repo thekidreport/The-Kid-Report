@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :phone
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :phone, :avatar
   
   has_many :memberships, :dependent => :destroy
   has_many :notifications, :dependent => :destroy
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     :s3_credentials => S3_CREDENTIALS, 
     :path => "/user_avatars/:id/:style/:filename",
     :default_style => :original,
-    :styles => { :original => "180x", :small => "64x" },
+    :styles => { :original => "96x96#", :small => "48x48#" },
     :s3_protocol => 'https'
 	
 	before_save :reset_deleted_at, :set_name, :ensure_authentication_token

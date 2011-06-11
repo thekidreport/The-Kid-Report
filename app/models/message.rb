@@ -11,9 +11,9 @@ class Message < ActiveRecord::Base
   validates_presence_of :body
 
   before_create :set_subject
-  after_create :create_notifications
+  after_create :create_instant_notifications
 
-  def create_notifications
+  def create_instant_notifications
     for user in self.site.users
       self.notifications.create(:email => user.email)
     end
@@ -28,7 +28,7 @@ class Message < ActiveRecord::Base
       self.subject += ": #{self.page.name}"
     end
     if self.comment
-      self.subject += " comment from #{self.comment.user.name}"
+      self.subject += " comment from #{self.comment.user.try(:name)}"
     end
     if self.event
       self.subject += " reminder: #{self.event.name}"

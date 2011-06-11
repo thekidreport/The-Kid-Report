@@ -21,7 +21,7 @@ class Site < ActiveRecord::Base
     :s3_credentials => S3_CREDENTIALS, 
     :path => "/site_logos/:id/:style/:filename",
     :default_style => :original,
-    :styles => { :original => "180x", :small => "64x" },
+    :styles => { :original => "180x", :small => "48x48#" },
     :s3_protocol => 'https'
     
     

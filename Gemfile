@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,6 +19,7 @@ gem 'hoptoad_notifier'
 gem 'heroku', '1.17.17'
 gem 'delayed_job'
 gem 'ri_cal', :git => 'https://github.com/ctide/ri_cal.git', :branch => 'master'
+gem 'rake', '~> 0.8.7'
 
 
 group :development do

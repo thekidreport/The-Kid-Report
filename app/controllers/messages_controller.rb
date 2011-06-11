@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
         format.html { redirect_to site_messages_path(@site) }
         format.js { 
           render :update do |page|
-            page.replace_html 'messages', :partial => "messages/page_messages", :locals => { :page => @message.page }
+            page.replace_html 'messages', :partial => "messages/messages", :locals => { :site => @site,  :page => @page, :messages => @page ? @page.messages : @site.messages }
           end  
         }
       end

@@ -298,18 +298,33 @@ form .actions {
   -webkit-border-radius: 4px;
   border: solid 1px #888888; }
   #messages form {
-    margin: 20px; }
+    margin: 10px; }
     #messages form textarea {
       height: 6em;
       width: 100%;
       border: solid 1px #aaaaaa;
       font-family: Verdana, Arial, Helvetica, sans-serif;
       font-size: 10px; }
+  #messages .avatar {
+    float: left;
+    margin-right: 1em;
+    border: solid 1px #888888;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    padding: 4px; }
 
 .message {
+  clear: both;
   padding: 1em;
   border-top: solid 1px #cccccc;
   font-size: 0.9em; }
+  .message .image.small {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    height: 48px;
+    width: 48px;
+    overflow: hidden; }
 
 #MB_window p {
   margin-top: 0; }

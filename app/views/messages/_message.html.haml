@@ -1,14 +1,17 @@
-%div.message
+%div.message[message]
+  - if message.user
+    .image.small
+      = image_tag message.user.avatar.url(:small)
   - if message.page || message.event
     .action{:style => 'float:right; margin-left: 1em'}
       - if message.page
         = link_to message.page.name, permalink_path(message.page.site.permalink, message.page.permalink)
       - if message.event
         #{link_to_function message.event.name, "Modalbox.show('#{site_event_path(message.event.site, message.event)}', {title: '#{message.event.name}', width: 460, overlayDuration:0.1, slideDownDuration:0.1}); return false;"} 
-  %span.date= message.created_at.to_s(:date)
-  from
-  %b= message.user ? message.user.display_name : 'System'
-  = link_to('x', site_message_path(message.site, message), :method => :delete, :confirm => 'Are you sure?', :remote => true, :style => 'float:right') if current_user && (current_user.can_edit?(message.site) || message.user.eql?(current_user))
-  
-  .description= raw add_breaks(message.body)
+  .details
+    %span.date= message.created_at.to_s(:date)
+    from
+    %b= message.user ? message.user.display_name : 'System'
+    .description
+      = raw message.body
   

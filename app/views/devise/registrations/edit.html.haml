@@ -4,12 +4,13 @@
   ul.form li.indent { padding-left: 123px;}
 
 .shadow_box
-  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
     = raw error_messages_for(resource)
     %ul.form
       %li= f.input :name
       %li= f.input :phone
-      %li= f.input :email
-      %li= f.input :password, :label => 'New password', :hint => "(leave blank if you don't want to change it)"
-      %li= f.input :password_confirmation, :label => 'Confirmation'
+      %li= f.input :email      
+      %li= f.input :avatar
+      %li= f.input :password, :label => 'New password', :hint => "(leave blank if you don't want to change it)", :required => false
+      %li= f.input :password_confirmation, :label => 'Confirmation', :required => false
       %li.indent= f.submit "Update"
