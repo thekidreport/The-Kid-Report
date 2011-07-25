@@ -1,7 +1,8 @@
 
 - if @site
   - if current_user
-    - form_for [@site, page, Message.new(:user_id => current_user.id, :page => page, :site => @site)], :remote => true do |f|
+    = link_to_function "Add message", "$('new_message').show();$(this).hide();"
+    - form_for [@site, page, Message.new(:user_id => current_user.id, :page => page, :site => @site)], :remote => true, :html => {:style => 'display:none'} do |f|
       %ul.form
         = f.hidden_field 'page_id'
         %li

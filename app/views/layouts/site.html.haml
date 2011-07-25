@@ -95,6 +95,6 @@
               = (@page.visitor_count_start_at).strftime "since %m/%d/%Y"
               - if current_user && current_user.can_edit?(@site)
                 = link_to 'Reset', reset_site_page_path(@site.id, @page.id), :method => :put
-            %br
-              = @site.name
-              = " - #{@site.footer}" if @site.footer.present?
+              %br
+            = @site.name
+            = " - #{@site.footer}" if @site.footer.present?

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
   
   def site_admin_required!
-    unless current_user.can_admin?(@site)
+    unless current_user && current_user.can_admin?(@site)
       flash[:notice] = 'You are not allowed to go to that page'
       redirect_to permalink_path(@site.permalink, @site.home_page.try(:permalink))
       return false
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
   
   def site_editor_required!
-    unless current_user.can_edit?(@site)
+    unless current_user && current_user.can_edit?(@site)
       flash[:notice] = 'You are not allowed to go to that page'
       redirect_to permalink_path(@site.permalink, @site.home_page.try(:permalink))
       return false
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
   
   def site_member_required!
-    unless current_user.member_of?(@site)
+    unless current_user && current_user.member_of?(@site)
       flash[:notice] = 'You are not allowed to go to that page'
       redirect_to permalink_path(@site.permalink, @site.home_page.try(:permalink))
       return false
