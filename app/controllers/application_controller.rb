@@ -80,9 +80,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_www
     if Rails.env.production?
-      redirect_to("https://www." + request.host_with_port + request.request_uri, :status => 301) and return if !(request.domain(2) =~ /www/) && (request.protocol == 'http://')
-      redirect_to(request.protocol + "www." + request.host_with_port + request.request_uri, :status => 301) and return if !(request.domain(2) =~ /www/)
-      redirect_to("https://" + request.host_with_port + request.request_uri, :status => 301) and return if (request.protocol == 'http://')
+      redirect_to("https://www." + thekidreport.org + request.request_uri, :status => 301) and return if !(request.domain(2) =~ /www/) && (request.protocol == 'http://')
+      redirect_to(request.protocol + "www." + thekidreport.org + request.request_uri, :status => 301) and return if !(request.domain(2) =~ /www/)
+      redirect_to("https://" + thekidreport.org + request.request_uri, :status => 301) and return if (request.protocol == 'http://')
     end
   end
   
